@@ -15,6 +15,11 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('lesson_id')->index()->comment('Идентификатор урока');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('student_id')->index()->comment('Идентификатор студента');
+            $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('mark')->nullable()->default(true)->comment('отметка');
             $table->timestamps();
         });
     }

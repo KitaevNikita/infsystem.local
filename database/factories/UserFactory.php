@@ -2,11 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
     /**
      * Define the model's default state.
      *
@@ -14,11 +22,17 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+      $gender = $this->faker->randomElement(['male','female']);
+      $roles = ['teacher', 'student'];
+      $role = $roles[rand(0, count($roles)-1)];
         return [
-            'name' => $this->faker->name(),
+            'surname' => $this->faker->lastName($gender),
+            'name' => $this->faker->firstName($gender),
+            'patronymic' => $this->faker->middleName($gender),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('password'),  // password
+            'role' => $role,
             'remember_token' => Str::random(10),
         ];
     }
@@ -36,4 +50,44 @@ class UserFactory extends Factory
             ];
         });
     }
+    /**
+    * Состояние для учетной записи Учебной части
+    */
+    public function training()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                  'email' => 'training@test.ru',
+                  'password' => bcrypt('12'),
+                  'role' => 'training',
+            ];
+        });
+    }
+    /**
+    * Состояние для учетной записи преподавателя
+    */
+    public function teacher()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                  'email' => 'teacher@test.ru',
+                  'password' => bcrypt('13'),
+                  'role' => 'teacher',
+            ];
+        });
+    }
+    /**
+    * Состояние для учетной записи студента
+    */
+    public function student()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                  'email' => 'student@test.ru',
+                  'password' => bcrypt('14'),
+                  'role' => 'student',
+            ];
+        });
+    }
 }
+

@@ -10,10 +10,11 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // User::class => UserPolicy::class,
+        // Warehouse::class => WarehousePolicy::class,
     ];
 
     /**
@@ -25,6 +26,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('training', function ($user) {
+            if ($user->role == 'training') {
+                return true;
+            }
+            return false;
+        });
+        Gate::define('teacher', function ($user) {
+            if ($user->role == 'teacher') {
+                return true;
+            }
+            return false;
+        });
+        Gate::define('student', function ($user) {
+            if ($user->role == 'student') {
+                return true;
+            }
+            return false;
+        });
     }
 }
