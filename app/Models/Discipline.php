@@ -21,7 +21,6 @@ class Discipline extends Model
         'teacher',
         'number_hours',
         'certification',
-        'discipline_id',
     ];
 
     public function lessons()

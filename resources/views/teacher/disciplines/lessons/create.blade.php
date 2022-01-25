@@ -6,10 +6,6 @@
     @csrf
 
     @include('teacher.disciplines.lessons.partials.form')
-
-    <hr>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-        <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">Отмена</a>
 </form>
 
 @endsection

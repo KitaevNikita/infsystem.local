@@ -22,9 +22,11 @@
         </div>
     </div>
     
+    @can('teacher')
+
     <div class="card mt-4">
         <h3 class="card-header">
-            Занятия
+        Занятия
             <a class="btn btn-sm btn btn-success float-end" 
                 href="{{ route('teacher.lessons.create', $discipline) }}">Добавить занятие</a>
         </h3>
@@ -32,6 +34,8 @@
             @yield('discipline-content')
         </div>
     </div>
+
+    @endcan
 </div>
 
 @endsection

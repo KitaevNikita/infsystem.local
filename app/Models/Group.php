@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Specialization;
 use App\Models\Discipline;
 use App\Models\Student;
+use App\Models\Lessons;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,5 +37,10 @@ class Group extends Model
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
     }
 }

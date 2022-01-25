@@ -16,8 +16,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
-
-
 Route::redirect('/', '/login');
 
 // Authentication Routes...
@@ -51,6 +49,6 @@ Route::group($teacherGroupData, function () {
     Route::resource('disciplines', DisciplineController::class);
     Route::resource('disciplines/{discipline}/lessons', LessonController::class)->except('index');
 });
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

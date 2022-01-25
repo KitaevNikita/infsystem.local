@@ -6,6 +6,8 @@ use App\Models\Discipline;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
+use App\Models\Group;
+use Carbon\Carbon;
 
 class Lesson extends Model
 {
@@ -22,6 +24,7 @@ class Lesson extends Model
         'type',
         'number_of_hours',
         'discipline_id',
+        'group_id'
     ];
 
     public function discipline()
@@ -32,5 +35,15 @@ class Lesson extends Model
     public function students() 
     {
         return $this->belongsToMany(Student::class, 'students_lessons', 'lesson_id', 'student_id');
+    }
+
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

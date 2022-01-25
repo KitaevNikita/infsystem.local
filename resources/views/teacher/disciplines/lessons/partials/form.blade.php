@@ -41,5 +41,7 @@
         </div>
     @enderror
 </div>
+<button type="submit" class="btn btn-primary">Сохранить</button>
+<a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">Отмена</a>
 
 

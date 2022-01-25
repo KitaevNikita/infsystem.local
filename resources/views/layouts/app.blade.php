@@ -33,16 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="moduleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Модули
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
                                 <li><a class="dropdown-item" href="#">Список групп</a></li>
-                                <li><a class="dropdown-item" href="#">Список дисциплин</a></li>
                                 <li><a class="dropdown-item" href="#">Список специальностей</a></li>
                             </ul>
-                        </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,25 +55,24 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
-                                </li>
-                            @endif
                         @else
-                        <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->role_name }}
                                 </a>
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('admin.users.edit', Auth::id()) }}">
-                                    <i class="fa fa-cog" aria-hidden="true"> Настройки</i>
+                                        Настройки
                                     </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-in" aria-hidden="true"> Выйти</i>
+                                        Выйти
                                     </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
