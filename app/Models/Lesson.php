@@ -6,6 +6,8 @@ use App\Models\Discipline;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
+use App\Models\Academic;
+use App\Models\Rate;
 use App\Models\Group;
 use Carbon\Carbon;
 
@@ -45,5 +47,15 @@ class Lesson extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function academics()
+    {
+        return $this->hasMany(Academic::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
     }
 }

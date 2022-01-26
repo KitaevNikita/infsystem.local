@@ -15,4 +15,6 @@
     Отмена
 </a>
 
+@include('teacher.disciplines.lessons.list')
+
 @endsection

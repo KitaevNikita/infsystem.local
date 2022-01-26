@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use App\Models\Discipline;
+use App\Models\Group;
 use App\Http\Requests\LessonRequest;
 
 class LessonController extends Controller
@@ -18,7 +19,8 @@ class LessonController extends Controller
     public function create($discipline_id)
     {
         $discipline = Discipline::findOrFail($discipline_id);
-        return view('teacher.disciplines.lessons.create', compact('discipline'));
+        $groups = Group::all(); 
+        return view('teacher.disciplines.lessons.create', compact('discipline', 'groups'));
     }
 
     /**
@@ -31,8 +33,8 @@ class LessonController extends Controller
     {
         $discipline = Discipline::findOrFail($discipline_id);
         $request['discipline_id'] = $discipline->id;
-        Lesson::create($request->all());
-        return redirect()->route('teacher.disciplines.show', $discipline);
+        $lesson = Lesson::create($request->all());
+        return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
     }
 
     /**
@@ -58,7 +60,8 @@ class LessonController extends Controller
     {
         $discipline = Discipline::findOrFail($discipline_id);
         $lesson = Lesson::findOrFail($id);
-        return view('teacher.disciplines.lessons.edit', compact('discipline', 'lesson'));
+        $groups = Group::all(); 
+        return view('teacher.disciplines.lessons.edit', compact('discipline', 'lesson', 'groups'));
     }
 
     /**

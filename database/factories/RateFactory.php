@@ -21,8 +21,9 @@ class RateFactory extends Factory
         ->first();
         $lesson = Lesson::inRandomOrder()
         ->first();
+        $marks = [true, false];
         return [
-            'mark' => $this->faker->boolean($chanceOfGettingTrue = 50),
+            'mark' => $marks[rand(0, count($marks)-1)],
             'lesson_id' => $lesson->id,
             'student_id' => $student->id,
         ];

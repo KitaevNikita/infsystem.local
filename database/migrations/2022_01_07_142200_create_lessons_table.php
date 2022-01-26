@@ -17,7 +17,7 @@ class CreateLessonsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('discipline_id')->index()->comment('Идентификатор дисциплины');
             $table->foreign('discipline_id')->references('id')->on('disciplines')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('group_id')->index()->comment('Идентификатор группы');
+            $table->unsignedBigInteger('group_id')->nullable()->index()->comment('Идентификатор группы');
             $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date')->nullable()->comment('дата');
             $table->string('topic', 255)->nullable()->comment('тема');
