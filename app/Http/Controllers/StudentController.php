@@ -19,7 +19,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        $students = Student::paginate(5);
+        $students = Student::paginate(10);
         return view('admin.students.index', compact('students'));
 
     }
@@ -42,7 +42,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
             Student::create($request->all());
             return redirect()->route('admin.students.index');

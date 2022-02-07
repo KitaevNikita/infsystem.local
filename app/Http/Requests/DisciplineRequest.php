@@ -24,10 +24,10 @@ class DisciplineRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_of_the_discipline' => 'required|string|between:0,255'
-            'teacher' => 'required|string|between:0,255'
-            'number_hours' => 'required|integer'
-            'certification' => 'required|string|between:0,255'
+            'name_of_the_discipline' => 'required|string|between:0,255',
+            'teacher' => 'required|string|between:0,255',
+            'number_hours' => 'required|integer',
+            'certification' => 'required|string|between:0,255',
         ];
     }
     

@@ -18,7 +18,7 @@
                                 <th scope="col">Имя</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Роль</th>
-                                <th scope="col" class="text-right">Действия</th>
+                                <th scope="col" class="text-end">Действия</th>
                             </tr>
                         </thead>
                         <tbody>

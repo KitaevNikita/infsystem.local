@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Specialization;
 use App\Models\Group;
 use App\Models\Discipline;
+use App\Models\Lesson;
 use Illuminate\Database\Seeder;
 
 class SpecializationsTableSeeder extends Seeder
@@ -39,6 +40,7 @@ class SpecializationsTableSeeder extends Seeder
             {
                 $groupModel = Group::factory()
                     ->count(1)
+                    ->has(Lesson::factory()->count(10)->for($disciplines[$iterationsCount]))
                     ->createGroupByName($group, $specialization, $disciplines[$iterationsCount])
                     ->create();
 

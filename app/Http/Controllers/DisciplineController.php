@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Discipline;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DisciplineRequest;
 
 class DisciplineController extends Controller
 {
@@ -37,7 +37,7 @@ class DisciplineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DisciplineRequest $request)
     {
             Discipline::create($request->all());
             return redirect()->route('teacher.disciplines.index');
@@ -74,7 +74,7 @@ class DisciplineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DisciplineRequest $request, $id)
     {
         $discipline = Discipline::findOrFail($id);
         $discipline->update($request->except('user_id'));

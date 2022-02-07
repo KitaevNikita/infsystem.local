@@ -22,9 +22,9 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-      $gender = $this->faker->randomElement(['male','female']);
-      $roles = ['teacher', 'student'];
-      $role = $roles[rand(0, count($roles)-1)];
+        $gender = $this->faker->randomElement(['male','female']);
+        $roles = ['teacher', 'student'];
+        $role = $roles[rand(0, count($roles)-1)];
         return [
             'surname' => $this->faker->lastName($gender),
             'name' => $this->faker->firstName($gender),
@@ -82,10 +82,16 @@ class UserFactory extends Factory
     public function student()
     {
         return $this->state(function (array $attributes) {
+            $gender = $this->faker->randomElement(['male','female']);
             return [
-                  'email' => 'student@test.ru',
-                  'password' => bcrypt('14'),
-                  'role' => 'student',
+                'surname' => $this->faker->lastName($gender),
+                'name' => $this->faker->firstName($gender),
+                'patronymic' => $this->faker->middleName($gender),
+                'email' => $this->faker->unique()->safeEmail(),
+                'email_verified_at' => now(),
+                'password' => bcrypt('14'),
+                'role' => 'student',
+                'remember_token' => Str::random(10),
             ];
         });
     }

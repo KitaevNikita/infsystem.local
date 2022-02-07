@@ -26,7 +26,7 @@
 </div>
 <div class="form-group">
     <label for="role">Роль</label>
-    <select class="form-control" id="role" name="role">
+    <select class="form-select" id="role" name="role">
         @cannot('teacher')
         <option value="student" {{ (($item->role ?? old('role')) == "student") ? "selected" : "" }}>
             Студент
@@ -44,4 +44,4 @@
         @endcannot
     </select>
 </div>
-<button type="submit" id="save" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+

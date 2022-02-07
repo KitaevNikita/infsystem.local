@@ -20,11 +20,11 @@ class StudentsTableSeeder extends Seeder
         $students = User::where('role', 'student')->get();
         $groups = Group::all();
         foreach ($students as $student) {
-        Student::factory()
-        ->count(1)
-        ->for($student)
-        ->for($groups[rand(0, count($groups) - 1)])
-        ->create();
+            Student::factory()
+                ->count(1)
+                ->for($student)
+                ->for($groups[rand(0, count($groups) - 1)])
+                ->create();
         }
     }
 }

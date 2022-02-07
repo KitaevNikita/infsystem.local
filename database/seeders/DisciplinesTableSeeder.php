@@ -18,7 +18,6 @@ class DisciplinesTableSeeder extends Seeder
     {
         Discipline::factory()
             ->count(20)
-            ->has(Lesson::factory()->count(5))
             ->create();
     }
 }

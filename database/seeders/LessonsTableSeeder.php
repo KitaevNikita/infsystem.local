@@ -14,8 +14,10 @@ class LessonsTableSeeder extends Seeder
      */
     public function run()
     {
-        Lesson::factory()
-            ->count(13)
-            ->create();
+        $lessons = Lesson::all();
+        foreach($lessons as $lesson)
+        {
+            $lesson->students()->attach($lesson->group->students);
+        }
     }
 }

@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($lesson->group->students as $student)
+        @foreach($lesson->students as $student)
         <tr>
             <td scope="col">{{$loop->iteration}}</td>
             <td scope="col">{{$student->user->full_name}}</td>

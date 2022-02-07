@@ -33,18 +33,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="moduleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Модули
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
-                                <li><a class="dropdown-item" href="#">Отчеты</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
+                                    <li><a class="dropdown-item" href="#">Список групп</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
+                                    <li><a class="dropdown-item" href="#">Отчеты</a></li>
+                                    <li><a class="dropdown-item" href="#">Журналы</a></li>
                             </ul>
                         </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

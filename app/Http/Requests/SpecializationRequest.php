@@ -24,7 +24,7 @@ class SpecializationRequest extends FormRequest
     public function rules()
     {
         return [
-            'namespec' => 'required|string|between:0,255'
+            'namespec' => 'required|string|between:0,255',
         ];
     }
     
