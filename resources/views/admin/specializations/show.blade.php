@@ -8,8 +8,8 @@
             Детали специальности
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Название специльности:</strong> {{ $specialization->namespec }}</li>
-            <li class="list-group-item"><strong>Дата создания:</strong> {{ $specialization->created_at }}</li>
+            <li class="list-group-user"><strong>Название специльности:</strong> {{ $specialization->namespec }}</li>
+            <li class="list-group-user"><strong>Дата создания:</strong> {{ $specialization->created_at }}</li>
         </ul>
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('admin.specializations.edit', $specialization) }}">

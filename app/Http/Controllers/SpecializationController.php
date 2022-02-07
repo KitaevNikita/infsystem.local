@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Specialization;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SpecializationRequest;
 
 class SpecializationController extends Controller
 {
@@ -37,7 +37,7 @@ class SpecializationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SpecializationRequest $request)
     {
         Specialization::create($request->all());
             return redirect()->route('admin.specializations.index');
@@ -75,7 +75,7 @@ class SpecializationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SpecializationRequest $request, $id)
     {
             $specialization = Specialization::findOrFail($id);
             $specialization->update($request->except('user_id'));

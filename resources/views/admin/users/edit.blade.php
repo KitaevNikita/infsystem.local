@@ -11,11 +11,14 @@
                 </h3>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.users.update', $item->id) }}" method="post">
+                    <form action="{{ route('admin.users.update', $user->id) }}" method="post">
                         @csrf
                         @method('put')
 
                         @include('admin.users.partials.form')
+                        <hr>
+                        <button type="submit" id="save" class="btn btn-primary">Сохранить</button>
+                        <a class="btn btn-danger" href="{{ route('admin.users.index') }}">Отмена</a>
                     </form>
                 </div>
             </div>

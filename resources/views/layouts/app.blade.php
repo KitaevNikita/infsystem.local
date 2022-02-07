@@ -10,14 +10,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,18 +34,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                        <li class="nav-item dropdown">
+                        <li class="nav-user dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="moduleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Модули
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                    <li><a class="dropdown-item" href="#">Список групп</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
-                                    <li><a class="dropdown-item" href="#">Отчеты</a></li>
-                                    <li><a class="dropdown-item" href="#">Журналы</a></li>
+                                    <li><a class="dropdown-user" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                    <li><a class="dropdown-user" href="{{ route('admin.students.index') }}">Список студентов</a></li>
+                                    <li><a class="dropdown-user" href="#">Список групп</a></li>
+                                    <li><a class="dropdown-user" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
+                                    <li><a class="dropdown-user" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
+                                    <li><a class="dropdown-user" href="#">Отчеты</a></li>
+                                    <li><a class="dropdown-user" href="#">Журналы</a></li>
                             </ul>
                         </li>
                         @endauth
@@ -56,24 +56,24 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-user">
                                     <a class="nav-link" href="{{ route('login') }}">Войти</a>
                                 </li>
                             @endif
 
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-user dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->role_name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('admin.users.edit', Auth::id()) }}">
+                                    <a class="dropdown-user" href="{{ route('admin.users.edit', Auth::id()) }}">
                                         Настройки
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-user" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Выйти

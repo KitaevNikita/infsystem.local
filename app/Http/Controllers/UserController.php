@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -18,8 +20,8 @@ class UserController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('viewAny', $request->user())) {
             // вывод данных
-            $items = User::paginate(10);
-            return view('admin.users.index', compact('items'));
+            $users = User::paginate(10);
+            return view('admin.users.index', compact('users'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -50,7 +52,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         // проверка прав пользователя
         if ($request->user()->can('create', $request->user())) {
@@ -75,8 +77,8 @@ class UserController extends Controller
                 // проверка прав пользователя
         if ($request->user()->can('viewAny', $request->user())) {
             // вывод данных
-            $item = User::findOrFail($id);
-            return view('admin.users.show', compact('item'));
+            $user = User::findOrFail($id);
+            return view('admin.users.show', compact('user'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -93,10 +95,10 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $item = User::findOrFail($id);// проверка прав пользователя
-        if ($request->user()->can('update', $item)) {
+        $user = User::findOrFail($id);// проверка прав пользователя
+        if ($request->user()->can('update', $user)) {
             // вывод данных
-            return view('admin.users.edit', compact('item'));
+            return view('admin.users.edit', compact('user'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -111,20 +113,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        $item = User::findOrFail($id);
+        $user = User::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $item)) {
+        if ($request->user()->can('update', $user)) {
 
 
-            $item->name = $request->name;
-            $item->email = $request->email;
-            $item->role = $request->role;
+            $user->surname = $request->surname;
+            $user->patronymic = $request->patronymic;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = $request->role;
             if ($request->password !== null) {
-                $item->password = bcrypt($request->password);
+                $user->password = bcrypt($request->password);
             }
-            $item->save();
+            $user->save();
             if ($request->user()->can('viewAny', User::class)) {
                 return redirect()->route('admin.users.index');
             } else {
@@ -148,9 +152,12 @@ class UserController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('delete', $request->user())) {
             // вывод данных
-            $item = User::findOrFail($id);
-            $item->student->delete();
-            $item->delete();
+            $user = User::findOrFail($id);
+            if($user->role == 'student')
+            {
+                $user->student->delete();
+            }
+            $user->delete();
 
             return redirect()->route('admin.users.index');
         } else {

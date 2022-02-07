@@ -15,28 +15,28 @@
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">Имя</th>
+                                <th scope="col">Ф.И.О.</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Роль</th>
                                 <th scope="col" class="text-end">Действия</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($items as $item)
+                            @forelse($users as $user)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->role }}</td>
+                                <td>{{ $user->full_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->role_name }}</td>
                                 <td class="text-end">
                                     <a class="btn btn-sm btn-primary" id="show"
-                                       href="{{ route('admin.users.show', $item->id) }}">
+                                       href="{{ route('admin.users.show', $user->id) }}">
                                     Просмотреть
                                     </a>
                                     <a class="btn btn-sm btn-secondary" id="edit"
-                                       href="{{ route('admin.users.edit', $item->id) }}">
+                                       href="{{ route('admin.users.edit', $user->id) }}">
                                     Редактировать
                                     </a>&nbsp;
-                                    <form action="{{ route('admin.users.destroy', $item->id) }}"
+                                    <form action="{{ route('admin.users.destroy', $user->id) }}"
                                      method="post" class="float-end">
                                         @csrf
                                         @method('delete')
@@ -54,9 +54,9 @@
                         </tbody>
                     </table>
                 </div>
-                @if($items->total() > $items->count())
+                @if($users->total() > $users->count())
                 <div class="card-footer text-muted">
-                    {{ $items->links() }}
+                    {{ $users->links() }}
                 </div>
                 @endif
             </div>

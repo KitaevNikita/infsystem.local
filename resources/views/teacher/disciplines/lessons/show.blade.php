@@ -3,10 +3,10 @@
 @section('discipline-content')
 
 <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Тема:</strong> {{ $lesson->topic }}</li>
-    <li class="list-group-item"><strong>Количество часов:</strong> {{ $lesson->number_of_hours }}</li>
-    <li class="list-group-item"><strong>Тип:</strong> {{ $lesson->type }}</li>
-    <li class="list-group-item"><strong>Дата:</strong> {{ $lesson->date }}</li>
+    <li class="list-group-user"><strong>Тема:</strong> {{ $lesson->topic }}</li>
+    <li class="list-group-user"><strong>Количество часов:</strong> {{ $lesson->number_of_hours }}</li>
+    <li class="list-group-user"><strong>Тип:</strong> {{ $lesson->type }}</li>
+    <li class="list-group-user"><strong>Дата:</strong> {{ $lesson->date }}</li>
 </ul>
 <a class="btn btn-secondary" href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">
     Редактировать
