@@ -26,8 +26,6 @@ class SpecializationsTableSeeder extends Seeder
      */
     public function run()
     {
-        $iterationsCount = 0;
-        $disciplines = Discipline::all();
         foreach(self::GROUPS_FOR_SPECIALIZATIONS as $specializationName => $groups) 
         {
             $specializations = Specialization::factory()
@@ -40,15 +38,10 @@ class SpecializationsTableSeeder extends Seeder
             {
                 $groupModel = Group::factory()
                     ->count(1)
-                    ->has(Lesson::factory()->count(10)->for($disciplines[$iterationsCount]))
-                    ->createGroupByName($group, $specialization, $disciplines[$iterationsCount])
+                    ->has(Discipline::factory()->count(10))
+                    ->has(Lesson::factory()->count(30))
+                    ->createGroupByName($group, $specialization)
                     ->create();
-
-                $iterationsCount++;
-                if($iterationsCount == count($disciplines))
-                {
-                    $iterationsCount = 1;
-                }
             }
         }
     }

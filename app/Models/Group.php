@@ -29,9 +29,9 @@ class Group extends Model
         return $this->belongsTo(Specialization::class);
     }
 
-    public function discipline()
+    public function disciplines()
     {
-        return $this->belongsTo(Discipline::class);
+        return $this->hasMany(Discipline::class);
     }
 
     public function students()

@@ -42,7 +42,7 @@ class UserController extends Controller
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
 
@@ -82,7 +82,7 @@ class UserController extends Controller
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
 
     }
@@ -102,7 +102,7 @@ class UserController extends Controller
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
 
@@ -137,7 +137,7 @@ class UserController extends Controller
             } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
 
@@ -163,7 +163,7 @@ class UserController extends Controller
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
-                    ->withErrors(['msg' => 'Ошибка доступа']);
+                ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
 }

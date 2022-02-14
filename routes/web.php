@@ -37,6 +37,7 @@ $adminGroupData = [
 Route::group($adminGroupData, function () {
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('groups', GroupController::class);
     Route::resource('specializations', SpecializationController::class);
 });
 

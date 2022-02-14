@@ -37,19 +37,6 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    public function unverified()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
-    }
-    /**
     * Состояние для учетной записи Учебной части
     */
     public function training()
@@ -62,6 +49,7 @@ class UserFactory extends Factory
             ];
         });
     }
+
     /**
     * Состояние для учетной записи преподавателя
     */
@@ -75,6 +63,7 @@ class UserFactory extends Factory
             ];
         });
     }
+
     /**
     * Состояние для учетной записи студента
     */
@@ -87,7 +76,6 @@ class UserFactory extends Factory
                 'name' => $this->faker->firstName($gender),
                 'patronymic' => $this->faker->middleName($gender),
                 'email' => $this->faker->unique()->safeEmail(),
-                'email_verified_at' => now(),
                 'password' => bcrypt('14'),
                 'role' => 'student',
                 'remember_token' => Str::random(10),

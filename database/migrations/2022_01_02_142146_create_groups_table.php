@@ -15,8 +15,6 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('discipline_id')->index()->comment('Идентификатор дисциплины');
-            $table->foreign('discipline_id')->references('id')->on('disciplines')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('specialization_id')->index()->comment('Идентификатор специальности');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onUpdate('cascade')->onDelete('cascade');
             $table->string('namegroup', 255)->nullable()->comment('Название группы');

@@ -28,7 +28,7 @@ class DisciplineController extends Controller
      */
     public function create()
     {
-            return view('teacher.disciplines.create');
+        return view('teacher.disciplines.create');
     }
 
     /**
@@ -39,8 +39,8 @@ class DisciplineController extends Controller
      */
     public function store(DisciplineRequest $request)
     {
-            Discipline::create($request->all());
-            return redirect()->route('teacher.disciplines.index');
+        Discipline::create($request->all());
+        return redirect()->route('teacher.disciplines.index');
     }
 
     /**

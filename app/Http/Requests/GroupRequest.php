@@ -19,7 +19,8 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'namegroup' => 'required|string|between:0,255',
+            'namegroup' => 'required|string|between:2,10',
+            'specialization_id' => 'required',
         ];
     }
 
@@ -31,9 +32,10 @@ class GroupRequest extends FormRequest
     public function messages()
     {
         return [
-            "namegroup.required" => "Введите группу",
-            "namegroup.string" => "Группа должна иметь строковое значение",
-            "namegroup.berween" => "Оценка не должна быть больше 255 символов",
+            "namegroup.required" => "Введите группу.",
+            "namegroup.string" => "Группа должна иметь строковое значение.",
+            "namegroup.between" => "Название группы должно быть в диапазоне от :min до :max.",
+            "specialization_id.required" => "Выберите специализацию.",
         ];
     }
 }

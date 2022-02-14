@@ -15,6 +15,8 @@ class CreateDisciplinesTable extends Migration
     {
         Schema::create('disciplines', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('group_id')->index()->nullable()->comment('Идентификатор группы');
+            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name_of_the_discipline', 255)->nullable()->comment('название дисциплины');
             $table->string('teacher', 255)->nullable()->comment('преподаватель');
             $table->integer('number_hours')->comment('количество часов');

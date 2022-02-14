@@ -39,17 +39,17 @@ class DisciplineRequest extends FormRequest
     public function messages()
     {
         return [
-            "name_of_the_discipline.required" => "Введите название дисциплины",
-            "teacher.required" => "Ввведите ФИО преподавателя",
-            "number_hours.required" => "Введите количество часов",
-            "certification.required" => "Введите промежуточную аттестацию",
-            "name_of_the_discipline.string" => "Название дисциплины должно быть строковым значением",
-            "teacher.string" => "ФИО преподавателя должно быть строковым значением",
-            "number_hours.integer" => "Количество часов должно иметь числовое значение",
-            "certification.string" => "Промежуточная аттестация должна быть строковым значением",
-            "name_of_the_discipline.between" => "Название дисциплины должно быть не более 255 символов",
-            "teacher.between" => "ФИО преподавателя должно быть не более 255 символов",
-            "certification.between" => "Промежуточная аттестация должна быть не более 255 символов",
+            "name_of_the_discipline.required" => "Введите название дисциплины.",
+            "teacher.required" => "Ввведите ФИО преподавателя.",
+            "number_hours.required" => "Введите количество часов.",
+            "certification.required" => "Введите промежуточную аттестацию.",
+            "name_of_the_discipline.string" => "Название дисциплины должно быть строковым значением.",
+            "teacher.string" => "ФИО преподавателя должно быть строковым значением.",
+            "number_hours.integer" => "Количество часов должно иметь числовое значение.",
+            "certification.string" => "Промежуточная аттестация должна быть строковым значением.",
+            "name_of_the_discipline.between" => "Название дисциплины должно быть не более 255 символов.",
+            "teacher.between" => "ФИО преподавателя должно быть не более 255 символов.",
+            "certification.between" => "Промежуточная аттестация должна быть не более 255 символов.",
         ];
     }
 }

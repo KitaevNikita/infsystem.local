@@ -41,7 +41,7 @@
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
                                     <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                    <li><a class="dropdown-item" href="#">Список групп</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
                                     <li><a class="dropdown-item" href="#">Отчеты</a></li>

@@ -8,9 +8,9 @@
          {{ $discipline->name_of_the_discipline }}
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-user"><strong>Ф.И.О. преподавателя:</strong> {{ $discipline->teacher }}</li>
-            <li class="list-group-user"><strong>Количество часов:</strong> {{ $discipline->number_hours }}</li>
-            <li class="list-group-user"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
+            <li class="list-group-item"><strong>Ф.И.О. преподавателя:</strong> {{ $discipline->teacher }}</li>
+            <li class="list-group-item"><strong>Количество часов:</strong> {{ $discipline->number_hours }}</li>
+            <li class="list-group-item"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
         </ul>
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('teacher.disciplines.edit', $discipline) }}">

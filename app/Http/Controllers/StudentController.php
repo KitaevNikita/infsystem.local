@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Student;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\UserStudent\UserStudentStoreRequest;
+use App\Http\Requests\UserStudent\UserStudentUpdateRequest;
 
 class StudentController extends Controller
 {
@@ -31,9 +34,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-
-            $users = User::where('role', 'student')->doesntHave('student')->get();
-            return view('admin.students.create', compact('users'));
+        $groups = Group::all();
+        $users = User::where('role', 'student')->doesntHave('student')->get();
+        return view('admin.students.create', compact('users', 'groups'));
     }
 
     /**
@@ -42,10 +45,10 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StudentRequest $request)
+    public function store(UserStudentStoreRequest $request)
     {
-            Student::create($request->all());
-            return redirect()->route('admin.students.index');
+        Student::create($request->all());
+        return redirect()->route('admin.students.index');
     }
 
     /**
@@ -68,10 +71,10 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
+        $groups = Group::all();
         $users = User::where('role', 'student')->doesntHave('student')->get();
-        $student = Student::findOrFail($id);
-
-        return view('admin.students.edit', compact('student', 'users'));
+        $user = Student::findOrFail($id);
+        return view('admin.students.edit', compact('user', 'users', 'groups'));
     }
 
     /**
@@ -81,13 +84,11 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StudentRequest $request, $id)
+    public function update(UserStudentUpdateRequest $request, $id)
     {
-            $student = Student::findOrFail($id);
-            // dd($request->all());
-            $student->update($request->except('user_id'));
-
-            return redirect()->route('admin.students.index');
+        $student = Student::findOrFail($id);
+        $student->update($request->except('user_id'));
+        return redirect()->route('admin.students.index');
     }
 
     /**
@@ -101,7 +102,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->user->delete();
         $student->delete();
-
         return redirect()->route('admin.students.index');
     }
 }

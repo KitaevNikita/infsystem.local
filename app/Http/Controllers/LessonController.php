@@ -33,12 +33,9 @@ class LessonController extends Controller
     {
         $discipline = Discipline::findOrFail($discipline_id);
         $request['discipline_id'] = $discipline->id;
-
         $group = Group::findOrFail($request->group_id);
-
         $lesson = Lesson::create($request->all());
         $lesson->students()->attach($group->students);
-
         return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
     }
 
@@ -95,7 +92,6 @@ class LessonController extends Controller
         $discipline = Discipline::findOrFail($discipline_id);
         $lesson = Lesson::findOrFail($id);
         $lesson->delete();
-
         return redirect()->route('teacher.disciplines.show', $discipline);
     }
 }

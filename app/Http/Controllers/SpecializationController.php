@@ -28,7 +28,7 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-            return view('admin.specializations.create');
+        return view('admin.specializations.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class SpecializationController extends Controller
     public function store(SpecializationRequest $request)
     {
         Specialization::create($request->all());
-            return redirect()->route('admin.specializations.index');
+        return redirect()->route('admin.specializations.index');
     }
 
     /**
@@ -64,7 +64,6 @@ class SpecializationController extends Controller
     public function edit($id)
     {
         $specialization = Specialization::findOrFail($id);
-
         return view('admin.specializations.edit', compact('specialization'));
     }
 
@@ -77,9 +76,9 @@ class SpecializationController extends Controller
      */
     public function update(SpecializationRequest $request, $id)
     {
-            $specialization = Specialization::findOrFail($id);
-            $specialization->update($request->except('user_id'));
-            return redirect()->route('admin.specializations.index');
+        $specialization = Specialization::findOrFail($id);
+        $specialization->update($request->except('user_id'));
+        return redirect()->route('admin.specializations.index');
     }
 
     /**
@@ -92,7 +91,6 @@ class SpecializationController extends Controller
     {
         $specialization = Specialization::findOrFail($id);
         $specialization->delete();
-
         return redirect()->route('admin.specializations.index');
     }
 }

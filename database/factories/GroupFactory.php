@@ -30,13 +30,12 @@ class GroupFactory extends Factory
         ];
     }
 
-    public function createGroupByName(string $groupName, Specialization $specialization, Discipline $discipline)
+    public function createGroupByName(string $groupName, Specialization $specialization)
     {
-        return $this->state(function (array $attributes) use ($groupName, $specialization, $discipline) {
+        return $this->state(function (array $attributes) use ($groupName, $specialization) {
             return [
                 'namegroup' => $groupName,
                 'specialization_id' => $specialization->id,
-                'discipline_id' => $discipline->id
             ];
         });
     }

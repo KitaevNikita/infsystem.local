@@ -21,6 +21,7 @@ class Discipline extends Model
         'teacher',
         'number_hours',
         'certification',
+        'group_id'
     ];
 
     public function lessons()
@@ -28,8 +29,8 @@ class Discipline extends Model
         return $this->hasMany(Lesson::class);
     }
 
-    public function groups()
+    public function group()
     {
-        return $this->hasMany(Group::class);
+        return $this->belongsTo(Group::class);
     }
 }
