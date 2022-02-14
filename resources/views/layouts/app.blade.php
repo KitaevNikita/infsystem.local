@@ -34,18 +34,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                        <li class="nav-user dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="moduleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Модули
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                                    <li><a class="dropdown-user" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
-                                    <li><a class="dropdown-user" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                    <li><a class="dropdown-user" href="#">Список групп</a></li>
-                                    <li><a class="dropdown-user" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
-                                    <li><a class="dropdown-user" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
-                                    <li><a class="dropdown-user" href="#">Отчеты</a></li>
-                                    <li><a class="dropdown-user" href="#">Журналы</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
+                                    <li><a class="dropdown-item" href="#">Список групп</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
+                                    <li><a class="dropdown-item" href="#">Отчеты</a></li>
+                                    <li><a class="dropdown-item" href="#">Журналы</a></li>
                             </ul>
                         </li>
                         @endauth
@@ -69,11 +69,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-user" href="{{ route('admin.users.edit', Auth::id()) }}">
+                                    <a class="dropdown-item" href="{{ route('admin.users.edit', Auth::id()) }}">
                                         Настройки
                                     </a>
 
-                                    <a class="dropdown-user" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Выйти
