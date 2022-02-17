@@ -23,13 +23,4 @@ class StudentFactory extends Factory
             'number' => mt_rand(100, 999),
         ];
     }
-
-    public function createStudentForGroup(Group $group)
-    {
-        return $this->state(function (array $attributes) use ($group) {
-            return [
-                'group_id' => $group->id,
-            ];
-        });
-    }
 }

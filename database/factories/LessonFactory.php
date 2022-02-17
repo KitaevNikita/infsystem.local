@@ -23,12 +23,11 @@ class LessonFactory extends Factory
         ];
     }
 
-    public function createLessonByTopic(string $topic, Discipline $discipline)
+    public function createLessonByTopic(string $topic)
     {
-        return $this->state(function (array $attributes) use ($topic, $discipline) {
+        return $this->state(function (array $attributes) use ($topic) {
             return [
-                'topic' => $topic,
-                'discipline_id' => $discipline->id,
+                'topic' => $topic
             ];
         });
     }

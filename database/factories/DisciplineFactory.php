@@ -28,12 +28,11 @@ class DisciplineFactory extends Factory
         ];
     }
 
-    public function createDisciplineByName(string $disciplineName, Group $group)
+    public function createDisciplineByName(string $disciplineName)
     {
-        return $this->state(function (array $attributes) use ($disciplineName, $group) {
+        return $this->state(function (array $attributes) use ($disciplineName) {
             return [
-                'name_of_the_discipline' => $disciplineName,
-                'group_id' => $group->id,
+                'name_of_the_discipline' => $disciplineName
             ];
         });
     }
