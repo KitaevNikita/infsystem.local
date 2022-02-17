@@ -2,10 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Lesson;
-use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Models\Discipline;
 
 class LessonFactory extends Factory
 {
@@ -16,12 +14,22 @@ class LessonFactory extends Factory
      */
     public function definition()
     {
-        $types = ["Теоретический","Практический","Теоретико-практически"];
+        $types = ["Теоретический", "Практический", "Теоретико-практически"];
         return [
             'date' => $this->faker->date(),
             'topic' => $this->faker->realText($maxNdChars = 50, $indexSize = 2),
-            'type' => $types[rand(0, count($types)-1)],
+            'type' => $types[rand(0, count($types) - 1)],
             'number_of_hours' => mt_rand(1, 2),
         ];
+    }
+
+    public function createLessonByTopic(string $topic, Discipline $discipline)
+    {
+        return $this->state(function (array $attributes) use ($topic, $discipline) {
+            return [
+                'topic' => $topic,
+                'discipline_id' => $discipline->id,
+            ];
+        });
     }
 }

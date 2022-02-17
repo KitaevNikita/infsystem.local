@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Lesson;
 use App\Models\Group;
+use App\Models\Discipline;
 
 class Student extends Model
 {
@@ -24,8 +25,7 @@ class Student extends Model
     ];
 
     /**
-     * Пользователь, к которому приналежит студент
-     *
+     * Пользователь, к которому приналежит студент/
      */
     public function user()
     {
@@ -40,5 +40,10 @@ class Student extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function disciplines() 
+    {
+        return $this->belongsToMany(Discipline::class, 'summarylists', 'student_id', 'discipline_id');
     }
 }

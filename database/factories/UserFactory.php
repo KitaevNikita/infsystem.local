@@ -30,9 +30,9 @@ class UserFactory extends Factory
             'name' => $this->faker->firstName($gender),
             'patronymic' => $this->faker->middleName($gender),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('password'),  // password
+            'password' => bcrypt('password'),
             'role' => $role,
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(10)
         ];
     }
 
@@ -45,7 +45,7 @@ class UserFactory extends Factory
             return [
                   'email' => 'training@test.ru',
                   'password' => bcrypt('12'),
-                  'role' => 'training',
+                  'role' => 'training'
             ];
         });
     }
@@ -59,7 +59,7 @@ class UserFactory extends Factory
             return [
                   'email' => 'teacher@test.ru',
                   'password' => bcrypt('13'),
-                  'role' => 'teacher',
+                  'role' => 'teacher'
             ];
         });
     }
@@ -70,15 +70,9 @@ class UserFactory extends Factory
     public function student()
     {
         return $this->state(function (array $attributes) {
-            $gender = $this->faker->randomElement(['male','female']);
             return [
-                'surname' => $this->faker->lastName($gender),
-                'name' => $this->faker->firstName($gender),
-                'patronymic' => $this->faker->middleName($gender),
-                'email' => $this->faker->unique()->safeEmail(),
                 'password' => bcrypt('14'),
-                'role' => 'student',
-                'remember_token' => Str::random(10),
+                'role' => 'student'
             ];
         });
     }

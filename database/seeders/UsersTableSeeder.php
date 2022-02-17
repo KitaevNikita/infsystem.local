@@ -22,9 +22,5 @@ class UsersTableSeeder extends Seeder
             ->count(1)
             ->teacher()
             ->create();
-        User::factory()
-            ->count(100)
-            ->student()
-            ->create();
     }
 }

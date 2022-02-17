@@ -15,17 +15,7 @@ class SpecializationFactory extends Factory
      */
     public function definition()
     {
-        $namespecs = [
-            'Преподавание в начальных классах', 
-            'Физическая культура', 
-            'Дошкольное образование',
-            'Информационные системы и технологии',
-            'Мастер по ремонту и обслуживанию автомобилей', 
-            'Повар, кондитер'
-        ];
-        return [
-            'namespec' => $namespecs[rand(0, count($namespecs)-1)],
-        ];
+        return [];
     }
 
     public function createSpecializationByName(string $specializationName)

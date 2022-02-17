@@ -17,17 +17,7 @@ class GroupFactory extends Factory
      */
     public function definition()
     {
-        $namegroups = [
-            '1ИС', '2ИС', '3ИС', '4ИС',
-            '1ПК', '2ПК', '3ПК', '4ПК',
-            '1МР', '2МР', '3МР',
-            '1НК', '2НК', '3НК', '4НК',
-            '1ДО', '2ДО', '3ДО', '4ДО',
-            '1Ф', '2Ф', '3Ф', '4Ф',
-        ];
-        return [
-            'namegroup' => $namegroups[rand(0, count($namegroups) - 1)],
-        ];
+        return [];
     }
 
     public function createGroupByName(string $groupName, Specialization $specialization)

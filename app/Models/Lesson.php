@@ -39,23 +39,13 @@ class Lesson extends Model
         return $this->belongsToMany(Student::class, 'students_lessons', 'lesson_id', 'student_id');
     }
 
-    public function getDateAttribute($value)
-    {
-        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
-    }
-
-    public function group()
-    {
-        return $this->belongsTo(Group::class);
-    }
-
-    public function academics()
-    {
-        return $this->hasMany(Academic::class);
-    }
-
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
     }
 }

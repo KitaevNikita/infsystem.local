@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Lesson;
+use App\Models\User;
 use App\Models\Discipline;
+use App\Models\Summarylist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +34,10 @@ class Discipline extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function students() 
+    {
+        return $this->hasMany(Student::class, 'summarylists', 'discipline_id', 'student_id');
     }
 }
