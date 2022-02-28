@@ -50,7 +50,7 @@ class UserStoreRequest extends FormRequest
             "email.email" => "Введите валидный E-mail",
             "password.required" => "Введите пароль",
             "password.string" => "Пароль должен быть строковым значение",
-            "password.between" => "Пароль не должен быть больше 25 символов",
+            "password.between" => "Пароль должен быть больше :min, но не больше :max символов",
             "role.required" => "Введите роль",
         ];
     }

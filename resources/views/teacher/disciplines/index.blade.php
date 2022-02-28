@@ -23,7 +23,7 @@
                 <tbody>
                         @forelse($disciplines as $discipline)
                         <tr>
-                        <td>{{ $discipline->name_of_the_discipline }}</td>
+                        <td>{{ Str::limit($discipline->name_of_the_discipline, 25) }}</td>
                         <td>{{ $discipline->teacher }}</td>
                         <td class="text-center">{{ $discipline->number_hours }}</td>
                         <td class="text-end">
@@ -37,7 +37,7 @@
                             </a>
                             @can('training')
                             <a class="btn btn-sm btn-primary"
-                            href="{{ route('teacher.disciplines.edit', $discipline) }}">Редактировать</a>&nbsp;
+                            href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi-alarm"></i></a>&nbsp;
                         <form action="{{ route('teacher.disciplines.destroy', $discipline) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')

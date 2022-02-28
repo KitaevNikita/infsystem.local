@@ -47,7 +47,9 @@ class StudentController extends Controller
      */
     public function store(UserStudentStoreRequest $request)
     {
-        Student::create($request->all());
+        $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
+        $request['user_id'] = $user->id;
+        Student::create($request->only(['user_id', 'number', 'group_id']));
         return redirect()->route('admin.students.index');
     }
 
@@ -72,9 +74,8 @@ class StudentController extends Controller
     public function edit($id)
     {
         $groups = Group::all();
-        $users = User::where('role', 'student')->doesntHave('student')->get();
-        $user = Student::findOrFail($id);
-        return view('admin.students.edit', compact('user', 'users', 'groups'));
+        $user = User::findOrFail($id);
+        return view('admin.students.edit', compact('user', 'groups'));
     }
 
     /**
