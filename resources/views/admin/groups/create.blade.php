@@ -7,7 +7,7 @@
         <h3 class="card-header">
             Добавить группу
         </h3>
-            <div class="card-body">
+        <div class="card-body">
             <form action="{{ route('admin.groups.store') }}" method="post">
                 @csrf
 

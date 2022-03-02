@@ -14,10 +14,10 @@
         </ul>
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('teacher.disciplines.edit', $discipline) }}">
-            Редактировать
+                <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
-            Отмена
+                <i class="bi bi-x-octagon"> Отмена</i>
             </a>
         </div>
     </div>
@@ -28,7 +28,7 @@
         <h3 class="card-header">
         Занятия
             <a class="btn btn-sm btn btn-success float-end" 
-                href="{{ route('teacher.lessons.create', $discipline) }}">Добавить занятие</a>
+                href="{{ route('teacher.lessons.create', $discipline) }}"><i class="bi bi-plus-square"> Добавить</i></a>
         </h3>
         <div class="card-body">
             @yield('discipline-content')

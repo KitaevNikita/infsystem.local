@@ -24,10 +24,10 @@
             </ul>
             <hr>
             <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user) }}">
-                Редактировать
+                <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('admin.users.index') }}">
-                Отменить
+                <i class="bi bi-x-octagon"> Отмена</i>
             </a>
         </div>
     </div>

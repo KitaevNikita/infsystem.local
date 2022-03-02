@@ -18,10 +18,10 @@
         </ul>
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('admin.students.edit', $student->id) }}">
-                Редактировать
+                <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('admin.students.index') }}">
-                Отмена
+                <i class="bi bi-x-octagon"> Отмена</i>
             </a>
         </div>
     </div>

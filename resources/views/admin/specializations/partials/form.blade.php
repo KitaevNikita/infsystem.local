@@ -11,5 +11,5 @@
     </div>
 </div>
 <hr>
-<button type="submit" class="btn btn-primary">Сохранить</button>
-<a class="btn btn-danger" href="{{ route('admin.specializations.index') }}">Отменить</a>
+<button type="submit" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>
+<a class="btn btn-danger" href="{{ route('admin.specializations.index') }}"><i class="bi bi-x-octagon"> Отмена</i></a>

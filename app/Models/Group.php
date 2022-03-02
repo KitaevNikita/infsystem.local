@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Lessons;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Group extends Model
 {
@@ -21,7 +22,6 @@ class Group extends Model
     protected $fillable = [
         'namegroup',
         'specialization_id',
-        'discipline_id',
     ];
 
     public function specialization()
@@ -37,5 +37,15 @@ class Group extends Model
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
     }
 }

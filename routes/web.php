@@ -18,12 +18,12 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 
 Route::redirect('/', '/login');
 
-// Authentication Routes...
+// Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-// Password Reset Routes...
+// Password Reset Routes
 Route::get('password/reset', [LoginController::class, 'showLinkRequestForm']);
 Route::post('password/email', [LoginController::class, 'sendResetLinkEmail']);
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm']);
@@ -34,6 +34,7 @@ $adminGroupData = [
     'middleware' => 'auth',
 ];
 
+// Training Routes
 Route::group($adminGroupData, function () {
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
@@ -46,10 +47,12 @@ $teacherGroupData = [
     'middleware' => 'auth',
 ];
 
+// Teatcher Routes
 Route::group($teacherGroupData, function () {
     Route::resource('disciplines', DisciplineController::class);
     Route::resource('disciplines/{discipline}/lessons', LessonController::class)->except('index');
 });
 
+// Home Routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

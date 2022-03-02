@@ -27,5 +27,5 @@
     </div>
 </div>
 <hr>
-<button type="submit" class="btn btn-primary">Сохранить</button>
-<a class="btn btn-danger" href="{{ route('admin.groups.index') }}">Отменить</a>
+<button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Сохранить</button>
+<a class="btn btn-danger" href="{{ route('admin.groups.index') }}"><i class="bi bi-x-octagon"> Отмена</i></a>

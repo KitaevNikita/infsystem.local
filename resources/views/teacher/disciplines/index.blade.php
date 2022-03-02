@@ -7,7 +7,7 @@
         <h3 class="card-header">
             Список учебных дисциплин
             @can('training')
-                <a class="btn btn-sm btn btn-success float-end" href="{{ route('teacher.disciplines.create') }}">Добавить дисциплину</a>
+                <a class="btn btn-sm btn btn-success float-end" href="{{ route('teacher.disciplines.create') }}"><i class="bi bi-plus-square"> Добавить</i></a>
             @endcan
             </h3>
         <div class="card-body">
@@ -30,18 +30,18 @@
                             <a class="btn btn-sm btn-secondary"
                             href="{{ route('teacher.disciplines.show', $discipline) }}">
                                 @if(Auth::user()->hasRole(Auth::user()::TRAINING))
-                                    Просмотреть
+                                    <i class="bi bi-eye"></i>
                                 @elseif(Auth::user()->hasRole(Auth::user()::TEACHER))
-                                    Провести занятие
+                                    <i class="bi bi-journal-plus">Провести</i>
                                 @endif
                             </a>
                             @can('training')
                             <a class="btn btn-sm btn-primary"
-                            href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi-alarm"></i></a>&nbsp;
+                            href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi bi-pencil"></i></a>&nbsp;
                         <form action="{{ route('teacher.disciplines.destroy', $discipline) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-sm btn-danger" type="submit">Удалить</a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
                             @endcan
                         </form>
                         </td>
@@ -49,7 +49,7 @@
                             @empty
                         <tr>
                             <td colspan="12">
-                                    <h3 class="text-center">Текущие дисциплины отсутствуют</h3>
+                                <h3 class="text-center">Текущие дисциплины отсутствуют</h3>
                             </td>
                         </tr>
                             @endforelse

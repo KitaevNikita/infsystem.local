@@ -9,7 +9,6 @@
                 <h3 class="card-header">
                     Добавить
                 </h3>
-
                 <div class="card-body">
                     <form action="{{ route('admin.users.store') }}" method="post">
                         @csrf

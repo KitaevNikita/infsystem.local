@@ -6,7 +6,7 @@
         <h3 class="card-header">
             Список группы
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.groups.create') }}">
-                Добавить группу
+                <i class="bi bi-plus-square"> Добавить</i>
             </a>
         </h3>
         <div class="card-body">
@@ -23,13 +23,13 @@
                     <td>{{ $group->namegroup }}</td>
                     <td class="text-end">
                         <a class="btn btn-sm btn-secondary"
-                        href="{{ route('admin.groups.show', $group) }}">Просмотреть</a>
+                        href="{{ route('admin.groups.show', $group) }}"><i class="bi bi-eye"></i></a>
                         <a class="btn btn-sm btn-primary"
-                        href="{{ route('admin.groups.edit', $group) }}">Редактировать</a>&nbsp;
+                        href="{{ route('admin.groups.edit', $group) }}"><i class="bi bi-pencil"></i></a>&nbsp;
                         <form action="{{ route('admin.groups.destroy', $group) }}" method="post" class="float-end">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-sm btn-danger" type="submit">Удалить</a>
+                        <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
                         </form>
                     </td>
                     @csrf

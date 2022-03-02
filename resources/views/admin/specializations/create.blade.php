@@ -7,7 +7,7 @@
         <h3 class="card-header">
             Добавить специальность
         </h3>
-            <div class="card-body">
+        <div class="card-body">
             <form action="{{ route('admin.specializations.store') }}" method="post">
                 @csrf
 

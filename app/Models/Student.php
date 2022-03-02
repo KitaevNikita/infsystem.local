@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Lesson;
 use App\Models\Group;
 use App\Models\Discipline;
+use Carbon\Carbon;
 
 class Student extends Model
 {
@@ -45,5 +46,15 @@ class Student extends Model
     public function disciplines() 
     {
         return $this->belongsToMany(Discipline::class, 'summarylists', 'student_id', 'discipline_id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
     }
 }

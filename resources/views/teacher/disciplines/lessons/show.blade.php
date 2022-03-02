@@ -9,10 +9,10 @@
     <li class="list-group-item"><strong>Дата:</strong> {{ $lesson->date }}</li>
 </ul>
 <a class="btn btn-secondary" href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">
-    Редактировать
+    <i class="bi bi-pencil"> Редактировать</i>
 </a>
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">
-    Отмена
+    <i class="bi bi-x-octagon"> Отмена</i>
 </a>
 
 @include('teacher.disciplines.lessons.list')

@@ -17,13 +17,13 @@
                 <td class="text-center">{{ $lesson->date }}</td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-secondary"
-                    href="{{ route('teacher.lessons.show', [$discipline, $lesson]) }}">Просмотреть</a>
+                    href="{{ route('teacher.lessons.show', [$discipline, $lesson]) }}"><i class="bi bi-eye"></i></a>
                     <a class="btn btn-sm btn-primary"
-                    href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">Редактировать</a>&nbsp;
+                    href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}"><i class="bi bi-pencil"></i></a>&nbsp;
                     <form action="{{ route('teacher.lessons.destroy', [$discipline, $lesson]) }}" method="post" class="float-end">
                     @csrf
                     @method('delete')
-                    <button class="btn btn-sm btn-danger" type="submit">Удалить</a>
+                    <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
                     </form>
                 </td>
             </tr>

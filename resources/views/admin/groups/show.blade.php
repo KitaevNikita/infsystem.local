@@ -13,10 +13,10 @@
         </ul>
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('admin.groups.edit', $group) }}">
-                Редактировать
+                <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('admin.groups.index') }}">
-                Отменить
+                <i class="bi bi-x-octagon"> Отмена</i>
             </a>
         </div>
     </div>

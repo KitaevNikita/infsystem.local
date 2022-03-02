@@ -6,7 +6,7 @@
         <h3 class="card-header">
             Список студентов
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.students.create') }}">
-                Добавить студента
+                <i class="bi bi-person-plus"> Добавить</i>
             </a>
         </h3>
         <div class="card-body">
@@ -31,13 +31,13 @@
                         <td class="text-center">{{ $student->group->namegroup }}</td>
                         <td class="text-end">
                             <a class="btn btn-sm btn-secondary"
-                            href="{{ route('admin.students.show', $student->id) }}">Просмотреть</a>
+                            href="{{ route('admin.students.show', $student->id) }}"><i class="bi bi-eye"></i></a>
                             <a class="btn btn-sm btn-primary"
-                            href="{{ route('admin.students.edit', $student->id) }}">Редактировать</a>&nbsp;
+                            href="{{ route('admin.students.edit', $student->id) }}"><i class="bi bi-pencil"></i></a>&nbsp;
                             <form action="{{ route('admin.students.destroy', $student->id) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-sm btn-danger" type="submit">Удалить</a>
+                            <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
                             </form>
                         </td>
                         @csrf

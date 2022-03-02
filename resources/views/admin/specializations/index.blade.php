@@ -6,7 +6,7 @@
         <h3 class="card-header">
             Список специальностей
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.specializations.create') }}">
-                Добавить специальность
+                <i class="bi bi-plus-square"> Добавить</i>
             </a>
         </h3>
         <div class="card-body">
@@ -23,13 +23,17 @@
                     <td>{{ $specialization->namespec }}</td>
                     <td class="text-end">
                         <a class="btn btn-sm btn-secondary"
-                        href="{{ route('admin.specializations.show', $specialization) }}">Просмотреть</a>
+                        href="{{ route('admin.specializations.show', $specialization) }}">
+                            <i class="bi bi-eye"></i>
+                        </a>
                         <a class="btn btn-sm btn-primary"
-                        href="{{ route('admin.specializations.edit', $specialization) }}">Редактировать</a>&nbsp;
+                        href="{{ route('admin.specializations.edit', $specialization) }}">
+                            <i class="bi bi-pencil"></i>
+                        </a>&nbsp;
                         <form action="{{ route('admin.specializations.destroy', $specialization) }}" method="post" class="float-end">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-sm btn-danger" type="submit">Удалить</a>
+                        <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
                         </form>
                     </td>
                     @csrf

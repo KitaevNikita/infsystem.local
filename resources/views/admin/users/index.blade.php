@@ -8,7 +8,7 @@
                 <h3 class="card-header">
                     Список пользователей
                     <a class="btn btn-sm btn-success float-end" id="new" href="{{ route('admin.users.create') }}">
-                    Добавить пользователя
+                        <i class="bi bi-person-plus"> Добавить</i>
                     </a>
                 </h3>
                 <div class="card-body">
@@ -30,17 +30,17 @@
                                 <td class="text-end">
                                     <a class="btn btn-sm btn-primary" id="show"
                                        href="{{ route('admin.users.show', $user->id) }}">
-                                    Просмотреть
+                                       <i class="bi bi-eye"></i>
                                     </a>
                                     <a class="btn btn-sm btn-secondary" id="edit"
                                        href="{{ route('admin.users.edit', $user->id) }}">
-                                    Редактировать
+                                       <i class="bi bi-pencil"></i>
                                     </a>&nbsp;
                                     <form action="{{ route('admin.users.destroy', $user->id) }}"
                                      method="post" class="float-end">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-sm btn-danger" id="delete" type="submit">Удалить</button>
+                                        <button class="btn btn-sm btn-danger" id="delete" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </td>
                                 </tr>
