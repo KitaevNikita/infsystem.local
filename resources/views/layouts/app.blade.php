@@ -39,13 +39,20 @@
                                 Модули
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
-                                    <li><a class="dropdown-item" href="#">Отчеты</a></li>
-                                    <li><a class="dropdown-item" href="#">Журналы</a></li>
+                                @can('teacher')
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                @endcan
+                                @can('training')
+                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                <li><a class="dropdown-item" href="#">Отчеты</a></li>
+                                @endcan
+                                @can('student')
+                                <li><a class="dropdown-item" href="#">Журналы</a></li>
+                                @endcan
                             </ul>
                         </li>
                         @endauth

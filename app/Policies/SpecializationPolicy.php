@@ -2,10 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class SpecializationPolicy
 {
     use HandlesAuthorization;
 
@@ -16,13 +17,13 @@ class UserPolicy
      *
      * @return boolean результат проверки
      */
-    public function index(User $user)
+    public function viewAny(User $user)
     {
-        if ($user->role == 'training') {
-            return true;
-        }
-        return null;
+        // проверяем является ли пользователь владельцем
+        $isTraining = $user->role == 'training';
 
+        // возвращаем результат проверки
+        return $isTraining;
     }
 
     /**
@@ -34,11 +35,11 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if ($model->role == 'training') {
-            return true;
-        }
-        return null;
+        // проверяем является ли пользователь администратором
+         $isTraining = $user->role == 'training';
 
+        // возвращаем результат проверки
+        return $isTraining;
     }
 
     /**
@@ -53,10 +54,7 @@ class UserPolicy
     {
         // проверяем является ли пользователь администратором
         $isTraining = $user->role == 'training';
-        $isSelf = $user->id == $model->id;
-
-
-        return $isTraining || $isSelf;
+        return $isTraining;
     }
 
     /**
@@ -73,49 +71,4 @@ class UserPolicy
         $isTraining = $user->role == 'training';
         return $isTraining;
     }
-
-    /**
-     * Определить, может ли пользователь восстановить запись
-     *
-     * @param \App\Models\User $user  авторизованный пользователь
-     * @param \App\Models\User $model запись пользователя
-     *
-     * @return boolean
-     */
-    public function restore(User $user, User $model)
-    {
-        //
-    }
-
-    /**
-     * Определить, может ли пользовать полностью удалить запись.
-     *
-     * @param \App\Models\User $user  авторизованный пользователь
-     * @param \App\Models\User $model запись пользователя
-     *
-     * @return boolean
-     */
-    public function forceDelete(User $user, User $model)
-    {
-        //
-    }
-
-    /**
-     * Определить, может ли пользователь обновить модель.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
-     * @return mixed
-     */
-    public function edit(User $user, User $model)
-    {
-        $isTraining = $user->role == 'training';
-        $author = $model->id == $user->id;
-        $role = $model->role == 'user';
-
-        $result = $rights && ($author || $role);
-
-        return $result;
-    }
-
 }

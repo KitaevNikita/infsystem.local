@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
@@ -16,11 +17,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('viewAny', $request->user())) {
             // вывод данных
-            $users = User::paginate(10);
+            $users = User::paginate(8);
             return view('admin.users.index', compact('users'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -36,6 +38,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('create', $request->user())) {
             return view('admin.users.create');
@@ -74,7 +77,11 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {
-                // проверка прав пользователя
+        $user = Auth::user();
+
+        $item = User::findOrFail($id);
+
+        // проверка прав пользователя
         if ($request->user()->can('viewAny', $request->user())) {
             // вывод данных
             $user = User::findOrFail($id);
@@ -95,7 +102,10 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);// проверка прав пользователя
+        $user = Auth::user();
+
+        $item = User::findOrFail($id);
+
         if ($request->user()->can('update', $user)) {
             // вывод данных
             return view('admin.users.edit', compact('user'));
