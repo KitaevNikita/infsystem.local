@@ -8,6 +8,14 @@ use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Models\Specialization;
 use App\Policies\SpecializationPolicy;
+use App\Models\Student;
+use App\Policies\StudentPolicy;
+use App\Models\Group;
+use App\Policies\GroupPolicy;
+use App\Models\Lesson;
+use App\Policies\LessonPolicy;
+use App\Models\Discipline;
+use App\Policies\DisciplinePolicy;
 
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Specialization::class => SpecializationPolicy::class,
+        Student::class => StudentPolicy::class,
+        Group::class => GroupPolicy::class,
+        Lesson::class => LessonPolicy::class,
+        Discipline::class => DisciplinePolicy::class,
     ];
 
     /**

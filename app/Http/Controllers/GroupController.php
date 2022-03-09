@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\User;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GroupRequest;
 
@@ -15,10 +17,18 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $groups = Group::all();
-        return view('admin.groups.index', compact('groups'));
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', User::class)) {
+            $groups = Group::all();
+            return view('admin.groups.index', compact('groups'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
 
     }
 
@@ -27,10 +37,18 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $specializations = Specialization::all();
-        return view('admin.groups.create', compact('specializations'));
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('create', User::class)) {
+            $specializations = Specialization::all();
+            return view('admin.groups.create', compact('specializations'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -41,8 +59,14 @@ class GroupController extends Controller
      */
     public function store(GroupRequest $request)
     {
-        Group::create($request->all());
-        return redirect()->route('admin.groups.index');
+        if ($request->user()->can('create', User::class)) {
+            Group::create($request->all());
+            return redirect()->route('admin.groups.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -51,10 +75,18 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $group = Group::findOrFail($id);
-        return view('admin.groups.show', compact('group'));
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', $user)) {
+            $group = Group::findOrFail($id);
+            return view('admin.groups.show', compact('group'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -63,11 +95,18 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $group = Group::findOrFail($id);
-        $specializations = Specialization::all();
-        return view('admin.groups.edit', compact('specializations', 'group'));
+        $user = User::findOrFail($id);
+        if ($request->user()->can('update', $user)) {
+            $group = Group::findOrFail($id);
+            $specializations = Specialization::all();
+            return view('admin.groups.edit', compact('specializations', 'group'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -79,9 +118,17 @@ class GroupController extends Controller
      */
     public function update(GroupRequest $request, $id)
     {
-        $group = Group::findOrFail($id);
-        $group->update($request->except('user_id'));
-        return redirect()->route('admin.groups.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('update', $user)) {
+            $group = Group::findOrFail($id);
+            $group->update($request->except('user_id'));
+            return redirect()->route('admin.groups.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -92,9 +139,16 @@ class GroupController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $group = Group::findOrFail($id);
-        $group->delete();
-
-        return redirect()->route('admin.groups.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('delete', $user)) {
+            $group = Group::findOrFail($id);
+            $group->delete();
+            return redirect()->route('admin.groups.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Specialization;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SpecializationRequest;
@@ -15,11 +16,18 @@ class SpecializationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $specializations = Specialization::all();
-        return view('admin.specializations.index', compact('specializations'));
-
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', User::class)) {
+            $specializations = Specialization::all();
+            return view('admin.specializations.index', compact('specializations'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                    ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -27,9 +35,17 @@ class SpecializationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.specializations.create');
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('create', User::class)) {
+            return view('admin.specializations.create');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -40,8 +56,14 @@ class SpecializationController extends Controller
      */
     public function store(SpecializationRequest $request)
     {
-        Specialization::create($request->all());
-        return redirect()->route('admin.specializations.index');
+        if ($request->user()->can('create', User::class)) {
+            Specialization::create($request->all());
+            return redirect()->route('admin.specializations.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -50,10 +72,18 @@ class SpecializationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $specialization = Specialization::findOrFail($id);
-        return view('admin.specializations.show', compact('specialization'));
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', $user)) {
+            $specialization = Specialization::findOrFail($id);
+            return view('admin.specializations.show', compact('specialization'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -62,10 +92,17 @@ class SpecializationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $specialization = Specialization::findOrFail($id);
-        return view('admin.specializations.edit', compact('specialization'));
+        $user = User::findOrFail($id);
+        if ($request->user()->can('update', $user)) {
+            $specialization = Specialization::findOrFail($id);
+            return view('admin.specializations.edit', compact('specialization'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -77,9 +114,17 @@ class SpecializationController extends Controller
      */
     public function update(SpecializationRequest $request, $id)
     {
-        $specialization = Specialization::findOrFail($id);
-        $specialization->update($request->except('user_id'));
-        return redirect()->route('admin.specializations.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('update', $user)) {
+            $specialization = Specialization::findOrFail($id);
+            $specialization->update($request->except('user_id'));
+            return redirect()->route('admin.specializations.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -90,8 +135,16 @@ class SpecializationController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $specialization = Specialization::findOrFail($id);
-        $specialization->delete();
-        return redirect()->route('admin.specializations.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('delete', $user)) {
+            $specialization = Specialization::findOrFail($id);
+            $specialization->delete();
+            return redirect()->route('admin.specializations.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 }

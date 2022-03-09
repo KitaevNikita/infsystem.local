@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discipline;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DisciplineRequest;
 
 class DisciplineController extends Controller
@@ -14,7 +16,7 @@ class DisciplineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $disciplines = Discipline::paginate(5);
         return view('teacher.disciplines.index', compact('disciplines'));
@@ -26,7 +28,7 @@ class DisciplineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('teacher.disciplines.create');
     }

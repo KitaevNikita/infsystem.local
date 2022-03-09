@@ -21,9 +21,25 @@ class DisciplinePolicy
     {
         // проверяем является ли пользователь владельцем
         $isTraining = $user->role == 'training';
+        $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
-        return $isTraining;
+        return $isTraining, $isTeacher;
+    }
+
+    /**
+     * Определите, может ли пользователь просматривать модель.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Discipline  $model
+     * @return mixed
+     */
+    public function view(User $user, Discipline $model)
+    {
+        if ($model->role == 'training') {
+            return true;
+        }
+        return null;
     }
 
     /**
@@ -35,40 +51,63 @@ class DisciplinePolicy
      */
     public function create(User $user)
     {
-        // проверяем является ли пользователь администратором
-         $isTraining = $user->role == 'training';
+        // проверяем является ли пользователь учебной частью или преподавателем
+        $isTraining = $user->role == 'training';
+        $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
-        return $isTraining;
+        return $isTraining, $isTeacher;
     }
 
     /**
      * Определить, может ли пользователь обновить запись.
      *
      * @param \App\Models\User $user  авторизованный пользователь
-     * @param \App\Models\User $model запись пользователя
+     * @param \App\Models\Discipline $model запись пользователя
      *
      * @return boolean
      */
-    public function update(User $user, User $model)
+    public function update(User $user, Discipline $model)
     {
-        // проверяем является ли пользователь администратором
+        // проверяем является ли пользователь учебной частью или преподавателем
         $isTraining = $user->role == 'training';
-        return $isTraining;
+        $isTeacher = $user->role == 'teacher';
+
+        return $isTraining, $isTeacher;
     }
 
     /**
      * Определить, может ли пользователь удалить запись
      *
      * @param \App\Models\User $user  авторизованный пользователь
-     * @param \App\Models\User $model запись пользователя
+     * @param \App\Models\Discipline $model запись пользователя
      *
      * @return boolean
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, Discipline $model)
     {
-        // проверяем является ли пользователь администратором
+        // проверяем является ли пользователь учебной частью или преподавателем
         $isTraining = $user->role == 'training';
-        return $isTraining;
+        $isTeacher = $user->role == 'teacher';
+
+        return $isTraining, $isTeacher;
+    }
+
+    /**
+     * Определить, может ли пользователь обновить модель.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Discipline  $model
+     * @return mixed
+     */
+    public function edit(User $user, Discipline $model)
+    {
+        $isTeacher = $user->role == 'teacher';
+        $author = $model->id == $user->id;
+        $role = $model->role == 'user';
+
+        $result = $isTeacher && ($author || $role);
+
+        return $result;
     }
 }

@@ -20,7 +20,7 @@ class UserController extends Controller
     {   
         $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $request->user())) {
+        if ($request->user()->can('viewAny', User::class)) {
             // вывод данных
             $users = User::paginate(8);
             return view('admin.users.index', compact('users'));
@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', $request->user())) {
+        if ($request->user()->can('create', User::class)) {
             return view('admin.users.create');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -58,7 +58,7 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         // проверка прав пользователя
-        if ($request->user()->can('create', $request->user())) {
+        if ($request->user()->can('create', User::class)) {
            $request['password'] = bcrypt($request->password);
                 $user = User::create($request->all());
                 return redirect()->route('admin.users.index');
@@ -77,12 +77,9 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = Auth::user();
-
-        $item = User::findOrFail($id);
-
+        $user = User::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $request->user())) {
+        if ($request->user()->can('viewAny', $user)) {
             // вывод данных
             $user = User::findOrFail($id);
             return view('admin.users.show', compact('user'));
@@ -102,10 +99,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = Auth::user();
-
-        $item = User::findOrFail($id);
-
+        $user = User::findOrFail($id);
         if ($request->user()->can('update', $user)) {
             // вывод данных
             return view('admin.users.edit', compact('user'));
@@ -159,14 +153,12 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $user = User::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $request->user())) {
+        if ($request->user()->can('delete', $user)) {
             // вывод данных
             $user = User::findOrFail($id);
-            if($user->role == 'student')
-            {
-                $user->student->delete();
-            }
+            $user->student->delete();
             $user->delete();
 
             return redirect()->route('admin.users.index');

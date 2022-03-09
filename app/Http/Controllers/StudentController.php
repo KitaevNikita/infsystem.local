@@ -19,11 +19,18 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::paginate(8);
-        return view('admin.students.index', compact('students'));
-
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', User::class)) {
+            $students = Student::paginate(8);
+            return view('admin.students.index', compact('students'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                    ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -31,11 +38,19 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $groups = Group::all();
-        $users = User::where('role', 'student')->doesntHave('student')->get();
-        return view('admin.students.create', compact('users', 'groups'));
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('create', User::class)) {
+            $groups = Group::all();
+            $users = User::where('role', 'student')->doesntHave('student')->get();
+            return view('admin.students.create', compact('users', 'groups'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -46,10 +61,16 @@ class StudentController extends Controller
      */
     public function store(UserStudentStoreRequest $request)
     {
-        $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
-        $request['user_id'] = $user->id;
-        Student::create($request->only(['user_id', 'number', 'group_id']));
-        return redirect()->route('admin.students.index');
+        if ($request->user()->can('create', User::class)) {
+            $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
+            $request['user_id'] = $user->id;
+            Student::create($request->only(['user_id', 'number', 'group_id']));
+            return redirect()->route('admin.students.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -58,10 +79,18 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
-        return view('admin.students.show', compact('student'));
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', $user)) {
+            $student = Student::findOrFail($id);
+            return view('admin.students.show', compact('student'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -70,11 +99,18 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $groups = Group::all();
         $user = User::findOrFail($id);
-        return view('admin.students.edit', compact('user', 'groups'));
+        if ($request->user()->can('update', $user)) {
+            $groups = Group::all();
+            $user = User::findOrFail($id);
+            return view('admin.students.edit', compact('user', 'groups'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -86,9 +122,17 @@ class StudentController extends Controller
      */
     public function update(UserStudentUpdateRequest $request, $id)
     {
-        $student = Student::findOrFail($id);
-        $student->update($request->except('user_id'));
-        return redirect()->route('admin.students.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('update', $user)) {
+            $student = Student::findOrFail($id);
+            $student->update($request->except('user_id'));
+            return redirect()->route('admin.students.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -99,9 +143,19 @@ class StudentController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
-        $student->user->delete();
-        $student->delete();
-        return redirect()->route('admin.students.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('delete', $user)) {
+            //вывод данных
+            $student = Student::findOrFail($id);
+            $student->user->delete();
+            $student->delete();
+
+            return redirect()->route('admin.students.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 }
