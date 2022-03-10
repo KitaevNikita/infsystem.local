@@ -18,9 +18,16 @@ class DisciplineController extends Controller
      */
     public function index(Request $request)
     {
-        $disciplines = Discipline::paginate(5);
-        return view('teacher.disciplines.index', compact('disciplines'));
-
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', User::class)) {
+            $disciplines = Discipline::paginate(5);
+            return view('teacher.disciplines.index', compact('disciplines'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -30,7 +37,15 @@ class DisciplineController extends Controller
      */
     public function create(Request $request)
     {
-        return view('teacher.disciplines.create');
+        $user = Auth::user();
+        // проверка прав пользователя
+        if ($request->user()->can('create', User::class)) {
+            return view('teacher.disciplines.create');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -41,8 +56,14 @@ class DisciplineController extends Controller
      */
     public function store(DisciplineRequest $request)
     {
-        Discipline::create($request->all());
-        return redirect()->route('teacher.disciplines.index');
+        if ($request->user()->can('create', User::class)) {
+            Discipline::create($request->all());
+            return redirect()->route('teacher.disciplines.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -53,8 +74,16 @@ class DisciplineController extends Controller
      */
     public function show($id)
     {
-        $discipline = Discipline::findOrFail($id);
-        return view('teacher.disciplines.show', compact('discipline'));
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('viewAny', $user)) {
+            $discipline = Discipline::findOrFail($id);
+            return view('teacher.disciplines.show', compact('discipline'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -65,8 +94,15 @@ class DisciplineController extends Controller
      */
     public function edit($id)
     {
-        $discipline = Discipline::findOrFail($id);
-        return view('teacher.disciplines.edit', compact('discipline'));
+        $user = User::findOrFail($id);
+        if ($request->user()->can('update', $user)) {
+            $discipline = Discipline::findOrFail($id);
+            return view('teacher.disciplines.edit', compact('discipline'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -78,9 +114,17 @@ class DisciplineController extends Controller
      */
     public function update(DisciplineRequest $request, $id)
     {
-        $discipline = Discipline::findOrFail($id);
-        $discipline->update($request->except('user_id'));
-        return redirect()->route('teacher.disciplines.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('update', $user)) {
+            $discipline = Discipline::findOrFail($id);
+            $discipline->update($request->except('user_id'));
+            return redirect()->route('teacher.disciplines.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 
     /**
@@ -91,8 +135,16 @@ class DisciplineController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $discipline = Discipline::findOrFail($id);
-        $discipline->delete();
-        return redirect()->route('teacher.disciplines.index');
+        $user = User::findOrFail($id);
+        // проверка прав пользователя
+        if ($request->user()->can('delete', $user)) {
+            $discipline = Discipline::findOrFail($id);
+            $discipline->delete();
+            return redirect()->route('teacher.disciplines.index');
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
     }
 }

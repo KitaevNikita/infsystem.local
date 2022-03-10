@@ -24,7 +24,7 @@ class DisciplinePolicy
         $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
-        return $isTraining, $isTeacher;
+        return $isTraining || $isTeacher;
     }
 
     /**
@@ -56,7 +56,7 @@ class DisciplinePolicy
         $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
-        return $isTraining, $isTeacher;
+        return $isTraining || $isTeacher;
     }
 
     /**
@@ -73,7 +73,7 @@ class DisciplinePolicy
         $isTraining = $user->role == 'training';
         $isTeacher = $user->role == 'teacher';
 
-        return $isTraining, $isTeacher;
+        return $isTraining || $isTeacher;
     }
 
     /**
@@ -90,7 +90,7 @@ class DisciplinePolicy
         $isTraining = $user->role == 'training';
         $isTeacher = $user->role == 'teacher';
 
-        return $isTraining, $isTeacher;
+        return $isTraining || $isTeacher;
     }
 
     /**
