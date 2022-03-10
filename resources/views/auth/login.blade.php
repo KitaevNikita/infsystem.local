@@ -52,8 +52,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-8 offset-md-3 text-center">
+                                <button type="submit" class="btn btn-primary text-md-center">
                                     <i class="bi bi-box-arrow-right"> Войти</i>
                                 </button>
 
