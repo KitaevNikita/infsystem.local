@@ -102,11 +102,12 @@ class DisciplinePolicy
      */
     public function edit(User $user, Discipline $model)
     {
+        $isTraining = $user->role == 'training';
         $isTeacher = $user->role == 'teacher';
         $author = $model->id == $user->id;
         $role = $model->role == 'user';
 
-        $result = $isTeacher && ($author || $role);
+        $result = $isTeacher || $isTraining && ($author || $role);
 
         return $result;
     }
