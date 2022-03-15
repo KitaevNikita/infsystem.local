@@ -8,7 +8,6 @@ use App\Models\Lesson;
 use App\Models\Discipline;
 use App\Models\Group;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LessonRequest;
 
 class LessonController extends Controller

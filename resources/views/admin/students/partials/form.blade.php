@@ -29,4 +29,4 @@
 </div>
 <hr>
 <button type="submit" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>
-<a class="btn btn-danger" href="{{ route('admin.students.index') }}"><i class="bi bi-x-octagon"> Отмена</i></a>
+<a class="btn btn-danger" href="{{ route('admin.students.index') }}"><i class="bi bi-x-octagon"> На главную</i></a>

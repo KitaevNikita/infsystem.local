@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="/img/logo.jpg" alt="" width="30" height="24">
+                <img src="/img/logo.png" alt="" width="30" height="24">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -37,18 +37,18 @@
                         @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="moduleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Модули
+                                Меню
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
                                 @can('teacher')
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
                                 @endcan
                                 @can('training')
-                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список студентов</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список обучающихся студентов</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список обучаемых группы</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Список специальностей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список изучаемых дисциплин</a></li>
                                 <li><a class="dropdown-item" href="#">Отчеты</a></li>
                                 @endcan
                                 @can('student')

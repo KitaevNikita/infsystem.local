@@ -17,7 +17,7 @@
                 <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
-                <i class="bi bi-x-octagon"> Отмена</i>
+                <i class="bi bi-x-octagon"> На главную</i>
             </a>
         </div>
     </div>

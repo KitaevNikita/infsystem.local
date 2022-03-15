@@ -13,10 +13,15 @@
   @endif
 
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">"Электонный журнал"</h1>
-    <p class="lead">Данный журнал представляет собой удобство и простоту ипользования и переход от бумажной версии к электронной.</p>
-  </div>
+    <div class="container">
+        <div class="card bg-dark text-white">
+        <img src="/img/preview.png" class="card-img" alt="">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Электонный журнал</h5>
+                <p class="card-text">Данный журнал представляет собой электронный вариант всем известного бумажного журнала.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
