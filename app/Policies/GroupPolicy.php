@@ -6,7 +6,7 @@ use App\Models\Group;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SpecializationPolicy
+class GroupPolicy
 {
     use HandlesAuthorization;
 

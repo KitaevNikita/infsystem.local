@@ -19,9 +19,8 @@ class GroupController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', User::class)) {
+        if ($request->user()->can('viewAny', Group::class)) {
             $groups = Group::all();
             return view('admin.groups.index', compact('groups'));
         } else {
@@ -39,9 +38,8 @@ class GroupController extends Controller
      */
     public function create(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Group::class)) {
             $specializations = Specialization::all();
             return view('admin.groups.create', compact('specializations'));
         } else {
@@ -59,7 +57,7 @@ class GroupController extends Controller
      */
     public function store(GroupRequest $request)
     {
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Group::class)) {
             Group::create($request->all());
             return redirect()->route('admin.groups.index');
         } else {
@@ -77,10 +75,9 @@ class GroupController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $group = Group::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
-            $group = Group::findOrFail($id);
+        if ($request->user()->can('viewAny', $group)) {
             return view('admin.groups.show', compact('group'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -97,9 +94,8 @@ class GroupController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user)) {
-            $group = Group::findOrFail($id);
+        $group = Group::findOrFail($id);
+        if ($request->user()->can('update', $group)) {
             $specializations = Specialization::all();
             return view('admin.groups.edit', compact('specializations', 'group'));
         } else {
@@ -118,10 +114,9 @@ class GroupController extends Controller
      */
     public function update(GroupRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $group = Group::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $user)) {
-            $group = Group::findOrFail($id);
+        if ($request->user()->can('update', $group)) {
             $group->update($request->except('user_id'));
             return redirect()->route('admin.groups.index');
         } else {
@@ -139,10 +134,9 @@ class GroupController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $group = Group::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $user)) {
-            $group = Group::findOrFail($id);
+        if ($request->user()->can('delete', $group)) {
             $group->delete();
             return redirect()->route('admin.groups.index');
         } else {
