@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('specialization_id')->index()->comment('Идентификатор специальности');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('namegroup', 255)->nullable()->comment('Название группы');
+            $table->string('namegroup', 255)->comment('Название группы');
             $table->timestamps();
         });
     }

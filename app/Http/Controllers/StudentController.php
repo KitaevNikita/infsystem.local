@@ -98,8 +98,9 @@ class StudentController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user->student)) {
+        $student = Student::findOrFail($id);
+        if ($request->user()->can('update', $student)) {
+            $user = $student->user;
             $groups = Group::all();
             return view('admin.students.edit', compact('user', 'groups'));
         } else {

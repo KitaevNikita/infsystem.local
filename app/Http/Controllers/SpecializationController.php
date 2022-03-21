@@ -18,9 +18,8 @@ class SpecializationController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', User::class)) {
+        if ($request->user()->can('viewAny', Specialization::class)) {
             $specializations = Specialization::all();
             return view('admin.specializations.index', compact('specializations'));
         } else {
@@ -37,9 +36,8 @@ class SpecializationController extends Controller
      */
     public function create(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Specialization::class)) {
             return view('admin.specializations.create');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -56,7 +54,7 @@ class SpecializationController extends Controller
      */
     public function store(SpecializationRequest $request)
     {
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Specialization::class)) {
             Specialization::create($request->all());
             return redirect()->route('admin.specializations.index');
         } else {
@@ -74,10 +72,9 @@ class SpecializationController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $specialization = Specialization::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
-            $specialization = Specialization::findOrFail($id);
+        if ($request->user()->can('viewAny', $specialization)) {
             return view('admin.specializations.show', compact('specialization'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -94,9 +91,8 @@ class SpecializationController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user)) {
-            $specialization = Specialization::findOrFail($id);
+        $specialization = Specialization::findOrFail($id);
+        if ($request->user()->can('update', $specialization)) {
             return view('admin.specializations.edit', compact('specialization'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -114,10 +110,9 @@ class SpecializationController extends Controller
      */
     public function update(SpecializationRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $specialization = Specialization::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $user)) {
-            $specialization = Specialization::findOrFail($id);
+        if ($request->user()->can('update', $specialization)) {
             $specialization->update($request->except('user_id'));
             return redirect()->route('admin.specializations.index');
         } else {
@@ -135,10 +130,9 @@ class SpecializationController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $specialization = Specialization::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $user)) {
-            $specialization = Specialization::findOrFail($id);
+        if ($request->user()->can('delete', $specialization)) {
             $specialization->delete();
             return redirect()->route('admin.specializations.index');
         } else {

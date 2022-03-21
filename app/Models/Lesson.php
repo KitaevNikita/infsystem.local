@@ -44,8 +44,8 @@ class Lesson extends Model
         return $this->hasMany(Rate::class);
     }
 
-    public function getDateAttribute($value)
+    public function getDisplayDateAttribute()
     {
-        return Carbon::parse($value)->isoFormat('D MMMM YYYY');
+        return Carbon::parse($this->date)->isoFormat('D MMMM YYYY');
     }
 }

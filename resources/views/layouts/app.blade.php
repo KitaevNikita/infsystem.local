@@ -78,7 +78,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ route('admin.users.edit', Auth::id()) }}">
-                                        <i class="bi bi-gear"> Найстройки</i>
+                                        <i class="bi bi-gear"> Настройки</i>
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

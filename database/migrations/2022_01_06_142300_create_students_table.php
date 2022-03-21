@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->index()->comment('Идентификатор студента');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('number')->nullable()->comment('Номер студенческого билета');
+            $table->string('number')->comment('Номер студенческого билета');
             $table->timestamps();
         });
     }

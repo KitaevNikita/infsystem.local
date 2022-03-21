@@ -14,7 +14,7 @@
                 <td>{{ Str::limit($lesson->topic, 15) }}</td>
                 <td>{{ $lesson->type }}</td>
                 <td class="text-center">{{ $lesson->number_of_hours }}</td>
-                <td class="text-center">{{ $lesson->date }}</td>
+                <td class="text-center">{{ $lesson->display_date }}</td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-secondary"
                     href="{{ route('teacher.lessons.show', [$discipline, $lesson]) }}"><i class="bi bi-eye"></i></a>

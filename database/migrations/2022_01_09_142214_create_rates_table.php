@@ -19,7 +19,7 @@ class CreateRatesTable extends Migration
             $table->foreign('lesson_id')->references('id')->on('lessons')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('student_id')->index()->comment('Идентификатор студента');
             $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade')->onDelete('cascade');
-            $table->boolean('mark')->nullable()->default(true)->comment('отметка');
+            $table->boolean('mark')->default(true)->comment('отметка');
             $table->timestamps();
         });
     }

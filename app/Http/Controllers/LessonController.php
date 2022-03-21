@@ -41,11 +41,10 @@ class LessonController extends Controller
     public function store(LessonRequest $request, $discipline_id)
     {
         if ($request->user()->can('create', Lesson::class)) {
-            $discipline = Discipline::findOrFail($discipline_id);
+            $discipline = Discipline::findOrFail($discipline_id);            
             $request['discipline_id'] = $discipline->id;
-            $group = Group::findOrFail($request->group_id);
             $lesson = Lesson::create($request->all());
-            $lesson->students()->attach($group->students);
+            $lesson->students()->attach($discipline->group->students);
             return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
         } else {
             // запрет действия с выводом сообщения об ошибке доступа

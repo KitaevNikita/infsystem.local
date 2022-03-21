@@ -9,6 +9,7 @@
     @enderror
 </div>
 <div class="mb-3">
+    <label for="type">Тип<sup style="color: red">*</sup></label>
     <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
         <option>Теоретический</option>
         <option>Практический</option>
@@ -20,20 +21,6 @@
         </div>
     @enderror
 </div>
-
-<div class="mb-3">
-    <select class="form-select @error('group_id') is-invalid @enderror" id="group_id" name="group_id">
-    @foreach($groups as $group)
-        <option value='{{$group->id}}'>{{$group->namegroup}}</option>
-    @endforeach
-    </select>
-    @error('group_id')
-        <div class="invalid-feedback">
-            {{$message}}
-        </div>
-    @enderror
-</div>
-
 <div class="mb-3">
     <label for="number_of_hours">Количество часов<sup style="color: red">*</sup></label>
     <input type="number" min="1" max="2" class="form-control @error('number_of_hours') is-invalid @enderror" id="number_of_hours" name="number_of_hours"

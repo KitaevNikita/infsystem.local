@@ -19,8 +19,8 @@ class CreateSummarylistsTable extends Migration
             $table->foreign('discipline_id')->references('id')->on('disciplines')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('student_id')->index()->comment('Идентификатор студента');
             $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('interim', 255)->nullable()->comment('промежуточная аттестация');
-            $table->string('estimation', 1)->comment('отметка');
+            $table->string('interim', 255)->comment('промежуточная аттестация');
+            $table->string('estimation', 1)->nullable()->comment('отметка');
             $table->timestamps();
         });
     }
