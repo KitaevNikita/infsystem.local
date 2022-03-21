@@ -27,7 +27,7 @@
                 <i class="bi bi-pencil"> Редактировать</i>
             </a>
             <a class="btn btn-danger" href="{{ route('admin.users.index') }}">
-                <i class="bi bi-x-octagon"> На главную</i>
+            <i class="bi bi-house"> На главную</i>
             </a>
         </div>
     </div>

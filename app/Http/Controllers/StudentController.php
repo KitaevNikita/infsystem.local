@@ -21,9 +21,8 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', User::class)) {
+        if ($request->user()->can('viewAny', Student::class)) {
             $students = Student::paginate(8);
             return view('admin.students.index', compact('students'));
         } else {
@@ -40,9 +39,8 @@ class StudentController extends Controller
      */
     public function create(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Student::class)) {
             $groups = Group::all();
             $users = User::where('role', 'student')->doesntHave('student')->get();
             return view('admin.students.create', compact('users', 'groups'));
@@ -61,7 +59,7 @@ class StudentController extends Controller
      */
     public function store(UserStudentStoreRequest $request)
     {
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Student::class)) {
             $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
             $request['user_id'] = $user->id;
             Student::create($request->only(['user_id', 'number', 'group_id']));
@@ -81,10 +79,9 @@ class StudentController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $student = Student::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
-            $student = Student::findOrFail($id);
+        if ($request->user()->can('viewAny', $student)) {
             return view('admin.students.show', compact('student'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -102,9 +99,8 @@ class StudentController extends Controller
     public function edit(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user)) {
+        if ($request->user()->can('update', $user->student)) {
             $groups = Group::all();
-            $user = User::findOrFail($id);
             return view('admin.students.edit', compact('user', 'groups'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -122,10 +118,9 @@ class StudentController extends Controller
      */
     public function update(UserStudentUpdateRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $student = Student::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $user)) {
-            $student = Student::findOrFail($id);
+        if ($request->user()->can('update', $student)) {
             $student->update($request->except('user_id'));
             return redirect()->route('admin.students.index');
         } else {
@@ -143,11 +138,9 @@ class StudentController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $student = Student::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $user)) {
-            //вывод данных
-            $student = Student::findOrFail($id);
+        if ($request->user()->can('delete', $student)) {
             $student->user->delete();
             $student->delete();
 

@@ -72,7 +72,7 @@
                         @else
                             <li class="nav-user dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->role_name }}
+                                    <i class="bi bi-person">{{ Auth::user()->role_name }}</i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

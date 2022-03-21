@@ -20,7 +20,7 @@ class DisciplineController extends Controller
     {
         $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', User::class)) {
+        if ($request->user()->can('viewAny', Discipline::class)) {
             $disciplines = Discipline::paginate(5);
             return view('teacher.disciplines.index', compact('disciplines'));
         } else {
@@ -39,7 +39,7 @@ class DisciplineController extends Controller
     {
         $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Discipline::class)) {
             return view('teacher.disciplines.create');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -56,7 +56,7 @@ class DisciplineController extends Controller
      */
     public function store(DisciplineRequest $request)
     {
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Discipline::class)) {
             Discipline::create($request->all());
             return redirect()->route('teacher.disciplines.index');
         } else {
@@ -74,10 +74,9 @@ class DisciplineController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $discipline = Discipline::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
-            $discipline = Discipline::findOrFail($id);
+        if ($request->user()->can('viewAny', $discipline)) {
             return view('teacher.disciplines.show', compact('discipline'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -94,9 +93,8 @@ class DisciplineController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user)) {
-            $discipline = Discipline::findOrFail($id);
+        $discipline = Discipline::findOrFail($id);
+        if ($request->user()->can('update', $discipline)) {
             return view('teacher.disciplines.edit', compact('discipline'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -114,10 +112,9 @@ class DisciplineController extends Controller
      */
     public function update(DisciplineRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $discipline = Discipline::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $user)) {
-            $discipline = Discipline::findOrFail($id);
+        if ($request->user()->can('update', $discipline)) {
             $discipline->update($request->except('user_id'));
             return redirect()->route('teacher.disciplines.index');
         } else {
@@ -135,10 +132,9 @@ class DisciplineController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $discipline = Discipline::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $user)) {
-            $discipline = Discipline::findOrFail($id);
+        if ($request->user()->can('delete', $discipline)) {
             $discipline->delete();
             return redirect()->route('teacher.disciplines.index');
         } else {

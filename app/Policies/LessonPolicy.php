@@ -6,7 +6,7 @@ use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class StudentPolicy
+class LessonPolicy
 {
     use HandlesAuthorization;
 
@@ -35,7 +35,7 @@ class StudentPolicy
      */
     public function view(User $user, Lesson $model)
     {
-        if ($model->role == 'training') {
+        if ($model->role == 'teacher') {
             return true;
         }
         return null;

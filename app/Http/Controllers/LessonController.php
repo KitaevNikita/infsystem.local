@@ -8,6 +8,7 @@ use App\Models\Lesson;
 use App\Models\Discipline;
 use App\Models\Group;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LessonRequest;
 
 class LessonController extends Controller
@@ -17,11 +18,10 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($discipline_id, Request $request)
+    public function create(Request $request, $discipline_id)
     {
-        $user = Auth::user();
         // проверка прав пользователя
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Lesson::class)) {
             $discipline = Discipline::findOrFail($discipline_id);
             $groups = Group::all(); 
             return view('teacher.disciplines.lessons.create', compact('discipline', 'groups'));
@@ -40,7 +40,7 @@ class LessonController extends Controller
      */
     public function store(LessonRequest $request, $discipline_id)
     {
-        if ($request->user()->can('create', User::class)) {
+        if ($request->user()->can('create', Lesson::class)) {
             $discipline = Discipline::findOrFail($discipline_id);
             $request['discipline_id'] = $discipline->id;
             $group = Group::findOrFail($request->group_id);
@@ -60,13 +60,12 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($discipline_id, Request $request, $id)
+    public function show(Request $request, $discipline_id, $id)
     {
-        $user = User::findOrFail($id);
+        $lesson = Lesson::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
+        if ($request->user()->can('viewAny', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
-            $lesson = Lesson::findOrFail($id);
             return view('teacher.disciplines.lessons.show', compact('discipline', 'lesson'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -81,12 +80,11 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($discipline_id, Request $request, $id)
+    public function edit(Request $request, $discipline_id, $id)
     {
-        $user = User::findOrFail($id);
-        if ($request->user()->can('update', $user)) {
+        $lesson = Lesson::findOrFail($id);
+        if ($request->user()->can('update', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
-            $lesson = Lesson::findOrFail($id);
             $groups = Group::all(); 
             return view('teacher.disciplines.lessons.edit', compact('discipline', 'lesson', 'groups'));
         } else {
@@ -105,11 +103,10 @@ class LessonController extends Controller
      */
     public function update(LessonRequest $request, $discipline_id, $id)
     {
-        $user = User::findOrFail($id);
+        $lesson = Lesson::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $user)) {
+        if ($request->user()->can('update', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
-            $lesson = Lesson::findOrFail($id);
             $lesson->update($request->all());
             return redirect()->route('teacher.disciplines.show', $discipline);
         } else {
@@ -127,11 +124,10 @@ class LessonController extends Controller
      */
     public function destroy(Request $request, $discipline_id, $id)
     {
-        $user = User::findOrFail($id);
+        $lesson = Lesson::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('delete', $user)) {
+        if ($request->user()->can('delete', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
-            $lesson = Lesson::findOrFail($id);
             $lesson->delete();
             return redirect()->route('teacher.disciplines.show', $discipline);
         } else {

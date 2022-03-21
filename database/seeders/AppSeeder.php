@@ -16,8 +16,8 @@ use App\Models\Academic;
 class AppSeeder extends Seeder
 {
     // Минимальное и максимальное количество студентов в группе (для рандомной генерации).
-        private const MIN_STUDENTS_PER_GROUP = 8;
-        private const MAX_STUDENTS_PER_GROUP = 20;
+        private const MIN_STUDENTS_PER_GROUP = 4;
+        private const MAX_STUDENTS_PER_GROUP = 10;
 
     /*
      * Константы специализаций

@@ -18,7 +18,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {   
-        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('viewAny', User::class)) {
             // вывод данных
@@ -38,7 +37,6 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('create', User::class)) {
             return view('admin.users.create');
@@ -156,9 +154,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // проверка прав пользователя
         if ($request->user()->can('delete', $user)) {
-            // вывод данных
-            $user = User::findOrFail($id);
-            $user->student->delete();
             $user->delete();
 
             return redirect()->route('admin.users.index');
