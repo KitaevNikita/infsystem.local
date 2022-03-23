@@ -22605,6 +22605,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.clearLoginFormErrors();
 
           _this.getAuthorizedUser();
+
+          _this.redirectAfterAuthorization();
         })["catch"](function (error) {
           console.log(error);
 
@@ -22631,6 +22633,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
         console.log("Невозможно получить пользователя");
       });
+    },
+    redirectAfterAuthorization: function redirectAfterAuthorization() {
+      window.location.replace('/home');
     }
   }
 });
@@ -22665,7 +22670,7 @@ var _hoisted_4 = {
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card-header"
-}, "Вход", -1
+}, "Авторизация", -1
 /* HOISTED */
 );
 
@@ -22679,7 +22684,7 @@ var _hoisted_7 = {
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "email",
   "class": "form-label"
-}, "Email", -1
+}, "Логин", -1
 /* HOISTED */
 );
 
@@ -22705,7 +22710,7 @@ var _hoisted_12 = {
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
-  "class": "btn btn-primary text-white"
+  "class": "btn btn-primary text-white text-center"
 }, "Войти", -1
 /* HOISTED */
 );

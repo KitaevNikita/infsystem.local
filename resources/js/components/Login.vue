@@ -3,13 +3,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Вход</div>
+                    <div class="card-header">Авторизация</div>
 
                     <div class="card-body">
                         <form action="#" @submit.prevent="handleLogin">
                             <div>
                               <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">Логин</label>
                                 <input type="email" class="form-control" :class="emailClasses" id="email" name="email" v-model="loginForm.email" required>
                                 <div class="invalid-feedback" v-if="isAnyEmailErrors">
                                   {{ loginFormErrors.email[0] }}
@@ -22,7 +22,7 @@
                                   {{ loginFormErrors.password[0] }}
                                 </div>
                               </div>
-                              <button type="submit" class="btn btn-primary text-white">Войти</button>
+                              <button type="submit" class="btn btn-primary text-white text-center">Войти</button>
                             </div>
                         </form>
                     </div>
@@ -73,6 +73,7 @@ export default {
                         .then(response => {
                             this.clearLoginFormErrors()
                             this.getAuthorizedUser()
+                            this.redirectAfterAuthorization()
                         }).catch(error => {
                             console.log(error)
                             if(error.response.data.errors.email)
@@ -100,6 +101,10 @@ export default {
                     console.log(error)
                     console.log("Невозможно получить пользователя")
                 });
+        },
+        redirectAfterAuthorization()
+        {
+            window.location.replace('/home')
         }
     }
 }
