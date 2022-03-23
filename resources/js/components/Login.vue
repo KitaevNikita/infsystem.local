@@ -9,7 +9,7 @@
                         <form action="#" @submit.prevent="handleLogin">
                             <div>
                               <div class="mb-3">
-                                <label for="email" class="form-label">Логин</label>
+                                <label for="email" class="form-label">Почта</label>
                                 <input type="email" class="form-control" :class="emailClasses" id="email" name="email" v-model="loginForm.email" required>
                                 <div class="invalid-feedback" v-if="isAnyEmailErrors">
                                   {{ loginFormErrors.email[0] }}
@@ -22,7 +22,11 @@
                                   {{ loginFormErrors.password[0] }}
                                 </div>
                               </div>
-                              <button type="submit" class="btn btn-primary text-white text-center">Войти</button>
+                              <button type="submit" class="btn btn-primary text-white text-center" :disabled="loading">
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="loading"></span>
+                                    <span v-if="loading">&nbsp;Загрузка...</span>
+                                    <span v-if="!loading">Войти</span>
+                              </button>
                             </div>
                         </form>
                     </div>
@@ -43,6 +47,7 @@ export default {
                 email: [],
                 password: []
             },
+            loading: false
         }
     },
     computed: {
@@ -67,6 +72,7 @@ export default {
     },
     methods: {
         handleLogin() {
+            this.loading = true
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
                     axios.post('/login', this.loginForm)
@@ -84,6 +90,7 @@ export default {
                             {
                                 this.loginFormErrors.password.push(error.response.data.errors.password[0])
                             }
+                            this.loading = false
                         });
                 }).catch(error => {
                     console.log(error)

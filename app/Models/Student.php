@@ -25,6 +25,8 @@ class Student extends Model
         'number',
     ];
 
+    protected $with = ['user'];
+
     /**
      * Пользователь, к которому приналежит студент/
      */
