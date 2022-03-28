@@ -16,8 +16,8 @@
 
                         @include('admin.users.partials.form')
                         <hr>
-                        <button type="submit" id="save" class="btn btn-primary">Сохранить</button>
-                        <a class="btn btn-danger" href="{{ route('admin.users.index') }}">Отмена</a>
+                        <button type="submit" id="save" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>&nbsp;
+                        <a class="btn btn-danger" href="{{ route('admin.users.index') }}"><i class="bi bi-house"> На главную</i></a>
                     </form>
                 </div>
             </div>

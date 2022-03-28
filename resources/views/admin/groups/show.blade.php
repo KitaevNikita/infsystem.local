@@ -14,7 +14,7 @@
         <div class="card-body">
             <a class="btn btn-secondary" href="{{ route('admin.groups.edit', $group) }}">
                 <i class="bi bi-pencil"> Редактировать</i>
-            </a>
+            </a>&nbsp;
             <a class="btn btn-danger" href="{{ route('admin.groups.index') }}">
             <i class="bi bi-house"> На главную</i>
             </a>

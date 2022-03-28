@@ -25,7 +25,7 @@
                         <a class="btn btn-sm btn-secondary"
                         href="{{ route('admin.specializations.show', $specialization) }}">
                             <i class="bi bi-eye"></i>
-                        </a>
+                        </a>&nbsp;
                         <a class="btn btn-sm btn-primary"
                         href="{{ route('admin.specializations.edit', $specialization) }}">
                             <i class="bi bi-pencil"></i>

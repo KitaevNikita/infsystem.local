@@ -23,7 +23,7 @@
                     <td>{{ $group->namegroup }}</td>
                     <td class="text-end">
                         <a class="btn btn-sm btn-secondary"
-                        href="{{ route('admin.groups.show', $group) }}"><i class="bi bi-eye"></i></a>
+                        href="{{ route('admin.groups.show', $group) }}"><i class="bi bi-eye"></i></a>&nbsp;
                         <a class="btn btn-sm btn-primary"
                         href="{{ route('admin.groups.edit', $group) }}"><i class="bi bi-pencil"></i></a>&nbsp;
                         <form action="{{ route('admin.groups.destroy', $group) }}" method="post" class="float-end">

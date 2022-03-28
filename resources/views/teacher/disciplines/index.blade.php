@@ -34,7 +34,7 @@
                                 @elseif(Auth::user()->hasRole(Auth::user()::TEACHER))
                                     <i class="bi bi-journal-plus">Провести</i>
                                 @endif
-                            </a>
+                            </a>&nbsp;
                             @can('training')
                             <a class="btn btn-sm btn-primary"
                             href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi bi-pencil"></i></a>&nbsp;

@@ -11,15 +11,41 @@ class AuthTest extends DuskTestCase
 {
     use DatabaseMigrations;
  
-    /**
-     * A basic browser test example.
-     *
-     * @return void
-     */
     public function testLoginAsTraining()
     {
-        $user = User::where('role', 'training')->get();
-        dd($user);
+        $this->loginAsRoleName('training');
+    }
+
+    public function testLoginAsTeacher()
+    {
+        $this->loginAsRoleName('teacher');
+    }
+
+    private function loginAsRoleName(string $roleName)
+    {
+        $users = User::where('role', $roleName)->get();
+        $user;
+        if(count($users) < 0)
+        {
+            if($roleName == 'training')
+            {
+                $user = User::factory()
+                    ->count(1)
+                    ->training()
+                    ->create();
+            }
+            else if($roleName == 'teacher')
+            {
+                $user = User::factory()
+                    ->count(1)
+                    ->teacher()
+                    ->create();
+            }
+        }
+        else
+        {
+            $user = $users[0];
+        }
         $this->browse(function ($browser) use ($user) {
             $browser->visit('/login')
                     ->type('email', $user->email)

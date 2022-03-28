@@ -31,7 +31,7 @@
                                     <a class="btn btn-sm btn-primary" id="show"
                                        href="{{ route('admin.users.show', $user->id) }}">
                                        <i class="bi bi-eye"></i>
-                                    </a>
+                                    </a>&nbsp;
                                     <a class="btn btn-sm btn-secondary" id="edit"
                                        href="{{ route('admin.users.edit', $user->id) }}">
                                        <i class="bi bi-pencil"></i>

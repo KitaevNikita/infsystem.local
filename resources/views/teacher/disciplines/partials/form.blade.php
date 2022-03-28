@@ -49,6 +49,6 @@
 </div>
 
 <hr>
-<button type="submit" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>
+<button type="submit" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>&nbsp;
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}"><i class="bi bi-house"> На главную</i></a>
 

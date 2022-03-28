@@ -25,7 +25,7 @@
             <hr>
             <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user) }}">
                 <i class="bi bi-pencil"> Редактировать</i>
-            </a>
+            </a>&nbsp;
             <a class="btn btn-danger" href="{{ route('admin.users.index') }}">
             <i class="bi bi-house"> На главную</i>
             </a>
