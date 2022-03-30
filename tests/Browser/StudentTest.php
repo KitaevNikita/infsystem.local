@@ -6,7 +6,7 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\Browser\Helpers\AuthHelper;
 
-class UserTest extends DuskTestCase
+class StudentTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -17,9 +17,9 @@ class UserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
-                    ->visit('/users')
+                    ->visit('/students')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Список пользователей')
+                    ->assertSee('Список студентов')
                     ->assertSee('Добавить');
         });
     }
