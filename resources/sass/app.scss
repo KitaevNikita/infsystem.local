@@ -12,8 +12,6 @@
 
 // Custom
 @mixin lesson-table-cell {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
     border: solid 1px #a52019;
 }
 
@@ -21,12 +19,19 @@
 {
     @include lesson-table-cell;
     border-bottom: solid 3px #7f180d;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .lesson-table-cell
 {
     @include lesson-table-cell;
-    padding: 0 !important;
+    padding: 0;
+
+    &.student-name
+    {
+        padding-left: 0.5rem;
+    }
 }
 
 input.lesson-table-input

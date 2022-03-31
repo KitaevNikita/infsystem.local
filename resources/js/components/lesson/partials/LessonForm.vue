@@ -1,15 +1,15 @@
 <template>
     <div>
-        <form action="#" @submit.prevent="updateCardioTraining" class="row">
+        <form action="#" class="row">
             <div class="col-1 lesson-table-cell text-center">{{ count }}</div>
-            <div class="col-7 lesson-table-cell">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</div>
+            <div class="col-7 lesson-table-cell student-name">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</div>
             <div class="col-2 lesson-table-cell">
                 <input type="text" class="lesson-table-input text-center" minlength="1" maxlength="1" 
-                    v-model="studentMark.mark1" @input="markValidation"/>
+                    v-model="studentMark.mark1" @change="saveLesson"/>
             </div>
             <div class="col-2 lesson-table-cell">
                 <input type="text" class="lesson-table-input text-center" minlength="1" maxlength="1" 
-                    v-model="studentMark.mark2" @input="markValidation"/>
+                    v-model="studentMark.mark2" @change="saveLesson"/>
             </div>
         </form>
     </div>
@@ -44,13 +44,9 @@
         }
     },
     methods: {
-        markValidation(event)
+        saveLesson()
         {
-            console.log(event.target.value)
-        },
-        async updateLesson()
-        {
-            // await this.$emit('lessonUpdated', this.)
+            this.$emit('lessonSaved', this.student.id, this.studentMark.mark1, this.studentMark.mark2)
         },
     }
   }

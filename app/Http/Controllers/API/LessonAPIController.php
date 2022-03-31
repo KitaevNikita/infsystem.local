@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\Discipline;
+use App\Http\Requests\MarkRequest;
 
 class LessonAPIController extends Controller
 {
@@ -19,5 +20,12 @@ class LessonAPIController extends Controller
             'lesson' => $lesson,
             'students' => $students,
         ]);
+    }
+
+    public function saveMark(MarkRequest $request)
+    {
+        return $request->all();
+        // $lesson = Lesson::find($request->lesson_id);
+        // $student = Student::find($request->student_id);
     }
 }

@@ -12,3 +12,8 @@ Route::middleware('auth:sanctum')->get(
     '/get-data', 
     [LessonAPIController::class, 'getData']
 );
+
+Route::middleware('auth:sanctum')->post(
+    '/save-mark', 
+    [LessonAPIController::class, 'saveMark']
+);
