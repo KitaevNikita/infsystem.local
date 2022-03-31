@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <h3 class="card-header">
-                    Добавить
+                    Добавить пользователя
                 </h3>
                 <div class="card-body">
                     <form action="{{ route('admin.users.store') }}" method="post">

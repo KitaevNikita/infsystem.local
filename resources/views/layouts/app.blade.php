@@ -45,7 +45,7 @@
                                 @endcan
                                 @can('training')
                                 <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список обучающихся студентов</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список обучаемых группы</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список изучаемых дисциплин</a></li>

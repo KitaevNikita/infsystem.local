@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <h3 class="card-header">
-                    Редактировать
+                    Редактировать пользователя
                 </h3>
                 <div class="card-body">
                     <form action="{{ route('admin.users.update', $user->id) }}" method="post">
