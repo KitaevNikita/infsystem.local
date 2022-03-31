@@ -9,8 +9,8 @@
     <li class="list-group-item"><strong>Тип:</strong> {{ $lesson->type }}</li>
     <li class="list-group-item"><strong>Дата:</strong> {{ $lesson->display_date }}</li>
 </ul>
-<a class="btn btn-secondary" href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">
-    <i class="bi bi-pencil"> Редактировать</i>&nbsp;
+<a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">
+    <i class="bi bi-pencil"> Редактировать</i>
 </a>
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">
 <i class="bi bi-house"> На главную</i>

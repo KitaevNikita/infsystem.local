@@ -16,10 +16,10 @@
                 <td class="text-center">{{ $lesson->number_of_hours }}</td>
                 <td class="text-center">{{ $lesson->display_date }}</td>
                 <td class="text-end">
-                    <a class="btn btn-sm btn-secondary"
-                    href="{{ route('teacher.lessons.show', [$discipline, $lesson]) }}"><i class="bi bi-eye"></i></a>&nbsp;
-                    <a class="btn btn-sm btn-primary"
-                    href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}"><i class="bi bi-pencil"></i></a>&nbsp;
+                    <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
+                    href="{{ route('teacher.lessons.show', [$discipline, $lesson]) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
+                    href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}"><i class="bi bi-pencil"></i></a>
                     <form action="{{ route('teacher.lessons.destroy', [$discipline, $lesson]) }}" method="post" class="float-end">
                     @csrf
                     @method('delete')

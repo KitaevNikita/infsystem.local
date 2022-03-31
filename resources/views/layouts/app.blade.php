@@ -48,7 +48,7 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список изучаемых дисциплин</a></li>
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
                                 <li><a class="dropdown-item" href="#">Отчеты</a></li>
                                 @endcan
                                 @can('student')

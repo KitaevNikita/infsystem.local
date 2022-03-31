@@ -23,9 +23,9 @@
                 </li>
             </ul>
             <hr>
-            <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user) }}">
+            <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('admin.users.edit', $user) }}">
                 <i class="bi bi-pencil"> Редактировать</i>
-            </a>&nbsp;
+            </a>
             <a class="btn btn-danger" href="{{ route('admin.users.index') }}">
             <i class="bi bi-house"> На главную</i>
             </a>

@@ -22,10 +22,10 @@
                     <tr>
                     <td>{{ $group->namegroup }}</td>
                     <td class="text-end">
-                        <a class="btn btn-sm btn-secondary"
-                        href="{{ route('admin.groups.show', $group) }}"><i class="bi bi-eye"></i></a>&nbsp;
-                        <a class="btn btn-sm btn-primary"
-                        href="{{ route('admin.groups.edit', $group) }}"><i class="bi bi-pencil"></i></a>&nbsp;
+                        <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
+                        href="{{ route('admin.groups.show', $group) }}"><i class="bi bi-eye"></i></a>
+                        <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
+                        href="{{ route('admin.groups.edit', $group) }}"><i class="bi bi-pencil"></i></a>
                         <form action="{{ route('admin.groups.destroy', $group) }}" method="post" class="float-end">
                         @csrf
                         @method('delete')

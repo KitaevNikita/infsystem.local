@@ -13,9 +13,6 @@
             <li class="list-group-item"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
         </ul>
         <div class="card-body">
-            <a class="btn btn-secondary" href="{{ route('teacher.disciplines.edit', $discipline) }}">
-                <i class="bi bi-pencil"> Редактировать</i>
-            </a>&nbsp;
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
                 <i class="bi bi-house"> На главную</i>
             </a>

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <h3 class="card-header">
-            Список специальностей
+            Каталог специальностей
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.specializations.create') }}">
                 <i class="bi bi-plus-square"> Добавить</i>
             </a>
@@ -22,14 +22,14 @@
                     <tr>
                     <td>{{ $specialization->namespec }}</td>
                     <td class="text-end">
-                        <a class="btn btn-sm btn-secondary"
+                        <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
                         href="{{ route('admin.specializations.show', $specialization) }}">
                             <i class="bi bi-eye"></i>
-                        </a>&nbsp;
-                        <a class="btn btn-sm btn-primary"
+                        </a>
+                        <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
                         href="{{ route('admin.specializations.edit', $specialization) }}">
                             <i class="bi bi-pencil"></i>
-                        </a>&nbsp;
+                        </a>
                         <form action="{{ route('admin.specializations.destroy', $specialization) }}" method="post" class="float-end">
                         @csrf
                         @method('delete')

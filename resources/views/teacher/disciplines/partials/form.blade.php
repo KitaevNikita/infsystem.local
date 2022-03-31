@@ -19,7 +19,7 @@
     @enderror
 </div>
 <div class="mb-3">
-    <label for="number_hours">Количество часов<sup style="color: red">*</sup></label>
+    <label for="number_hours">Количество часов</label>
     <input type="text" class="form-control @error('number_hours') is-invalid @enderror" id="number_hours" name="number_hours"
             value="{{ $discipline->number_hours ?? old('number_hours') }}">
     @error('number_hours')

@@ -28,14 +28,14 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role_name }}</td>
                                 <td class="text-end">
-                                    <a class="btn btn-sm btn-primary" id="show"
+                                    <a class="btn btn-sm btn-primary d-inline-block me-1 text-light" id="show"
                                        href="{{ route('admin.users.show', $user->id) }}">
                                        <i class="bi bi-eye"></i>
-                                    </a>&nbsp;
-                                    <a class="btn btn-sm btn-secondary" id="edit"
+                                    </a>
+                                    <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light" id="edit"
                                        href="{{ route('admin.users.edit', $user->id) }}">
                                        <i class="bi bi-pencil"></i>
-                                    </a>&nbsp;
+                                    </a>
                                     <form action="{{ route('admin.users.destroy', $user->id) }}"
                                      method="post" class="float-end">
                                         @csrf

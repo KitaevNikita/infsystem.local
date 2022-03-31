@@ -22,7 +22,7 @@
     @enderror
 </div>
 <div class="mb-3">
-    <label for="number_of_hours">Количество часов<sup style="color: red">*</sup></label>
+    <label for="number_of_hours">Количество часов</label>
     <input type="number" min="1" max="2" class="form-control @error('number_of_hours') is-invalid @enderror" id="number_of_hours" name="number_of_hours"
             value="{{ $lesson->number_of_hours ?? old('number_of_hours') }}">
     @error('number_of_hours')
@@ -41,7 +41,7 @@
         </div>
     @enderror
 </div>
-<button type="submit" class="btn btn-primary"><i class="bi bi-save"> Сохранить</i></button>
+<button type="submit" class="btn btn-primary d-inline-block me-1 text-light"><i class="bi bi-save"> Сохранить</i></button>
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}"><i class="bi bi-house"> На главную</i></a>
 
 

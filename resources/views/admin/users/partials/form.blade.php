@@ -1,5 +1,5 @@
-<div class="form-row">
-    <div class="form-group col">
+<div class="row">
+    <div class="col">
         <label for="surname">Фамилия</label>
         <input type="text" class="form-control @error('surname') is-invalid @enderror" id="surname" name="surname"
         value="{{ $user->surname ?? old('surname')}}">
@@ -9,7 +9,7 @@
             </div>
         @enderror
     </div>
-    <div class="form-group col">
+    <div class="col">
         <label for="name">Имя</label>
         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
         value="{{ $user->name ?? old('name')}}">
@@ -19,7 +19,7 @@
             </div>
         @enderror
     </div>
-    <div class="form-group col">
+    <div class="col md-2">
         <label for="patronymic">Отчество</label>
         <input type="text" class="form-control @error('patronymic') is-invalid @enderror" id="patronymic" name="patronymic"
         value="{{ $user->patronymic ?? old('patronymic')}}">

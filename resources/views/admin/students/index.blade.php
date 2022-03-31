@@ -30,10 +30,10 @@
                         <td class="text-center">{{ $student->number }}</td>
                         <td class="text-center">{{ $student->group->namegroup }}</td>
                         <td class="text-end">
-                            <a class="btn btn-sm btn-secondary"
-                            href="{{ route('admin.students.show', $student->id) }}"><i class="bi bi-eye"></i></a>&nbsp;
-                            <a class="btn btn-sm btn-primary"
-                            href="{{ route('admin.students.edit', $student->id) }}"><i class="bi bi-pencil"></i></a>&nbsp;
+                            <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
+                            href="{{ route('admin.students.show', $student->id) }}"><i class="bi bi-eye"></i></a>
+                            <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
+                            href="{{ route('admin.students.edit', $student->id) }}"><i class="bi bi-pencil"></i></a>
                             <form action="{{ route('admin.students.destroy', $student->id) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')

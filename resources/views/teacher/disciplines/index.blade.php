@@ -27,17 +27,17 @@
                         <td>{{ $discipline->teacher }}</td>
                         <td class="text-center">{{ $discipline->number_hours }}</td>
                         <td class="text-end">
-                            <a class="btn btn-sm btn-secondary"
+                            <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
                             href="{{ route('teacher.disciplines.show', $discipline) }}">
                                 @if(Auth::user()->hasRole(Auth::user()::TRAINING))
                                     <i class="bi bi-eye"></i>
                                 @elseif(Auth::user()->hasRole(Auth::user()::TEACHER))
                                     <i class="bi bi-journal-plus">Провести</i>
                                 @endif
-                            </a>&nbsp;
+                            </a>
                             @can('training')
-                            <a class="btn btn-sm btn-primary"
-                            href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi bi-pencil"></i></a>&nbsp;
+                            <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
+                            href="{{ route('teacher.disciplines.edit', $discipline) }}"><i class="bi bi-pencil"></i></a>
                         <form action="{{ route('teacher.disciplines.destroy', $discipline) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')

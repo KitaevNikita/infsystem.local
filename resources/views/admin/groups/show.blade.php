@@ -12,9 +12,9 @@
             <li class="list-group-item"><strong>Дата создания:</strong> {{ $group->created_at }}</li>
         </ul>
         <div class="card-body">
-            <a class="btn btn-secondary" href="{{ route('admin.groups.edit', $group) }}">
+            <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('admin.groups.edit', $group) }}">
                 <i class="bi bi-pencil"> Редактировать</i>
-            </a>&nbsp;
+            </a>
             <a class="btn btn-danger" href="{{ route('admin.groups.index') }}">
             <i class="bi bi-house"> На главную</i>
             </a>
