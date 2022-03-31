@@ -1,31 +1,25 @@
 <template>
     <div class="container">
-        <table class="table table-bordered border-primary mt-4">
-            <thead>
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">Ф.И.О.</th>
-                    <th scope="col">1 урок</th>
-                    <th scope="col">2 урок</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(student, count) in students" :key="student.id">
-                    <td scope="col">{{ count + 1 }}</td>
-                    <td scope="col">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</td>
-                    <td scope="col" class="no-paddings">
-                        <input type="text" class="lesson-table-input" minlength="1" maxlength="1" @input="markValidation"/>
-                    </td>
-                    <td scope="col" class="no-paddings">
-                        <input type="text" class="lesson-table-input" minlength="1" maxlength="1" @input="markValidation"/>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row mt-3">
+            <div class="col-1 lesson-table-header-cell text-center">#</div>
+            <div class="col-7 lesson-table-header-cell">Ф.И.О.</div>
+            <div class="col-2 lesson-table-header-cell text-center">Урок 1</div>
+            <div class="col-2 lesson-table-header-cell text-center">Урок 2</div>
+        </div>
+        <LessonForm v-for="(student, count) in students" :key="student.id" 
+            :student="student" :count="count + 1" :student-mark="marks[count]">
+        </LessonForm>
     </div>
 </template>
 <script>
+
+import LessonForm from './partials/LessonForm.vue';
+import StudentMark from '../../modules/lessons/StudentMark';
+
 export default {
+    components: {
+        LessonForm,
+    },
     props: {
         discipline_id: Number,
         lesson_id: Number,
@@ -42,7 +36,7 @@ export default {
         this.getData()
     },
     methods: {
-        getData()
+        async getData()
         {
             let config = {
                 params: {
@@ -50,7 +44,7 @@ export default {
                     lesson_id: this.lesson_id, 
                 }
             }
-            axios.get('/api/get-data', config)
+            await axios.get('/api/get-data', config)
                 .then(response => {
                     console.log(response)
                     this.discipline = response.data.discipline
@@ -63,16 +57,12 @@ export default {
         },
         fillMarksArray()
         {
-            this.students.forEach(function(student, index) {
-                console.log('Егор точно не Абоба')
-                let studentMark = new StudentMark(student.id);
-                this.marks.push(studentMark);
-            });
+            for(let i = 0; i < this.students.length; i++)
+            {
+                let studentMark = new StudentMark(this.students[i].id);
+                this.marks.push(studentMark); 
+            }
         },
-        markValidation()
-        {
-            console.log('Егор Абоба')
-        }
     }
 }
 </script>

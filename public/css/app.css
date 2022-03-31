@@ -12991,13 +12991,23 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-td.no-paddings {
-  position: relative;
-  padding: 0% !important;
+.lesson-table-header-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: solid 1px #a52019;
+  border-bottom: solid 3px #7f180d;
 }
-td.no-paddings input.lesson-table-input {
-  position: absolute;
+
+.lesson-table-cell {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: solid 1px #a52019;
+  padding: 0 !important;
+}
+
+input.lesson-table-input {
   width: 100%;
   height: 100%;
+  border: none;
   outline: none;
 }
