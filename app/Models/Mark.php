@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
 use App\Models\Lesson;
 
-class Academic extends Model
+class Mark extends Model
 {
     use HasFactory;
 
@@ -17,7 +17,7 @@ class Academic extends Model
      * @var array
      */
     protected $fillable = [
-        'estimation',
+        'mark',
         'lesson_id',
         'student_id'
     ];

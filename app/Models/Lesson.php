@@ -39,14 +39,9 @@ class Lesson extends Model
         return $this->belongsToMany(Student::class, 'students_lessons', 'lesson_id', 'student_id');
     }
 
-    public function rates()
+    public function marks()
     {
-        return $this->hasMany(Rate::class);
-    }
-
-    public function academics()
-    {
-        return $this->hasMany(Academic::class);
+        return $this->hasMany(Mark::class);
     }
 
     public function getDisplayDateAttribute()

@@ -22674,8 +22674,6 @@ __webpack_require__.r(__webpack_exports__);
       discipline: {},
       lesson: {},
       students: [],
-      rates: [],
-      academics: [],
       marks: []
     };
   },
@@ -22705,18 +22703,33 @@ __webpack_require__.r(__webpack_exports__);
         _this.discipline = response.data.discipline;
         _this.lesson = response.data.lesson;
         _this.students = response.data.students;
-        _this.rates = response.data.rates;
-        _this.academics = response.data.academics;
 
-        _this.fillMarksArray();
+        _this.fillMarksArray(response.data.marks);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    fillMarksArray: function fillMarksArray() {
+    fillMarksArray: function fillMarksArray(marks) {
+      var _this2 = this;
+
+      var _loop = function _loop(i) {
+        var student = _this2.students[i];
+        var studentMarks = marks.filter(function (item, index, array) {
+          return item.student_id == student.id;
+        });
+        var studentMark = void 0;
+
+        if (studentMarks.length == 1) {
+          studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](student.id, studentMarks[0], '');
+        } else if (studentMarks.length == 2) {
+          studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](student.id, studentMarks[0], studentMarks[1]);
+        }
+
+        _this2.marks.push(studentMark);
+      };
+
       for (var i = 0; i < this.students.length; i++) {
-        var studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](this.students[i].id);
-        this.marks.push(studentMark);
+        _loop(i);
       }
     },
     saveLesson: function saveLesson(studentId, mark1, mark2) {
@@ -23107,7 +23120,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var StudentMark = /*#__PURE__*/_createClass(function StudentMark(student_id) {
+var StudentMark = /*#__PURE__*/_createClass(function StudentMark(student_id, mark1, mark2) {
   _classCallCheck(this, StudentMark);
 
   _defineProperty(this, "student_id", void 0);
@@ -23117,8 +23130,8 @@ var StudentMark = /*#__PURE__*/_createClass(function StudentMark(student_id) {
   _defineProperty(this, "mark2", void 0);
 
   this.student_id = student_id;
-  this.mark1 = '';
-  this.mark2 = '';
+  this.mark1 = mark1;
+  this.mark2 = mark2;
 });
 
 

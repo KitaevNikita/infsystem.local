@@ -4,9 +4,9 @@ export default class StudentMark
     mark1;
     mark2;
 
-    constructor(student_id) {
+    constructor(student_id, mark1, mark2) {
         this.student_id = student_id;
-        this.mark1 = '';
-        this.mark2 = '';
+        this.mark1 = mark1;
+        this.mark2 = mark2;
     }
 }

@@ -15,14 +15,12 @@ class LessonAPIController extends Controller
         $discipline = Discipline::find($request->discipline_id);
         $lesson = Lesson::find($request->lesson_id);
         $students = $lesson->students;
-        $rates = $lesson->rates;
-        $academics = $lesson->academics;
+        $marks = $lesson->marks;
         return response()->json([
             'discipline' => $discipline,
             'lesson' => $lesson,
             'students' => $students,
-            'rates' => $rates,
-            'academics' => $academics
+            'marks' => $marks
         ]);
     }
 

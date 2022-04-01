@@ -8,8 +8,7 @@ use App\Models\Lesson;
 use App\Models\Discipline;
 use App\Models\Group;
 use App\Models\User;
-use App\Models\Academic;
-use App\Models\Rate;
+use App\Models\Mark;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LessonRequest;
 
@@ -53,8 +52,7 @@ class LessonController extends Controller
                         'student_id' => $lesson->students[$i]->id,
                         'lesson_id' => $lesson->id
                     ];
-                    $rate = Rate::create($info);
-                    $academic = Academic::create($info);
+                    Mark::create($info);
                 }
             }
             return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
@@ -127,20 +125,14 @@ class LessonController extends Controller
                             'student_id' => $lesson->students[$i]->id,
                             'lesson_id' => $lesson->id
                         ];
-                        $rate = Rate::create($info);
-                        $academic = Academic::create($info);
+                        Mark::create($info);
                     }        
                 } elseif ($lesson->number_of_hours < $previous_number_of_hours) {
                     for ($i=0; $i < count($lesson->students); $i++) {
-                        $rates = Rate::where('student_id', '=', $lesson->students[$i]->id)
+                        $marks = Mark::where('student_id', '=', $lesson->students[$i]->id)
                             ->where('lesson_id', '=', $lesson->id)->get();
-                        $academics = Academic::where('student_id', '=', $lesson->students[$i]->id)
-                            ->where('lesson_id', '=', $lesson->id)->get();
-                        if (count($rates) == 2) {
-                            $rates[1]->delete();
-                        }
-                        if (count($academics) == 2) {
-                            $academics[1]->delete();
+                        if (count($marks) == 2) {
+                            $marks[1]->delete();
                         }
                     }
                 }

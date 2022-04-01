@@ -32,8 +32,6 @@ export default {
             discipline: {},
             lesson: {},
             students: [],
-            rates: [],
-            academics: [],
             marks: [],
         }
     },
@@ -63,18 +61,26 @@ export default {
                     this.discipline = response.data.discipline
                     this.lesson = response.data.lesson
                     this.students = response.data.students
-                    this.rates = response.data.rates
-                    this.academics = response.data.academics
-                    this.fillMarksArray()
+                    this.fillMarksArray(response.data.marks)
                 }).catch(error => {
                     console.log(error)
                 });
         },
-        fillMarksArray()
+        fillMarksArray(marks)
         {
             for(let i = 0; i < this.students.length; i++)
             {
-                let studentMark = new StudentMark(this.students[i].id);
+                const student = this.students[i]
+                const studentMarks = marks.filter(function(item, index, array) {
+                    return item.student_id == student.id;
+                });
+                let studentMark 
+                if (studentMarks.length == 1) {
+                    studentMark = new StudentMark(student.id, studentMarks[0], '');    
+                }
+                else if (studentMarks.length == 2) {
+                    studentMark = new StudentMark(student.id, studentMarks[0], studentMarks[1]);  
+                }
                 this.marks.push(studentMark); 
             }
         },

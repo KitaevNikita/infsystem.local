@@ -10,8 +10,7 @@ use App\Models\Discipline;
 use App\Models\Student;
 use App\Models\Summarylist;
 use App\Models\lesson;
-use App\Models\Rate;
-use App\Models\Academic;
+use App\Models\Mark;
 
 class AppSeeder extends Seeder
 {
@@ -328,11 +327,10 @@ class AppSeeder extends Seeder
                 // Создаем лекцию
                 $lesson = $this->createLesson($lessonTopic, $discipline, $students);
 
-                // Создаем rate и acamedic для каждой связи "Cтудент - Лекция" (многие ко многим).
+                // Создаем mark для каждой связи "Cтудент - Лекция" (многие ко многим).
                 foreach($students as $student)
                 {
-                    $this->createRate($student, $lesson);
-                    $this->createAcademic($student, $lesson);
+                    $this->createMark($student, $lesson);
                 }
             }                      
         }
@@ -358,36 +356,21 @@ class AppSeeder extends Seeder
     }
 
     /*
-     * Создает экземпляр App\Models\Rate. 
+     * Создает экземпляр App\Models\Mark. 
      *
      * @param App\Models\Student $student
      * @param App\Models\Lesson $lesson
      *
      * @return void
      */
-    private function createRate(Student $student, Lesson $lesson) : void
+    private function createMark(Student $student, Lesson $lesson) : void
     {
-        Rate::factory()
+        for ($i=0; $i < $lesson->number_of_hours; $i++) { 
+            Mark::factory()
             ->count(1)
             ->for($student)
             ->for($lesson)
             ->create();
-    }
-
-    /*
-     * Создает экземпляр App\Models\Academic.
-     *
-     * @param App\Models\Student $student
-     * @param App\Models\Lesson $lesson
-     *
-     * @return void
-     */
-    private function createAcademic(Student $student, Lesson $lesson) : void
-    {
-        Academic::factory()
-            ->count(1)
-            ->for($student)
-            ->for($lesson)
-            ->create();
+        }
     }
 }
