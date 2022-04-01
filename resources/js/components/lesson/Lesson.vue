@@ -3,11 +3,13 @@
         <div class="row mt-3">
             <div class="col-1 lesson-table-header-cell text-center">#</div>
             <div class="col-7 lesson-table-header-cell">Ф.И.О.</div>
-            <div class="col-2 lesson-table-header-cell text-center">Урок 1</div>
-            <div class="col-2 lesson-table-header-cell text-center">Урок 2</div>
+            <div class="lesson-table-header-cell text-center" :class="mark1Classes">Урок 1</div>
+            <div class="col-2 lesson-table-header-cell text-center" v-if="lesson.number_of_hours == 2">Урок 2</div>
         </div>
         <LessonForm v-for="(student, count) in students" :key="student.id" 
-            :student="student" :count="count + 1" :student-mark="marks[count]"
+            :number-of-hours="lesson.number_of_hours"
+            :student="student" :count="count + 1" 
+            :student-mark="marks[count]"
             @lesson-saved="saveLesson">
         </LessonForm>
     </div>
@@ -37,6 +39,14 @@ export default {
     },
     created() {
         this.getData()
+    },
+    computed: {
+        mark1Classes() {
+            return {
+                'col-2': this.lesson.number_of_hours == 2,
+                'col-4': this.lesson.number_of_hours == 1,
+            }
+        },
     },
     methods: {
         getData()

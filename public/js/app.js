@@ -22682,6 +22682,14 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getData();
   },
+  computed: {
+    mark1Classes: function mark1Classes() {
+      return {
+        'col-2': this.lesson.number_of_hours == 2,
+        'col-4': this.lesson.number_of_hours == 1
+      };
+    }
+  },
   methods: {
     getData: function getData() {
       var _this = this;
@@ -22742,6 +22750,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    numberOfHours: Number,
     student: Object,
     count: Number,
     studentMark: Object
@@ -22768,6 +22777,14 @@ __webpack_require__.r(__webpack_exports__);
       if (availableChars.indexOf(newValue[0]) == -1) {
         this.studentMark.mark2 = '';
       }
+    }
+  },
+  computed: {
+    mark1Classes: function mark1Classes() {
+      return {
+        'col-2': this.numberOfHours == 2,
+        'col-4': this.numberOfHours == 1
+      };
     }
   },
   methods: {
@@ -22918,22 +22935,44 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "container"
 };
+var _hoisted_2 = {
+  "class": "row mt-3"
+};
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row mt-3\"><div class=\"col-1 lesson-table-header-cell text-center\">#</div><div class=\"col-7 lesson-table-header-cell\">Ф.И.О.</div><div class=\"col-2 lesson-table-header-cell text-center\">Урок 1</div><div class=\"col-2 lesson-table-header-cell text-center\">Урок 2</div></div>", 1);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-1 lesson-table-header-cell text-center"
+}, "#", -1
+/* HOISTED */
+);
 
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-7 lesson-table-header-cell"
+}, "Ф.И.О.", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  key: 0,
+  "class": "col-2 lesson-table-header-cell text-center"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_LessonForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("LessonForm");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.students, function (student, count) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["lesson-table-header-cell text-center", $options.mark1Classes])
+  }, "Урок 1", 2
+  /* CLASS */
+  ), $data.lesson.number_of_hours == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Урок 2")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.students, function (student, count) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_LessonForm, {
       key: student.id,
+      "number-of-hours": $data.lesson.number_of_hours,
       student: student,
       count: count + 1,
       "student-mark": $data.marks[count],
       onLessonSaved: $options.saveLesson
     }, null, 8
     /* PROPS */
-    , ["student", "count", "student-mark", "onLessonSaved"]);
+    , ["number-of-hours", "student", "count", "student-mark", "onLessonSaved"]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]);
@@ -22965,9 +23004,7 @@ var _hoisted_3 = {
   "class": "col-7 lesson-table-cell student-name"
 };
 var _hoisted_4 = {
-  "class": "col-2 lesson-table-cell"
-};
-var _hoisted_5 = {
+  key: 0,
   "class": "col-2 lesson-table-cell"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -22975,7 +23012,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.surname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.patronymic), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["lesson-table-cell", $options.mark1Classes])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "lesson-table-input text-center",
     minlength: "1",
@@ -22988,7 +23027,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark1]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark1]])], 2
+  /* CLASS */
+  ), $props.numberOfHours == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "lesson-table-input text-center",
     minlength: "1",
@@ -23001,7 +23042,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark2]])])])]);
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark2]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
