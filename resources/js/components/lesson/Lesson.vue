@@ -30,6 +30,8 @@ export default {
             discipline: {},
             lesson: {},
             students: [],
+            rates: [],
+            academics: [],
             marks: [],
         }
     },
@@ -51,6 +53,8 @@ export default {
                     this.discipline = response.data.discipline
                     this.lesson = response.data.lesson
                     this.students = response.data.students
+                    this.rates = response.data.rates
+                    this.academics = response.data.academics
                     this.fillMarksArray()
                 }).catch(error => {
                     console.log(error)

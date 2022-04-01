@@ -17,7 +17,9 @@ class Rate extends Model
      * @var array
      */
     protected $fillable = [
-        'mark'
+        'mark',
+        'lesson_id',
+        'student_id'
     ];
 
     public function lesson()

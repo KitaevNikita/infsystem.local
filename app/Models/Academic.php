@@ -17,7 +17,9 @@ class Academic extends Model
      * @var array
      */
     protected $fillable = [
-        'estimation'
+        'estimation',
+        'lesson_id',
+        'student_id'
     ];
 
     public function lesson()

@@ -22674,6 +22674,8 @@ __webpack_require__.r(__webpack_exports__);
       discipline: {},
       lesson: {},
       students: [],
+      rates: [],
+      academics: [],
       marks: []
     };
   },
@@ -22695,6 +22697,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.discipline = response.data.discipline;
         _this.lesson = response.data.lesson;
         _this.students = response.data.students;
+        _this.rates = response.data.rates;
+        _this.academics = response.data.academics;
 
         _this.fillMarksArray();
       })["catch"](function (error) {

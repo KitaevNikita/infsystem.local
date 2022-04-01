@@ -8,6 +8,8 @@ use App\Models\Lesson;
 use App\Models\Discipline;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Academic;
+use App\Models\Rate;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LessonRequest;
 
@@ -45,6 +47,16 @@ class LessonController extends Controller
             $request['discipline_id'] = $discipline->id;
             $lesson = Lesson::create($request->all());
             $lesson->students()->attach($discipline->group->students);
+            for ($i=0; $i < count($lesson->students); $i++) {
+                for ($i2=0; $i2 < $lesson->number_of_hours; $i2++) { 
+                    $info = [
+                        'student_id' => $lesson->students[$i]->id,
+                        'lesson_id' => $lesson->id
+                    ];
+                    $rate = Rate::create($info);
+                    $academic = Academic::create($info);
+                }
+            }
             return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -103,11 +115,37 @@ class LessonController extends Controller
     public function update(LessonRequest $request, $discipline_id, $id)
     {
         $lesson = Lesson::findOrFail($id);
+        $previous_number_of_hours = $lesson->number_of_hours;
         // проверка прав пользователя
         if ($request->user()->can('update', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
             $lesson->update($request->all());
-            return redirect()->route('teacher.disciplines.show', $discipline);
+            if ($lesson->number_of_hours != $previous_number_of_hours) {
+                if ($lesson->number_of_hours > $previous_number_of_hours) {
+                    for ($i=0; $i < count($lesson->students); $i++) {
+                        $info = [
+                            'student_id' => $lesson->students[$i]->id,
+                            'lesson_id' => $lesson->id
+                        ];
+                        $rate = Rate::create($info);
+                        $academic = Academic::create($info);
+                    }        
+                } elseif ($lesson->number_of_hours < $previous_number_of_hours) {
+                    for ($i=0; $i < count($lesson->students); $i++) {
+                        $rates = Rate::where('student_id', '=', $lesson->students[$i]->id)
+                            ->where('lesson_id', '=', $lesson->id)->get();
+                        $academics = Academic::where('student_id', '=', $lesson->students[$i]->id)
+                            ->where('lesson_id', '=', $lesson->id)->get();
+                        if (count($rates) == 2) {
+                            $rates[1]->delete();
+                        }
+                        if (count($academics) == 2) {
+                            $academics[1]->delete();
+                        }
+                    }
+                }
+            }
+            return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
