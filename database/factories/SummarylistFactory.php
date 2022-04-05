@@ -16,14 +16,9 @@ class SummarylistFactory extends Factory
      */
     public function definition()
     {
-        $interims = [
-            'Зачет',
-            'Дифференцированный зачет',
-            'Экзамен'
-        ];
         return [
-            'interim' => $interims[rand(0, count($interims) - 1)],
-            'estimation' => (string)rand(2,5)
+            'interim' => (string)rand(2, 5),
+            'estimation' => (string)rand(2, 5)
         ];
     }
 }

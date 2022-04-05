@@ -27,11 +27,6 @@
 {
     @include lesson-table-cell;
     padding: 0;
-
-    &.student-name
-    {
-        padding-left: 0.5rem;
-    }
 }
 
 input.lesson-table-input

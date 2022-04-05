@@ -3,17 +3,23 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\LessonAPIController;
+use App\Http\Controllers\API\SummaryListAPIController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::middleware('auth:sanctum')->get(
-    '/get-data', 
+    '/lesson/get-data', 
     [LessonAPIController::class, 'getData']
 );
 
 Route::middleware('auth:sanctum')->post(
-    '/save-mark', 
+    '/lesson/save-mark', 
     [LessonAPIController::class, 'saveMark']
+);
+
+Route::middleware('auth:sanctum')->get(
+    '/summary-list/get-data', 
+    [SummaryListAPIController::class, 'getData']
 );

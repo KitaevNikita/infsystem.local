@@ -24,6 +24,10 @@ class Group extends Model
         'specialization_id',
     ];
 
+    protected $with = [
+        'students',
+    ];
+
     public function specialization()
     {
         return $this->belongsTo(Specialization::class);

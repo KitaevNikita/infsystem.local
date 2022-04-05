@@ -2,7 +2,7 @@
     <div>
         <form action="#" class="row">
             <div class="col-1 lesson-table-cell text-center">{{ count }}</div>
-            <div class="col-7 lesson-table-cell student-name">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</div>
+            <div class="col-7 lesson-table-cell ps-2">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</div>
             <div class="lesson-table-cell" :class="mark1Classes">
                 <input type="text" class="lesson-table-input text-center" minlength="1" maxlength="1" 
                     v-model="studentMark.mark1.mark" @change="saveLesson"/>

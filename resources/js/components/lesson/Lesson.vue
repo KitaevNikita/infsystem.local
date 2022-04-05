@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row mt-3">
-            <div class="col-1 lesson-table-header-cell text-center">#</div>
+            <div class="col-1 lesson-table-header-cell text-center">№</div>
             <div class="col-7 lesson-table-header-cell">Ф.И.О.</div>
             <div class="lesson-table-header-cell text-center" :class="mark1Classes">Урок 1</div>
             <div class="col-2 lesson-table-header-cell text-center" v-if="lesson.number_of_hours == 2">Урок 2</div>
@@ -54,7 +54,7 @@ export default {
                     lesson_id: this.lesson_id, 
                 }
             }
-            axios.get('/api/get-data', config)
+            axios.get('/api/lesson/get-data', config)
                 .then(response => {
                     console.log(response)
                     this.discipline = response.data.discipline
@@ -91,7 +91,7 @@ export default {
                 mark1: mark1.mark,
                 mark2: mark2.mark
             }
-            axios.post('/api/save-mark', data)
+            axios.post('/api/lesson/save-mark', data)
                 .then(response => {
                     console.log(response)
                 }).catch(error => {

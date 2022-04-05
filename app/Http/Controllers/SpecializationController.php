@@ -6,7 +6,6 @@ use App\Models\Specialization;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SpecializationRequest;
 
 class SpecializationController extends Controller

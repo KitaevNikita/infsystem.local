@@ -29,6 +29,11 @@ class Lesson extends Model
         'group_id'
     ];
 
+    protected $with = [
+        'students',
+        'marks'
+    ];
+
     public function discipline()
     {
         return $this->belongsTo(Discipline::class);

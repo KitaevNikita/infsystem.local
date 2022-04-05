@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discipline;
 use App\Models\User;
+use App\Models\Summarylist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,6 @@ class DisciplineController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('viewAny', Discipline::class)) {
             $disciplines = Discipline::paginate(5);
@@ -37,7 +37,6 @@ class DisciplineController extends Controller
      */
     public function create(Request $request)
     {
-        $user = Auth::user();
         // проверка прав пользователя
         if ($request->user()->can('create', Discipline::class)) {
             return view('teacher.disciplines.create');
@@ -57,7 +56,14 @@ class DisciplineController extends Controller
     public function store(DisciplineRequest $request)
     {
         if ($request->user()->can('create', Discipline::class)) {
-            Discipline::create($request->all());
+            $discipline = Discipline::create($request->all());
+            $students = $discipline->group->students;
+            for ($i=0; $i < count($students); $i++) { 
+                Summarylist::create([
+                    'discipline_id' => $discipline->id,
+                    'student_id' => $students[$i]->id
+                ]);
+            }
             return redirect()->route('teacher.disciplines.index');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -139,6 +145,18 @@ class DisciplineController extends Controller
             return redirect()->route('teacher.disciplines.index');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
+    }
+
+    public function getReport(Request $request, $id)
+    {
+        $discipline = Discipline::with(['lessons'])->findOrFail($id);
+        // dd($discipline);
+        if ($request->user()->can('getReport', $discipline)) {
+            return view('teacher.disciplines.report', compact('discipline'));
+        } else {
             return redirect()->route('home')
                 ->withErrors(['msg' => 'Ошибка доступа']);
         }

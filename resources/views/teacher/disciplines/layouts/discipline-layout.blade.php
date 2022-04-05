@@ -8,7 +8,8 @@
          {{ $discipline->name_of_the_discipline }}
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Ф.И.О. преподавателя:</strong> {{ $discipline->teacher }}</li>
+            <li class="list-group-item"><strong>Преподаватель:</strong> {{ $discipline->teacher }}</li>
+            <li class="list-group-item"><strong>Группа:</strong> {{ $discipline->group->namegroup }}</li>
             <li class="list-group-item"><strong>Количество часов:</strong> {{ $discipline->number_hours }}</li>
             <li class="list-group-item"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
         </ul>
@@ -18,6 +19,9 @@
                 <i class="bi bi-pencil"> Редактировать</i>
             </a>
             @endcan
+            <a class="btn btn-success d-inline-block me-1 text-light" href="{{ route('teacher.disciplines.getReport', $discipline) }}">
+            <i class="bi bi-file-earmark-bar-graph"> Показать отчет</i>
+            </a>
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
                 <i class="bi bi-house"> На главную</i>
             </a>
@@ -25,7 +29,6 @@
     </div>
     
     @can('teacher')
-
     <div class="card mt-4">
         <h3 class="card-header">
         Занятия
@@ -36,8 +39,7 @@
             @yield('discipline-content')
         </div>
     </div>
-
-    @endcan
+    @endcan  
 </div>
 
 @endsection

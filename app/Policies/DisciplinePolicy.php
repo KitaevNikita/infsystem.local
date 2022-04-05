@@ -102,7 +102,6 @@ class DisciplinePolicy
      */
     public function edit(User $user, Discipline $model)
     {
-        return true;
         $isTraining = $user->role == 'training';
         $isTeacher = $user->role == 'teacher';
         $author = $model->id == $user->id;
@@ -110,6 +109,14 @@ class DisciplinePolicy
 
         $result = $isTeacher || $isTraining && ($author || $role);
 
+        return $result;
+    }
+
+    public function getReport(User $user, Discipline $model)
+    {
+        $isTraining = $user->role == 'training';
+        $isTeacher = $user->role == 'teacher';
+        $result = $isTeacher || $isTraining;
         return $result;
     }
 }
