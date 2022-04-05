@@ -15,7 +15,8 @@
                 <thead>
                     <tr>
                         <th scope="col">Дисциплина</th>
-                        <th scope="col">ФИО</th>
+                        <th scope="col">Преподаватель</th>
+                        <th scope="col">Группа</th>
                         <th scope="col" class="text-center">Кол-во часов</th>
                         <th scope="col" class="text-end">Действия</th>
                     </tr>
@@ -25,6 +26,7 @@
                         <tr>
                         <td>{{ Str::limit($discipline->name_of_the_discipline, 25) }}</td>
                         <td>{{ $discipline->teacher }}</td>
+                        <td>{{ $discipline->group->namegroup }}</td>
                         <td class="text-center">{{ $discipline->number_hours }}</td>
                         <td class="text-end">
                             <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"

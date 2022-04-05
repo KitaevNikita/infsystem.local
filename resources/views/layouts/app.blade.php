@@ -42,6 +42,7 @@
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
                                 @can('teacher')
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                <li><a class="dropdown-item" href="#">Отчеты</a></li>
                                 @endcan
                                 @can('training')
                                 <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список обучающихся студентов</a></li>
@@ -50,9 +51,6 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
                                 <li><a class="dropdown-item" href="#">Отчеты</a></li>
-                                @endcan
-                                @can('student')
-                                <li><a class="dropdown-item" href="#">Журналы</a></li>
                                 @endcan
                             </ul>
                         </li>
