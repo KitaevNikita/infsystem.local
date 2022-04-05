@@ -55,7 +55,7 @@ class SpecializationController extends Controller
     {
         if ($request->user()->can('create', Specialization::class)) {
             Specialization::create($request->all());
-            return redirect()->route('admin.specializations.index');
+            return redirect()->route('admin.specializations.index')->with('status', 'Студент успешно добавлен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -113,7 +113,7 @@ class SpecializationController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $specialization)) {
             $specialization->update($request->except('user_id'));
-            return redirect()->route('admin.specializations.index');
+            return redirect()->route('admin.specializations.index')->with('status', 'Студент успешно изменен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -133,7 +133,7 @@ class SpecializationController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('delete', $specialization)) {
             $specialization->delete();
-            return redirect()->route('admin.specializations.index');
+            return redirect()->route('admin.specializations.index')->with('status', 'Студент успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

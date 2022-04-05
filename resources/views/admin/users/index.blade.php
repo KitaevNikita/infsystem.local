@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+    @if (session('status'))
+        @component('components.success', [
+            'message' => session('status'),
+        ])
+        @endcomponent
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">

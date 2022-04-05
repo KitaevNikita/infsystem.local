@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="container">
+    @if (session('status'))
+        @component('components.success', [
+            'message' => session('status'),
+        ])
+        @endcomponent
+    @endif
     <div class="card">
         <h3 class="card-header">
             Список учебных дисциплин

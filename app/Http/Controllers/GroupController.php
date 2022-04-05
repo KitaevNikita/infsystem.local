@@ -59,7 +59,7 @@ class GroupController extends Controller
     {
         if ($request->user()->can('create', Group::class)) {
             Group::create($request->all());
-            return redirect()->route('admin.groups.index');
+            return redirect()->route('admin.groups.index')->with('status', 'Студент успешно добавлен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -118,7 +118,7 @@ class GroupController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $group)) {
             $group->update($request->except('user_id'));
-            return redirect()->route('admin.groups.index');
+            return redirect()->route('admin.groups.index')->with('status', 'Студент успешно изменен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -138,7 +138,7 @@ class GroupController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('delete', $group)) {
             $group->delete();
-            return redirect()->route('admin.groups.index');
+            return redirect()->route('admin.groups.index')->with('status', 'Студент успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
