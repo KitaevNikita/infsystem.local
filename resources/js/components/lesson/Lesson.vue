@@ -59,17 +59,17 @@ export default {
                     console.log(response)
                     this.discipline = response.data.discipline
                     this.lesson = response.data.lesson
-                    this.fillMarksArray(response.data.marks)
+                    this.fillMarksArray()
                 }).catch(error => {
                     console.log(error)
                 });
         },
-        fillMarksArray(marks)
+        fillMarksArray()
         {
             for(let i = 0; i < this.lesson.students.length; i++)
             {
                 const student = this.lesson.students[i]
-                const studentMarks = marks.filter(function(item, index, array) {
+                const studentMarks = this.lesson.marks.filter(function(item, index, array) {
                     return item.student_id == student.id;
                 });
                 let studentMark 

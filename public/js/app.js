@@ -22702,19 +22702,21 @@ __webpack_require__.r(__webpack_exports__);
         _this.discipline = response.data.discipline;
         _this.lesson = response.data.lesson;
 
-        _this.fillMarksArray(response.data.marks);
+        _this.fillMarksArray();
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    fillMarksArray: function fillMarksArray(marks) {
+    fillMarksArray: function fillMarksArray() {
       var _this2 = this;
 
       var _loop = function _loop(i) {
         var student = _this2.lesson.students[i];
-        var studentMarks = marks.filter(function (item, index, array) {
+
+        var studentMarks = _this2.lesson.marks.filter(function (item, index, array) {
           return item.student_id == student.id;
         });
+
         var studentMark = void 0;
 
         if (studentMarks.length == 1) {
