@@ -14,12 +14,10 @@ class LessonAPIController extends Controller
     {
         $discipline = Discipline::find($request->discipline_id);
         $lesson = Lesson::find($request->lesson_id);
-        $students = $lesson->students;
         $marks = $lesson->marks;
         return response()->json([
             'discipline' => $discipline,
             'lesson' => $lesson,
-            'students' => $students,
             'marks' => $marks
         ]);
     }

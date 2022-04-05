@@ -22673,7 +22673,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       discipline: {},
       lesson: {},
-      students: [],
       marks: []
     };
   },
@@ -22702,7 +22701,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         _this.discipline = response.data.discipline;
         _this.lesson = response.data.lesson;
-        _this.students = response.data.students;
 
         _this.fillMarksArray(response.data.marks);
       })["catch"](function (error) {
@@ -22713,14 +22711,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var _loop = function _loop(i) {
-        var student = _this2.students[i];
+        var student = _this2.lesson.students[i];
         var studentMarks = marks.filter(function (item, index, array) {
           return item.student_id == student.id;
         });
         var studentMark = void 0;
 
         if (studentMarks.length == 1) {
-          studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](student.id, studentMarks[0], '');
+          studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](student.id, studentMarks[0], null);
         } else if (studentMarks.length == 2) {
           studentMark = new _modules_lessons_StudentMark__WEBPACK_IMPORTED_MODULE_1__["default"](student.id, studentMarks[0], studentMarks[1]);
         }
@@ -22728,7 +22726,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.marks.push(studentMark);
       };
 
-      for (var i = 0; i < this.students.length; i++) {
+      for (var i = 0; i < this.lesson.students.length; i++) {
         _loop(i);
       }
     },
@@ -22975,7 +22973,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["lesson-table-header-cell text-center", $options.mark1Classes])
   }, "Урок 1", 2
   /* CLASS */
-  ), $data.lesson.number_of_hours == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Урок 2")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.students, function (student, count) {
+  ), $data.lesson.number_of_hours == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Урок 2")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.lesson.students, function (student, count) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_LessonForm, {
       key: student.id,
       "number-of-hours": $data.lesson.number_of_hours,
@@ -23033,14 +23031,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     minlength: "1",
     maxlength: "1",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $props.studentMark.mark1 = $event;
+      return $props.studentMark.mark1.mark = $event;
     }),
     onChange: _cache[1] || (_cache[1] = function () {
       return $options.saveLesson && $options.saveLesson.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark1]])], 2
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark1.mark]])], 2
   /* CLASS */
   ), $props.numberOfHours == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
@@ -23048,14 +23046,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     minlength: "1",
     maxlength: "1",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $props.studentMark.mark2 = $event;
+      return $props.studentMark.mark2.mark = $event;
     }),
     onChange: _cache[3] || (_cache[3] = function () {
       return $options.saveLesson && $options.saveLesson.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark2]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.studentMark.mark2.mark]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),

@@ -13,7 +13,7 @@ class MarkFactory extends Factory
      */
     public function definition()
     {
-        $marks = [true, false];
+        $marks = ['2', '3', '4', '5', 'Н', 'н'];
         return [
             'mark' => $marks[rand(0, count($marks) - 1)]
         ];

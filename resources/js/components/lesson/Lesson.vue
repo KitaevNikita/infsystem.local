@@ -6,7 +6,7 @@
             <div class="lesson-table-header-cell text-center" :class="mark1Classes">Урок 1</div>
             <div class="col-2 lesson-table-header-cell text-center" v-if="lesson.number_of_hours == 2">Урок 2</div>
         </div>
-        <LessonForm v-for="(student, count) in students" :key="student.id" 
+        <LessonForm v-for="(student, count) in lesson.students" :key="student.id" 
             :number-of-hours="lesson.number_of_hours"
             :student="student" :count="count + 1" 
             :student-mark="marks[count]"
@@ -31,7 +31,6 @@ export default {
         return {
             discipline: {},
             lesson: {},
-            students: [],
             marks: [],
         }
     },
@@ -60,7 +59,6 @@ export default {
                     console.log(response)
                     this.discipline = response.data.discipline
                     this.lesson = response.data.lesson
-                    this.students = response.data.students
                     this.fillMarksArray(response.data.marks)
                 }).catch(error => {
                     console.log(error)
@@ -68,15 +66,15 @@ export default {
         },
         fillMarksArray(marks)
         {
-            for(let i = 0; i < this.students.length; i++)
+            for(let i = 0; i < this.lesson.students.length; i++)
             {
-                const student = this.students[i]
+                const student = this.lesson.students[i]
                 const studentMarks = marks.filter(function(item, index, array) {
                     return item.student_id == student.id;
                 });
                 let studentMark 
                 if (studentMarks.length == 1) {
-                    studentMark = new StudentMark(student.id, studentMarks[0], '');    
+                    studentMark = new StudentMark(student.id, studentMarks[0], null);    
                 }
                 else if (studentMarks.length == 2) {
                     studentMark = new StudentMark(student.id, studentMarks[0], studentMarks[1]);  

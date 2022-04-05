@@ -5,11 +5,11 @@
             <div class="col-7 lesson-table-cell student-name">{{ student.user.surname }} {{ student.user.name }} {{ student.user.patronymic }}</div>
             <div class="lesson-table-cell" :class="mark1Classes">
                 <input type="text" class="lesson-table-input text-center" minlength="1" maxlength="1" 
-                    v-model="studentMark.mark1" @change="saveLesson"/>
+                    v-model="studentMark.mark1.mark" @change="saveLesson"/>
             </div>
             <div class="col-2 lesson-table-cell" v-if="numberOfHours == 2">
                 <input type="text" class="lesson-table-input text-center" minlength="1" maxlength="1" 
-                    v-model="studentMark.mark2" @change="saveLesson"/>
+                    v-model="studentMark.mark2.mark" @change="saveLesson"/>
             </div>
         </form>
     </div>
