@@ -82,13 +82,14 @@ export default {
                 this.marks.push(studentMark); 
             }
         },
-        saveLesson(studentId, mark1, mark2)
+        saveLesson(mark1, mark2)
         {
             const data = {
-                student_id: studentId,
                 lesson_id: this.lesson.id,
-                mark1: mark1,
-                mark2: mark2,
+                mark1_id: mark1.id,
+                mark2_id: mark2.id,
+                mark1: mark1.mark,
+                mark2: mark2.mark
             }
             axios.post('/api/save-mark', data)
                 .then(response => {

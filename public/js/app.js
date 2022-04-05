@@ -22732,12 +22732,13 @@ __webpack_require__.r(__webpack_exports__);
         _loop(i);
       }
     },
-    saveLesson: function saveLesson(studentId, mark1, mark2) {
+    saveLesson: function saveLesson(mark1, mark2) {
       var data = {
-        student_id: studentId,
         lesson_id: this.lesson.id,
-        mark1: mark1,
-        mark2: mark2
+        mark1_id: mark1.id,
+        mark2_id: mark2.id,
+        mark1: mark1.mark,
+        mark2: mark2.mark
       };
       axios.post('/api/save-mark', data).then(function (response) {
         console.log(response);
@@ -22769,26 +22770,26 @@ __webpack_require__.r(__webpack_exports__);
     studentMark: Object
   },
   watch: {
-    'studentMark.mark1': function studentMarkMark1(newValue) {
+    'studentMark.mark1.mark': function studentMarkMark1Mark(newValue) {
       if (newValue.length > 1) {
-        this.studentMark.mark1 = newValue[0];
+        this.studentMark.mark1.mark = newValue[0];
       }
 
       var availableChars = ['5', '4', '3', '2', 'н', 'Н'];
 
       if (availableChars.indexOf(newValue[0]) == -1) {
-        this.studentMark.mark1 = '';
+        this.studentMark.mark1.mark = '';
       }
     },
-    'studentMark.mark2': function studentMarkMark2(newValue) {
+    'studentMark.mark2.mark': function studentMarkMark2Mark(newValue) {
       if (newValue.length > 1) {
-        this.studentMark.mark2 = newValue[0];
+        this.studentMark.mark2.mark = newValue[0];
       }
 
       var availableChars = ['5', '4', '3', '2', 'н', 'Н'];
 
       if (availableChars.indexOf(newValue[0]) == -1) {
-        this.studentMark.mark2 = '';
+        this.studentMark.mark2.mark = '';
       }
     }
   },
@@ -22802,7 +22803,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveLesson: function saveLesson() {
-      this.$emit('lessonSaved', this.student.id, this.studentMark.mark1, this.studentMark.mark2);
+      this.$emit('lessonSaved', this.studentMark.mark1, this.studentMark.mark2);
     }
   }
 });

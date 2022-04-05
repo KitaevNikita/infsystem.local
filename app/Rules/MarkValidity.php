@@ -27,7 +27,7 @@ class MarkValidity implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (!in_array($value[0], self::availableChars)) {
+        if (!in_array($value, self::availableChars)) {
             return false;
         }
         return true;

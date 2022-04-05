@@ -23,24 +23,24 @@
         studentMark: Object,
     },
     watch: {
-        'studentMark.mark1'(newValue)
+        'studentMark.mark1.mark'(newValue)
         {
             if(newValue.length > 1) {
-                this.studentMark.mark1 = newValue[0]
+                this.studentMark.mark1.mark = newValue[0]
             }
             const availableChars = ['5', '4', '3', '2', 'н', 'Н']
             if (availableChars.indexOf(newValue[0]) == -1) {
-                this.studentMark.mark1 = ''
+                this.studentMark.mark1.mark = ''
             }
         },
-        'studentMark.mark2'(newValue)
+        'studentMark.mark2.mark'(newValue)
         {
             if(newValue.length > 1) {
-                this.studentMark.mark2 = newValue[0]
+                this.studentMark.mark2.mark = newValue[0]
             }
             const availableChars = ['5', '4', '3', '2', 'н', 'Н']
             if (availableChars.indexOf(newValue[0]) == -1) {
-                this.studentMark.mark2 = ''
+                this.studentMark.mark2.mark = ''
             }
         }
     },
@@ -55,7 +55,7 @@
     methods: {
         saveLesson()
         {
-            this.$emit('lessonSaved', this.student.id, this.studentMark.mark1, this.studentMark.mark2)
+            this.$emit('lessonSaved', this.studentMark.mark1, this.studentMark.mark2)
         },
     }
   }
