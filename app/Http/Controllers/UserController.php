@@ -59,7 +59,8 @@ class UserController extends Controller
         if ($request->user()->can('create', User::class)) {
            $request['password'] = bcrypt($request->password);
                 $user = User::create($request->all());
-                return redirect()->route('admin.users.index')->with('status', 'Студент успешно добавлен');
+                return redirect()->route('admin.users.index')
+                    ->with('status', 'Пользователь успешно добавлен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -132,7 +133,8 @@ class UserController extends Controller
             }
             $user->save();
             if ($request->user()->can('viewAny', User::class)) {
-                return redirect()->route('admin.users.index')->with('status', 'Студент успешно изменен');
+                return redirect()->route('admin.users.index')
+                    ->with('status', 'Пользователь успешно изменен');
             } else {
                 return redirect()->route('home');
             }
@@ -156,7 +158,8 @@ class UserController extends Controller
         if ($request->user()->can('delete', $user)) {
             $user->delete();
 
-            return redirect()->route('admin.users.index')->with('status', 'Студент успешно удален');
+            return redirect()->route('admin.users.index')
+                ->with('status', 'Пользователь успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

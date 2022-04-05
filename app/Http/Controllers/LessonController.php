@@ -55,7 +55,8 @@ class LessonController extends Controller
                     Mark::create($info);
                 }
             }
-            return redirect()->route('teacher.lessons.show', [$discipline, $lesson])->with('status', 'Студент успешно добавлен');
+            return redirect()->route('teacher.lessons.show', [$discipline, $lesson])
+                ->with('status', 'Урок успешно добавлен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -158,7 +159,8 @@ class LessonController extends Controller
         if ($request->user()->can('delete', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
             $lesson->delete();
-            return redirect()->route('teacher.disciplines.show', $discipline)->with('status', 'Студент успешно удален');
+            return redirect()->route('teacher.disciplines.show', $discipline)
+            ->with('status', 'Урок успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

@@ -147,7 +147,8 @@ class StudentController extends Controller
             $student->user->delete();
             $student->delete();
 
-            return redirect()->route('admin.students.index')->with('status', 'Студент успешно удален');
+            return redirect()->route('admin.students.index')
+                ->with('status', 'Студент успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

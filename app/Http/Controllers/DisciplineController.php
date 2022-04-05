@@ -64,7 +64,8 @@ class DisciplineController extends Controller
                     'student_id' => $students[$i]->id
                 ]);
             }
-            return redirect()->route('teacher.disciplines.index')->with('status', 'Студент успешно добавлен');
+            return redirect()->route('teacher.disciplines.index')
+                ->with('status', 'Дисциплина успешно добавлена');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -122,7 +123,8 @@ class DisciplineController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $discipline)) {
             $discipline->update($request->except('user_id'));
-            return redirect()->route('teacher.disciplines.index')->with('status', 'Студент успешно изменен');
+            return redirect()->route('teacher.disciplines.index')
+                ->with('status', 'Дисциплина успешно изменена');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -142,7 +144,8 @@ class DisciplineController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('delete', $discipline)) {
             $discipline->delete();
-            return redirect()->route('teacher.disciplines.index')->with('status', 'Студент успешно удален');
+            return redirect()->route('teacher.disciplines.index')
+                ->with('status', 'Дисциплина успешно удалена');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

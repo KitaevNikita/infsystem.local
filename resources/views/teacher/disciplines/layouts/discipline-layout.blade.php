@@ -25,9 +25,6 @@
                 <i class="bi bi-pencil"> Редактировать</i>
             </a>
             @endcan
-            <a class="btn btn-success d-inline-block me-1 text-light" href="{{ route('teacher.disciplines.getReport', $discipline) }}">
-            <i class="bi bi-file-earmark-bar-graph"> Показать отчет</i>
-            </a>
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
                 <i class="bi bi-house"> На главную</i>
             </a>
