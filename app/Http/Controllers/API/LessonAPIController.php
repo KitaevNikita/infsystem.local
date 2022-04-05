@@ -13,7 +13,7 @@ class LessonAPIController extends Controller
     public function getData(Request $request)
     {
         $discipline = Discipline::find($request->discipline_id);
-        $lesson = Lesson::find($request->lesson_id);
+        $lesson = Lesson::with('students')->find($request->lesson_id);
         $marks = $lesson->marks;
         return response()->json([
             'discipline' => $discipline,
