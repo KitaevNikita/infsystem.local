@@ -2,15 +2,17 @@
 
 @section('content')
 
-@if ($errors->any())
-        @foreach ($errors->all() as $error)
-            @component('components.error', [
-                'message' => $error,
-            ])
+<div class="container">
+    @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                @component('components.error', [
+                    'message' => $error,
+                ])
 
             @endcomponent
         @endforeach
-  @endif
+    @endif
+</div>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">

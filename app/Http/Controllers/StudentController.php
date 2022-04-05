@@ -63,7 +63,8 @@ class StudentController extends Controller
             $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
             $request['user_id'] = $user->id;
             Student::create($request->only(['user_id', 'number', 'group_id']));
-            return redirect()->route('admin.students.index');
+            return redirect()->route('admin.students.index')
+                ->with('status', 'Студент успешно добавлен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -123,7 +124,8 @@ class StudentController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $student)) {
             $student->update($request->except('user_id'));
-            return redirect()->route('admin.students.index');
+            return redirect()->route('admin.students.index')
+                ->with('status', 'Студент успешно изменен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -145,7 +147,7 @@ class StudentController extends Controller
             $student->user->delete();
             $student->delete();
 
-            return redirect()->route('admin.students.index');
+            return redirect()->route('admin.students.index')->with('status', 'Студент успешно удален');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
