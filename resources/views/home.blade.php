@@ -14,12 +14,12 @@
     @endif
 </div>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <div class="card bg-dark text-white">
-            <img src="/img/preview2.jpg" class="card-img" alt="">   
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3 border border-secondary">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Электронный журнал</h1>
+            <p class="col-md-8 fs-4">Информационная система, которая предназначена для упрощения работы преподавателя.</p>
         </div>
     </div>
 </div>
-
 @endsection

@@ -63,18 +63,5 @@ class UserFactory extends Factory
             ];
         });
     }
-
-    /**
-    * Состояние для учетной записи студента
-    */
-    public function student()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'password' => bcrypt('14'),
-                'role' => 'student'
-            ];
-        });
-    }
 }
 

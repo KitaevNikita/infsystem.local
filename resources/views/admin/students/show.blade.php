@@ -8,8 +8,8 @@
             Детали студента
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Фамилия:</strong> {{ $student->user->name }}</li>
-            <li class="list-group-item"><strong>Имя:</strong> {{ $student->user->surname }}</li>
+            <li class="list-group-item"><strong>Фамилия:</strong> {{ $student->user->surname }}</li>
+            <li class="list-group-item"><strong>Имя:</strong> {{ $student->user->name }}</li>
             <li class="list-group-item"><strong>Отчество:</strong> {{ $student->user->patronymic }}</li>
             <li class="list-group-item"><strong>Номер студенческого билета:</strong> {{ $student->number }}</li>
             <li class="list-group-item"><strong>Группа:</strong> {{ $student->group->namegroup }}</li>
