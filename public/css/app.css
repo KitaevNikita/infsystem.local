@@ -12996,6 +12996,7 @@ textarea.form-control-lg {
   border-bottom: solid 3px #7f180d;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  vertical-align: middle;
 }
 
 .lesson-table-cell {

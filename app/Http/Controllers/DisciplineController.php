@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discipline;
 use App\Models\User;
+use App\Models\Group;
 use App\Models\Summarylist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,7 +40,8 @@ class DisciplineController extends Controller
     {
         // проверка прав пользователя
         if ($request->user()->can('create', Discipline::class)) {
-            return view('teacher.disciplines.create');
+            $groups = Group::all();
+            return view('teacher.disciplines.create', compact('groups'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -102,7 +104,8 @@ class DisciplineController extends Controller
     {
         $discipline = Discipline::findOrFail($id);
         if ($request->user()->can('update', $discipline)) {
-            return view('teacher.disciplines.edit', compact('discipline'));
+            $groups = Group::all();
+            return view('teacher.disciplines.edit', compact('discipline', 'groups'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

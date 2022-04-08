@@ -31,6 +31,15 @@
         </div>
     </div>
     
+    <!-- <div class="card mt-4">
+        <h3 class="card-header">
+            Отчет по дисциплине
+        </h3>
+        <div class="card-body">
+            @yield('discipline-content')
+        </div>
+    </div>  
+           -->
     @can('teacher')
     <div class="card mt-4">
         <h3 class="card-header">

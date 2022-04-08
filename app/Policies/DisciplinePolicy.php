@@ -71,9 +71,8 @@ class DisciplinePolicy
     {
         // проверяем является ли пользователь учебной частью или преподавателем
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
 
-        return $isTraining || $isTeacher;
+        return $isTraining;
     }
 
     /**
@@ -103,11 +102,10 @@ class DisciplinePolicy
     public function edit(User $user, Discipline $model)
     {
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
         $author = $model->id == $user->id;
         $role = $model->role == 'user';
 
-        $result = $isTeacher || $isTraining && ($author || $role);
+        $result = $isTraining && ($author || $role);
 
         return $result;
     }

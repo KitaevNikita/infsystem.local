@@ -2,8 +2,12 @@
 
 @section('discipline-content')
 
-@include('teacher.disciplines.lessons.index')
+<div class="card">
+  <div class="card-body">
+        <summary-list :discipline_id="{{ $discipline->id }}"></summary-list>
+  </div>
+</div> 
 
-<summary-list :discipline_id="{{ $discipline->id }}"></summary-list> 
+@include('teacher.disciplines.lessons.index')
 
 @endsection

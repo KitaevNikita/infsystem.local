@@ -20,6 +20,8 @@ class Summarylist extends Model
     protected $fillable = [
         'interim',
         'estimation',
+        'discipline_id',
+        'student_id',
     ];
 
     public function student()
