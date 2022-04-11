@@ -22669,8 +22669,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       discipline: {},
-      students: [],
-      summaryLists: []
+      students: []
     };
   },
   beforeMount: function beforeMount() {
@@ -22688,10 +22687,41 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/summary-list/get-data', config).then(function (response) {
         console.log(response);
         _this.discipline = response.data.discipline;
-        _this.students = _this.discipline.group.students;
-        _this.summaryLists = _this.data.summary_lists;
+
+        _this.findSummaryListForStudent(response.data.discipline.group.students, response.data.summaryLists);
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    findSummaryListForStudent: function findSummaryListForStudent(students, summaryLists) {
+      var _this2 = this;
+
+      var _loop = function _loop(i) {
+        var student = students[i];
+        var summaryList = summaryLists.find(function (item, index, array) {
+          return item.student_id == student.id;
+        });
+        student.summaryList_id = summaryList.id;
+        student.interim = summaryList.interim;
+        student.estimation = summaryList.estimation;
+
+        _this2.students.push(student);
+      };
+
+      for (var i = 0; i < students.length; i++) {
+        _loop(i);
+      }
+    },
+    saveSummaryList: function saveSummaryList(summaryListId, estimation, interim) {
+      var data = {
+        summary_list_id: summaryListId,
+        estimation: estimation,
+        interim: interim
+      };
+      axios.post('/api/summary-list/save', data).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error.response);
       });
     }
   }
@@ -22712,34 +22742,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    summaryList: Object,
     student: Object,
     count: Number
   },
-  watch: {// 'studentMark.mark1.mark'(newValue)
-    // {
-    //     if(newValue.length > 1) {
-    //         this.studentMark.mark1.mark = newValue[0]
-    //     }
-    //     const availableChars = ['5', '4', '3', '2', 'н', 'Н']
-    //     if (availableChars.indexOf(newValue[0]) == -1) {
-    //         this.studentMark.mark1.mark = ''
-    //     }
-    // },
-    // 'studentMark.mark2.mark'(newValue)
-    // {
-    //     if(newValue.length > 1) {
-    //         this.studentMark.mark2.mark = newValue[0]
-    //     }
-    //     const availableChars = ['5', '4', '3', '2', 'н', 'Н']
-    //     if (availableChars.indexOf(newValue[0]) == -1) {
-    //         this.studentMark.mark2.mark = ''
-    //     }
-    // }
+  watch: {
+    'student.estimation': function studentEstimation(newValue) {
+      if (newValue.length > 1) {
+        this.student.estimation = newValue[0];
+      }
+
+      var availableChars = ['5', '4', '3', '2'];
+
+      if (availableChars.indexOf(newValue[0]) == -1) {
+        this.student.estimation = '';
+      }
+    },
+    'student.interim': function studentInterim(newValue) {
+      if (newValue.length > 1) {
+        this.student.interim = newValue[0];
+      }
+
+      var availableChars = ['5', '4', '3', '2'];
+
+      if (availableChars.indexOf(newValue[0]) == -1) {
+        this.student.interim = '';
+      }
+    }
   },
   methods: {
     saveSummaryList: function saveSummaryList() {
-      this.$emit('summaryListSaved', this.summaryList.id, this.summaryList.estimation, this.summaryList.interim);
+      this.$emit('summaryListSaved', this.student.summaryList_id, this.student.estimation, this.student.interim);
     }
   }
 });
@@ -23064,11 +23096,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: student.id,
       student: student,
       count: count + 1,
-      summaryList: $data.summaryLists[count],
-      onSummaryListSaved: _ctx.saveSummaryList
+      onSummaryListSaved: $options.saveSummaryList
     }, null, 8
     /* PROPS */
-    , ["student", "count", "summaryList", "onSummaryListSaved"]);
+    , ["student", "count", "onSummaryListSaved"]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]);
@@ -23099,12 +23130,44 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "col-7 lesson-table-cell ps-2"
 };
+var _hoisted_4 = {
+  "class": "col-2 lesson-table-cell"
+};
+var _hoisted_5 = {
+  "class": "col-2 lesson-table-cell"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.count), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.surname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.student.user.patronymic), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"col-2 lesson-table-cell\">\r\n                <input type=\"text\" class=\"lesson-table-input text-center\" minlength=\"1\" maxlength=\"1\" \r\n                    @change=\"saveSummaryList\" v-model=\"summaryList.estimation\"/>\r\n            </div>\r\n            <div class=\"col-2 lesson-table-cell\">\r\n                <input type=\"text\" class=\"lesson-table-input text-center\" minlength=\"1\" maxlength=\"1\" \r\n                    @change=\"saveSummaryList\" v-model=\"summaryList.interim\"/>\r\n            </div> ")])]);
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "class": "lesson-table-input text-center",
+    minlength: "1",
+    maxlength: "1",
+    onChange: _cache[0] || (_cache[0] = function () {
+      return $options.saveSummaryList && $options.saveSummaryList.apply($options, arguments);
+    }),
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $props.student.estimation = $event;
+    })
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.student.estimation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "class": "lesson-table-input text-center",
+    minlength: "1",
+    maxlength: "1",
+    onChange: _cache[2] || (_cache[2] = function () {
+      return $options.saveSummaryList && $options.saveSummaryList.apply($options, arguments);
+    }),
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $props.student.interim = $event;
+    })
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.student.interim]])])])]);
 }
 
 /***/ }),

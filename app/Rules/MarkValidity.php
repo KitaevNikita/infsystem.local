@@ -2,20 +2,26 @@
 
 namespace App\Rules;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Validation\Rule;
 
 class MarkValidity implements Rule
 {
-    private const availableChars = ['5', '4', '3', '2', 'н', 'Н'];
+    private const availableCharsForAttendance = ['5', '4', '3', '2', 'н', 'Н'];
+    
+    private const availableChars = ['5', '4', '3', '2'];
+
+    private $checkAttendance = false;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($checkAttendance)
     {
-        //
+        $this->checkAttendance = $checkAttendance;
+        Log::info($this->checkAttendance);
     }
 
     /**
@@ -27,6 +33,13 @@ class MarkValidity implements Rule
      */
     public function passes($attribute, $value)
     {
+        $localAvailableChars = [];
+        if ($this->checkAttendance) {
+            $localAvailableChars = self::availableCharsForAttendance; 
+        } else {
+            $localAvailableChars = self::availableChars;
+        }
+        Log::info($localAvailableChars);
         if (!in_array($value, self::availableChars)) {
             return false;
         }

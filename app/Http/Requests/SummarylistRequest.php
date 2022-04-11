@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MarkValidity;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SummarylistRequest extends FormRequest
+class SummaryListRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,8 +20,8 @@ class SummarylistRequest extends FormRequest
     public function rules()
     {
         return [
-            'interim' => 'required|string|between:0,255',
-            'estimation' => 'required|integer',
+            'interim' => ['nullable', 'string', 'size:1', new MarkValidity(false)],
+            'estimation' => ['nullable', 'string', 'size:1', new MarkValidity(false)],
         ];
     }
 
@@ -31,12 +32,10 @@ class SummarylistRequest extends FormRequest
     */
     public function messages()
     {
+        $size = 'Вы ввели неверные данные';
         return [
-            "interim.required" => "Введите промежуточную аттестацию",
-            "interim.string" => "Промежуточная аттестация должна иметь строковое значение",
-            "interim.berween" => "Промежуточная аттестация не должна быть больше 255 символов",
-            "estimation.required" => "Введите оценку",
-            "estimation.integer" => "Оценка должна иметь числовое значение",
+            "interim.size" => $size,
+            "estimation.size" => $size,
         ];
     }
 }

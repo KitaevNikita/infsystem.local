@@ -25,8 +25,8 @@ class MarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'mark1' => ['nullable', 'string', 'size:1', new MarkValidity()],
-            'mark2' => ['nullable', 'string', 'size:1', new MarkValidity()],
+            'mark1' => ['nullable', 'string', 'size:1', new MarkValidity(true)],
+            'mark2' => ['nullable', 'string', 'size:1', new MarkValidity(true)],
         ];
     }
     /**

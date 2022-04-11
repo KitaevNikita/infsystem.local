@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Discipline;
 use App\Models\SummaryList;
+use App\Http\Requests\SummaryListRequest;
 
 class SummaryListAPIController extends Controller
 {
@@ -15,7 +16,16 @@ class SummaryListAPIController extends Controller
         $summaryLists = SummaryList::where('discipline_id', $discipline->id)->get();
         return response()->json([
             'discipline' => $discipline,
-            'summary_lists' => $summaryLists,
+            'summaryLists' => $summaryLists,
+        ]);
+    }
+
+    public function save(SummaryListRequest $request)
+    {
+        $summaryList = SummaryList::find($request->summary_list_id);
+        $summaryList->update([
+            'estimation' => $request->estimation,
+            'interim' => $request->interim,
         ]);
     }
 }

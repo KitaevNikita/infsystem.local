@@ -7,8 +7,7 @@
             <div class="col-2 lesson-table-header-cell text-center">Пром. аттестация</div>
         </div>
         <SummaryListForm v-for="(student, count) in students" :key="student.id" 
-            :student="student" :count="count + 1" 
-            :summaryList="summaryLists[count]"
+            :student="student" :count="count + 1"
             @summary-list-saved="saveSummaryList">
         </SummaryListForm>
     </div>
@@ -28,7 +27,6 @@ export default {
         return {
             discipline: {},
             students: [],
-            summaryLists: [],
         }
     },
     beforeMount() {
@@ -46,10 +44,37 @@ export default {
                 .then(response => {
                     console.log(response)
                     this.discipline = response.data.discipline
-                    this.students = this.discipline.group.students
-                    this.summaryLists = this.data.summary_lists
+                    this.findSummaryListForStudent(response.data.discipline.group.students, response.data.summaryLists)
                 }).catch(error => {
                     console.log(error)
+                });
+        },
+        findSummaryListForStudent(students, summaryLists)
+        {
+            for(let i = 0; i < students.length; i++)
+            {
+                const student = students[i]
+                const summaryList = summaryLists.find(function (item, index, array) {
+                    return item.student_id == student.id
+                })
+                student.summaryList_id = summaryList.id
+                student.interim = summaryList.interim
+                student.estimation = summaryList.estimation
+                this.students.push(student)
+            }
+        },
+        saveSummaryList(summaryListId, estimation, interim) 
+        {
+            let data = {
+                summary_list_id: summaryListId,
+                estimation: estimation,
+                interim: interim,
+            }
+            axios.post('/api/summary-list/save', data)
+                .then(response => {
+                    console.log(response)
+                }).catch(error => {
+                    console.log(error.response)
                 });
         },
     }

@@ -23,3 +23,8 @@ Route::middleware('auth:sanctum')->get(
     '/summary-list/get-data', 
     [SummaryListAPIController::class, 'getData']
 );
+
+Route::middleware('auth:sanctum')->post(
+    '/summary-list/save', 
+    [SummaryListAPIController::class, 'save']
+);
