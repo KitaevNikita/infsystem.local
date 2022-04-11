@@ -3,19 +3,19 @@
 namespace App\Http\Requests\UserStudent;
 
 use App\Http\Requests\User\UserStoreRequest;
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\Student\StudentStoreRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserStudentStoreRequest extends FormRequest
 {
 
-    protected $userStoreRequest;
+    protected $userRequest;
     protected $studentRequest;
 
     public function __construct()
     {
-        $this->userStoreRequest = new UserStoreRequest();
-        $this->studentRequest = new StudentRequest();
+        $this->userRequest = new UserStoreRequest();
+        $this->studentRequest = new StudentStoreRequest();
     }
 
     /**
@@ -35,15 +35,14 @@ class UserStudentStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = $this->userStoreRequest->rules();
+        $rules = array_merge($this->userRequest->rules(), ['role' => []]);
         $rules = array_merge($rules, $this->studentRequest->rules());
         return $rules;
     }
 
     public function messages()
     {
-        $messages = $this->userStoreRequest->messages();
-        $messages = array_merge($messages, $this->studentRequest->messages());
+        $messages = array_merge($this->userRequest->messages(), $this->studentRequest->messages());
         return $messages;
     }
 }

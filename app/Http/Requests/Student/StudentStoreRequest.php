@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentRequest extends FormRequest
+class StudentStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,7 @@ class StudentRequest extends FormRequest
         return [
             "number.required" => "Введите номер студенческого билета",
             "number.string" => "Номер студенческого билета должен быть строчным",
-            "number.berween" => "Номер студенческого билета должен состоять из трех чисел",
+            "number.between" => "Номер студенческого билета должен состоять из трех чисел",
             "number.unique" => "Номер студенческого билета должен быть уникальным",
         ];
     }

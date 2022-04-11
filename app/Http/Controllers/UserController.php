@@ -40,7 +40,9 @@ class UserController extends Controller
     {
         // проверка прав пользователя
         if ($request->user()->can('create', User::class)) {
-            return view('admin.users.create');
+            return view('admin.users.create', [
+                'canEditRole' => true
+            ]);
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

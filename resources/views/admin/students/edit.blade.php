@@ -12,7 +12,7 @@
                 @csrf
                 @method('put')
 
-                @include('admin.users.partials.form')
+                @include('admin.users.partials.form', ['canEditRole' => false])
                 @include('admin.students.partials.form')
             </form>
         </div>

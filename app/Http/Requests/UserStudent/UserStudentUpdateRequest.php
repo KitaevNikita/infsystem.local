@@ -3,26 +3,30 @@
 namespace App\Http\Requests\UserStudent;
 
 use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\Student\StudentUpdateRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class UserStudentUpdateRequest extends UserStudentStoreRequest
 {
     public function __construct()
     {
-        $this->userStoreRequest = new UserUpdateRequest();
-        $this->studentRequest = new StudentRequest();
+        $this->userRequest = new UserUpdateRequest();
+        $this->studentRequest = new StudentUpdateRequest();
+
+        Log::info($this->rules());
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules()
     {
-        return array_merge(parent::rules(), [
-            'number' => [
-                'required',
-                'string',
-                Rule::unique('students')->ignore($this->route('student'))
-            ]
-        ]);  
+        $rules = array_merge($this->userRequest->rules(), ['role' => []]);
+        $rules = array_merge($rules, $this->studentRequest->rules());
+        return $rules;
     }
 }

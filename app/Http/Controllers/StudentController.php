@@ -60,6 +60,7 @@ class StudentController extends Controller
     public function store(UserStudentStoreRequest $request)
     {
         if ($request->user()->can('create', Student::class)) {
+            $request['role'] = 'student';
             $user = User::create($request->only(['name', 'surname', 'patronymic', 'email', 'role', 'password']));
             $request['user_id'] = $user->id;
             Student::create($request->only(['user_id', 'number', 'group_id']));

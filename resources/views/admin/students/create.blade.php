@@ -11,7 +11,7 @@
             <form action="{{ route('admin.students.store') }}" method="post">
                 @csrf
 
-                @include('admin.users.partials.form')
+                @include('admin.users.partials.form', ['canEditRole' => false])
                 @include('admin.students.partials.form')
             </form>
         </div>
