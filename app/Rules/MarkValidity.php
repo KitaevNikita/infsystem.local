@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Validation\Rule;
 
 class MarkValidity implements Rule
@@ -21,7 +20,6 @@ class MarkValidity implements Rule
     public function __construct($checkAttendance)
     {
         $this->checkAttendance = $checkAttendance;
-        Log::info($this->checkAttendance);
     }
 
     /**
@@ -39,8 +37,7 @@ class MarkValidity implements Rule
         } else {
             $localAvailableChars = self::availableChars;
         }
-        Log::info($localAvailableChars);
-        if (!in_array($value, self::availableChars)) {
+        if (!in_array($value, $localAvailableChars)) {
             return false;
         }
         return true;
@@ -53,6 +50,6 @@ class MarkValidity implements Rule
      */
     public function message()
     {
-        return 'Ведённое вами значение вне диапозона допустимых значений: 5, 4, 3, 2, н, Н.';
+        return 'Введенное вами значение вне диапозона допустимых: 5, 4, 3, 2, н, Н.';
     }
 }
