@@ -85,6 +85,9 @@ Route::group($teacherGroupData, function () {
     Route::resource(
         'disciplines', DisciplineController::class
     );
+    Route::get(
+        '/disciplines/{discipline}/report', [DisciplineController::class, 'getReport']
+    )->name('disciplines.getReport');
     Route::resource(
         'disciplines/{discipline}/lessons', LessonController::class
     )->except('index');

@@ -159,7 +159,6 @@ class DisciplineController extends Controller
     public function getReport(Request $request, $id)
     {
         $discipline = Discipline::with(['lessons'])->findOrFail($id);
-        // dd($discipline);
         if ($request->user()->can('getReport', $discipline)) {
             return view('teacher.disciplines.report', compact('discipline'));
         } else {
