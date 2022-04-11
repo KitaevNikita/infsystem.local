@@ -67,7 +67,7 @@ class UserFactory extends Factory
     /**
     * Состояние для учетной записи студента
     */
-    public function teacher()
+    public function student()
     {
         return $this->state(function (array $attributes) {
             return [
