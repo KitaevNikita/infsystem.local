@@ -15,12 +15,12 @@ class UserUpdateRequest extends UserStoreRequest
                 'email',
                 Rule::unique('users')->ignore($this->route('user'))
             ],
-            
+
             'password' => [
                 'nullable',
                 'string',
                 'between:8,25',
             ]
-        ]);
+        ]);  
     }
 }

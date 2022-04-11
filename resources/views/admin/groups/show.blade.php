@@ -5,10 +5,9 @@
 <div class="container">
     <div class="card">
         <h3 class="card-header">
-            Детали группы
+            {{ $group->namegroup }}
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Название группы:</strong> {{ $group->namegroup }}</li>
             <li class="list-group-item"><strong>Дата создания:</strong> {{ $group->created_at }}</li>
         </ul>
         <div class="card-body">

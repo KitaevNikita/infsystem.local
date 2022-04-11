@@ -22,7 +22,7 @@ class UserStoreRequest extends FormRequest
             'surname' => 'required|string|between:2,50',
             'name' => 'required|string|between:2,50',
             'patronymic' => 'required|string|between:2,50',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|between:8,25',
             'role' => 'required',
         ];

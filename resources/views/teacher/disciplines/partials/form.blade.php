@@ -18,6 +18,15 @@
         </div>
     @enderror
 </div>
+<div class="mb-3">
+    <label for="number_hours">Количество часов</label>
+    <input type="text" class="form-control @error('number_hours') is-invalid @enderror" id="number_hours" name="number_hours"
+            value="{{ $discipline->number_hours ?? old('number_hours') }}">
+    @error('number_hours')
+        <div class="invalid-feedback">
+            {{$message}}
+        </div>
+    @enderror
 <div class="mb-3 mt-3">
     <label for="group_id">Группа</label>
     <select class="form-select @error('group_id') is-invalid @enderror" id="group_id" name="group_id">
@@ -33,15 +42,6 @@
         </div>
     @enderror
 </div>
-<div class="mb-3">
-    <label for="number_hours">Количество часов</label>
-    <input type="text" class="form-control @error('number_hours') is-invalid @enderror" id="number_hours" name="number_hours"
-            value="{{ $discipline->number_hours ?? old('number_hours') }}">
-    @error('number_hours')
-        <div class="invalid-feedback">
-            {{$message}}
-        </div>
-    @enderror
 </div>
 <div class="mb-3">
     <label for="certification">Промежуточная аттестация<sup style="color: red">*</sup></label>

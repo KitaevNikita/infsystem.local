@@ -121,13 +121,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // проверка прав пользователя
         if ($request->user()->can('update', $user)) {
-
-
             $user->surname = $request->surname;
             $user->patronymic = $request->patronymic;
             $user->name = $request->name;
-            $user->email = $request->email;
             $user->role = $request->role;
+            $user->email = $request->email;
             if ($request->password !== null) {
                 $user->password = bcrypt($request->password);
             }

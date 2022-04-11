@@ -84,20 +84,22 @@ export default {
         },
         saveLesson(mark1, mark2)
         {
-            const data = {
+            let data = {
                 lesson_id: this.lesson.id,
                 mark1_id: mark1.id,
-                mark2_id: mark2.id,
                 mark1: mark1.mark,
-                mark2: mark2.mark
             }
+            if (this.lesson.number_of_hours == 2) {
+                data.mark2_id = mark2.id
+                data.mark2 = mark2.mark 
+            }   
             axios.post('/api/lesson/save-mark', data)
                 .then(response => {
                     console.log(response)
                 }).catch(error => {
                     console.log(error.response)
                 });
-        }   
+        },
     }
 }
 </script>

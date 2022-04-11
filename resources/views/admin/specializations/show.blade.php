@@ -5,10 +5,9 @@
 <div class="container">
     <div class="card">
         <h3 class="card-header">
-            Детали специальности
+            {{ $specialization->namespec }}
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Название специальности:</strong> {{ $specialization->namespec }}</li>
             <li class="list-group-item"><strong>Дата создания:</strong> {{ $specialization->created_at }}</li>
         </ul>
         <div class="card-body">

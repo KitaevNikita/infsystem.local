@@ -123,6 +123,10 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         // проверка прав пользователя
         if ($request->user()->can('update', $student)) {
+            if ($request->number !== null) {
+                $student->number = Hash::check($request->number);
+            }
+            $student->save();
             $student->update($request->except('user_id'));
             return redirect()->route('admin.students.index')
                 ->with('status', 'Студент успешно изменен');

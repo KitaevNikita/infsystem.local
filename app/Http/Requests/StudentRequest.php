@@ -19,7 +19,7 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|string|unique:students|between:3,3',
+            'number' => 'required|string|unique:students,number|between:3,3',
         ];
     }
 

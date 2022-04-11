@@ -16,10 +16,7 @@
                     <strong>Роль:</strong> {{ $user->role_name }}
                 </li>
                 <li class="list-group-item">
-                    <strong>Дата добавления:</strong> {{ $user->created_at }}
-                </li>
-                <li class="list-group-item">
-                    <strong>Дата последнего обновления:</strong> {{ $user->updated_at }}
+                    <strong>Дата создания и последнего обновления:</strong> {{ $user->created_at }} / {{ $user->updated_at }}
                 </li>
             </ul>
             <hr>

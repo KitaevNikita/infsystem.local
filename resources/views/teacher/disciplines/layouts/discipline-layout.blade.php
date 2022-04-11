@@ -11,10 +11,9 @@
     @endif
     <div class="card">
         <h3 class="card-header">
-         {{ $discipline->name_of_the_discipline }}
+         {{ $discipline->name_of_the_discipline }} &nbsp; ({{ $discipline->teacher }})
         </h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Преподаватель:</strong> {{ $discipline->teacher }}</li>
             <li class="list-group-item"><strong>Группа:</strong> {{ $discipline->group->namegroup }}</li>
             <li class="list-group-item"><strong>Количество часов:</strong> {{ $discipline->number_hours }}</li>
             <li class="list-group-item"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
