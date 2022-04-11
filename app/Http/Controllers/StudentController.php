@@ -127,9 +127,8 @@ class StudentController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $student)) {
             if ($request->number !== null) {
-                $student->number = Hash::check($request->number);
+                $request->number = $student->number;
             }
-            $student->save();
             $student->update($request->except('user_id'));
             return redirect()->route('admin.students.index')
                 ->with('status', 'Студент успешно изменен');
