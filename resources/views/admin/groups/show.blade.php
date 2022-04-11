@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="card">
+    <div class="card mb-3">
         <h3 class="card-header">
             {{ $group->namegroup }}
         </h3>
@@ -19,5 +19,6 @@
             </a>
         </div>
     </div>
+    @include('admin.students.partials.student-list')
 </div>
 @endsection

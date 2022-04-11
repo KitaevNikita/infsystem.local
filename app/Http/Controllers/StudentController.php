@@ -14,6 +14,8 @@ use App\Http\Requests\UserStudent\UserStudentUpdateRequest;
 
 class StudentController extends Controller
 {
+    public const paginate = 10;
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +25,7 @@ class StudentController extends Controller
     {
         // проверка прав пользователя
         if ($request->user()->can('viewAny', Student::class)) {
-            $students = Student::paginate(8);
+            $students = Student::paginate(self::paginate);
             return view('admin.students.index', compact('students'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа

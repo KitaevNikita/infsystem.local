@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\User;
+use App\Models\Student;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +80,8 @@ class GroupController extends Controller
         $group = Group::findOrFail($id);
         // проверка прав пользователя
         if ($request->user()->can('viewAny', $group)) {
-            return view('admin.groups.show', compact('group'));
+            $students = Student::where('group_id', $group->id)->paginate(StudentController::paginate);
+            return view('admin.groups.show', compact('group', 'students'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
