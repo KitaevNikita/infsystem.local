@@ -3,29 +3,37 @@
 namespace App\Http\Requests\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class StudentUpdateRequest extends StudentStoreRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function __construct()
     {
-        return true;
+        $this->userRequest = new UserUpdateRequest();
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules()
     {
-        return array_merge(parent::rules(), [
-            'number' => [
-                'required', 
-                'string', 
-                'between:3,3',
-                Rule::unique('students')->ignore($this->route('student'))
-            ] 
-        ]);
+        $userId = $this->route('student');
+        $studentId = User::find($userId)->student->id;
+
+        return array_merge(
+            $this->userRequest->rules($userId),
+            [
+                'number' => [
+                    'required',
+                    'string',
+                    'between:3,3',
+                    Rule::unique('students')->ignore($studentId)
+                ]
+            ]
+        );
     }
 }

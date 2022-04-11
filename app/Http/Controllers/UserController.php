@@ -134,6 +134,7 @@ class UserController extends Controller
             if ($request->role === null) {
                 $request->role = $user->role; 
             }
+            $user->role = $request->role;
             $user->save();
             if ($request->user()->can('viewAny', User::class)) {
                 return redirect()->route('admin.users.index')

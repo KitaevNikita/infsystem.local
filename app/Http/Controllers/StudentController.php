@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
-use App\Http\Requests\UserStudent\UserStudentStoreRequest;
-use App\Http\Requests\UserStudent\UserStudentUpdateRequest;
+use App\Http\Requests\Student\StudentStoreRequest;
+use App\Http\Requests\Student\StudentUpdateRequest;
 
 class StudentController extends Controller
 {
@@ -59,7 +59,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStudentStoreRequest $request)
+    public function store(StudentStoreRequest $request)
     {
         if ($request->user()->can('create', Student::class)) {
             $request['role'] = 'student';
@@ -121,16 +121,29 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserStudentUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
+        $user = User::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('update', $student)) {
-            if ($request->number !== null) {
-                $student->number = Hash::check($request->number);
+        if ($request->user()->can('update', $user->student)) {
+            $user->surname = $request->surname;
+            $user->patronymic = $request->patronymic;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password !== null) {
+                $user->password = bcrypt($request->password);
             }
-            $student->save();
-            $student->update($request->except('user_id'));
+            if ($request->role === null) {
+                $request->role = $user->role; 
+            }
+            $user->role = $request->role;
+            $user->save();
+            if ($request->number !== null) {
+                $user->student->number = $request->number;
+            }
+            $user->student->group_id = $request->group_id;
+            $user->student->save();
+
             return redirect()->route('admin.students.index')
                 ->with('status', 'Студент успешно изменен');
         } else {

@@ -15,51 +15,51 @@ use App\Models\Mark;
 class AppSeeder extends Seeder
 {
     // Минимальное и максимальное количество студентов в группе (для рандомной генерации).
-        private const MIN_STUDENTS_PER_GROUP = 4;
-        private const MAX_STUDENTS_PER_GROUP = 10;
+    private const MIN_STUDENTS_PER_GROUP = 4;
+    private const MAX_STUDENTS_PER_GROUP = 10;
 
     /*
      * Константы специализаций
      */
-        private const SPECIALIZATION_IS = 'Информационные системы и технологии';
-        private const SPECIALIZATION_PC = 'Повар, кондитер';
-        private const SPECIALIZATION_MR = 'Мастер по ремонту и обслуживанию автомобилей';
-        private const SPECIALIZATION_NK = 'Преподавание в начальных классах';
-        private const SPECIALIZATION_DO = 'Дошкольное образование';
-        private const SPECIALIZATION_F = 'Физическая культура';
+    private const SPECIALIZATION_IS = 'Информационные системы и технологии';
+    private const SPECIALIZATION_PC = 'Повар, кондитер';
+    private const SPECIALIZATION_MR = 'Мастер по ремонту и обслуживанию автомобилей';
+    private const SPECIALIZATION_NK = 'Преподавание в начальных классах';
+    private const SPECIALIZATION_DO = 'Дошкольное образование';
+    private const SPECIALIZATION_F = 'Физическая культура';
 
     /*
      * Константы групп
      */
     // ИС
-        private const IS_1 = '1 ИС';
-        private const IS_2 = '2 ИС';
-        private const IS_3 = '3 ИС';
-        private const IS_4 = '4 ИС';
+    private const IS_1 = '1 ИС';
+    private const IS_2 = '2 ИС';
+    private const IS_3 = '3 ИС';
+    private const IS_4 = '4 ИС';
     // ПК
-        private const PC_1 = '1 ПК';
-        private const PC_2 = '2 ПК';
-        private const PC_3 = '3 ПК';
-        private const PC_4 = '4 ПК';
+    private const PC_1 = '1 ПК';
+    private const PC_2 = '2 ПК';
+    private const PC_3 = '3 ПК';
+    private const PC_4 = '4 ПК';
     // МР
-        private const MR_1 = '1 МР';
-        private const MR_2 = '2 МР';
-        private const MR_3 = '3 МР';
+    private const MR_1 = '1 МР';
+    private const MR_2 = '2 МР';
+    private const MR_3 = '3 МР';
     // НК
-        private const NK_1 = '1 НК';
-        private const NK_2 = '2 НК';
-        private const NK_3 = '3 НК';
-        private const NK_4 = '4 НК';
+    private const NK_1 = '1 НК';
+    private const NK_2 = '2 НК';
+    private const NK_3 = '3 НК';
+    private const NK_4 = '4 НК';
     // ДО
-        private const DO_1 = '1 ДО';
-        private const DO_2 = '2 ДО';
-        private const DO_3 = '3 ДО';
-        private const DO_4 = '4 ДО';
+    private const DO_1 = '1 ДО';
+    private const DO_2 = '2 ДО';
+    private const DO_3 = '3 ДО';
+    private const DO_4 = '4 ДО';
     // Ф
-        private const F_1 = '1 Ф';
-        private const F_2 = '2 Ф';
-        private const F_3 = '3 Ф';
-        private const F_4 = '4 Ф';
+    private const F_1 = '1 Ф';
+    private const F_2 = '2 Ф';
+    private const F_3 = '3 Ф';
+    private const F_4 = '4 Ф';
 
     /*
      * Массив связей специальностей и групп
@@ -76,36 +76,36 @@ class AppSeeder extends Seeder
     /*
      * Константы дисциплин
      */
-        private const DISCIPLINE_PiRIP = 'Проектирование и разработка интерфейсов пользователя';
-        private const DISCIPLINE_OPP = 'Объектно-ориентированное программирование';
-        private const DISCIPLINE_RL = 'Русский язык';
-        private const DISCIPLINE_OPD = 'Обеспечение проектной детельности';
-        private const DISCIPLINE_PL = 'Языки программирования';
-        private const DISCIPLINE_ML = 'Марийский язык';
-        private const DISCIPLINE_H = 'История';
-        private const DISCIPLINE_DM = 'Дискретная математика';
-        private const DISCIPLINE_RKIS = 'Разработка кода информационных система';
-        private const DISCIPLINE_OAiP = 'Основы алгоритмизации и программирования';
-        private const DISCIPLINE_M = 'Математика';
-        private const DISCIPLINE_IKT = 'Информатика и ИКТ';
-        private const DISCIPLINE_PC = 'Физическая культура';
-        private const DISCIPLINE_PSO = 'Психология сетевого общения';
-        private const DISCIPLINE_EL = 'Английский язык';
-        private const DISCIPLINE_O = 'Обществование';
-        private const DISCIPLINE_L = 'Литература';
-        private const DISCIPLINE_GDiM = 'Графический дизайн и мультимедиа';
-        private const DISCIPLINE_F = 'Физика';
-        private const DISCIPLINE_IT = 'Информационные технологии';
-        private const DISCIPLINE_EHM = 'Элементы высшей математики  ';
-        private const DISCIPLINE_FLS = 'Основы безопасности жизнедеятельности';
-        private const DISCIPLINE_T = 'Черчение';
-        private const DISCIPLINE_C = 'Химия';
-        private const DISCIPLINE_RA = 'Ремонт автомобилей';
-        private const DISCIPLINE_BNVFSDG = 'БНВФСД Гимнастива';
-        private const DISCIPLINE_BNVFSDLS = 'БНВФСД Лыжный спорт';
-        private const DISCIPLINE_BNVFSDT = 'БНВФСД Туризм';
-        private const DISCIPLINE_BNVFSDLA = 'БНВФСД Легкая атлетика';
-        private const DISCIPLINE_IVS = 'Избранный вид спорта';
+    private const DISCIPLINE_PiRIP = 'Проектирование и разработка интерфейсов пользователя';
+    private const DISCIPLINE_OPP = 'Объектно-ориентированное программирование';
+    private const DISCIPLINE_RL = 'Русский язык';
+    private const DISCIPLINE_OPD = 'Обеспечение проектной детельности';
+    private const DISCIPLINE_PL = 'Языки программирования';
+    private const DISCIPLINE_ML = 'Марийский язык';
+    private const DISCIPLINE_H = 'История';
+    private const DISCIPLINE_DM = 'Дискретная математика';
+    private const DISCIPLINE_RKIS = 'Разработка кода информационных система';
+    private const DISCIPLINE_OAiP = 'Основы алгоритмизации и программирования';
+    private const DISCIPLINE_M = 'Математика';
+    private const DISCIPLINE_IKT = 'Информатика и ИКТ';
+    private const DISCIPLINE_PC = 'Физическая культура';
+    private const DISCIPLINE_PSO = 'Психология сетевого общения';
+    private const DISCIPLINE_EL = 'Английский язык';
+    private const DISCIPLINE_O = 'Обществование';
+    private const DISCIPLINE_L = 'Литература';
+    private const DISCIPLINE_GDiM = 'Графический дизайн и мультимедиа';
+    private const DISCIPLINE_F = 'Физика';
+    private const DISCIPLINE_IT = 'Информационные технологии';
+    private const DISCIPLINE_EHM = 'Элементы высшей математики  ';
+    private const DISCIPLINE_FLS = 'Основы безопасности жизнедеятельности';
+    private const DISCIPLINE_T = 'Черчение';
+    private const DISCIPLINE_C = 'Химия';
+    private const DISCIPLINE_RA = 'Ремонт автомобилей';
+    private const DISCIPLINE_BNVFSDG = 'БНВФСД Гимнастива';
+    private const DISCIPLINE_BNVFSDLS = 'БНВФСД Лыжный спорт';
+    private const DISCIPLINE_BNVFSDT = 'БНВФСД Туризм';
+    private const DISCIPLINE_BNVFSDLA = 'БНВФСД Легкая атлетика';
+    private const DISCIPLINE_IVS = 'Избранный вид спорта';
 
     /*
      * Массив связей групп и дисциплин
