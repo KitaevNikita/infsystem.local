@@ -139,17 +139,10 @@ class StudentController extends Controller
             $user->role = $request->role;
             $user->save();
             if ($request->number !== null) {
-<<<<<<< HEAD
                 $user->student->number = $request->number;
             }
             $user->student->group_id = $request->group_id;
             $user->student->save();
-
-=======
-                $request->number = $student->number;
-            }
-            $student->update($request->except('user_id'));
->>>>>>> ba82d1211741afb6d409f8451cec39f159da7103
             return redirect()->route('admin.students.index')
                 ->with('status', 'Студент успешно изменен');
         } else {
