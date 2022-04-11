@@ -49,24 +49,19 @@
         </div>
     @enderror
 </div>
+@if($canEditRole)
 <div>
     <label for="role">Роль</label>
     <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
-        @cannot('teacher')
         <option value="student" {{ (($user->role ?? old('role')) == "student") ? "selected" : "" }}>
             Студент
         </option>
-        @endcannot
-        @cannot('student')
         <option value="teacher" {{ (($user->role ?? old('role')) == "teacher") ? "selected" : "" }}>
             Преподаватель
         </option>
-        @cannot('teacher')
         <option value="training" {{ (($user->role ?? old('role')) == "training") ? "selected" : "" }}>
             Учебная часть
         </option>
-        @endcannot
-        @endcannot
     </select>
     @error('role')
         <div class="invalid-feedback">
@@ -74,4 +69,10 @@
         </div>
     @enderror
 </div>
+@endif
+@error('role')
+        <div class="invalid-feedback">
+            {{$message}}
+        </div>
+    @enderror
 

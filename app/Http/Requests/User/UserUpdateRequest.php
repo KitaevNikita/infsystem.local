@@ -20,7 +20,9 @@ class UserUpdateRequest extends UserStoreRequest
                 'nullable',
                 'string',
                 'between:8,25',
-            ]
+            ],
+
+            'role' => []
         ]);  
     }
 }

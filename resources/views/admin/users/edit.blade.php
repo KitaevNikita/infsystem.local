@@ -10,7 +10,7 @@
                     Редактировать пользователя
                 </h3>
                 <div class="card-body">
-                    <form action="{{ route('admin.users.update', $user->id) }}" method="post">
+                    <form action="{{ route('admin.users.update', $user) }}" method="post">
                         @csrf
                         @method('put')
 

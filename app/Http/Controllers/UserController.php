@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserUpdateRequest;
+use App\Services\Rights;
 
 class UserController extends Controller
 {
@@ -100,8 +101,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if ($request->user()->can('update', $user)) {
-            // вывод данных
-            return view('admin.users.edit', compact('user'));
+            $canEditRole = Rights::canEditRole($request->user(), $user);
+            return view('admin.users.edit', compact('user', 'canEditRole'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -124,10 +125,12 @@ class UserController extends Controller
             $user->surname = $request->surname;
             $user->patronymic = $request->patronymic;
             $user->name = $request->name;
-            $user->role = $request->role;
             $user->email = $request->email;
             if ($request->password !== null) {
                 $user->password = bcrypt($request->password);
+            }
+            if ($request->role === null) {
+                $request->role = $user->role; 
             }
             $user->save();
             if ($request->user()->can('viewAny', User::class)) {
