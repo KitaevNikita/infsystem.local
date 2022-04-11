@@ -30,7 +30,7 @@
         @enderror
     </div>
 </div>
-<div class="form-group">
+<div class="form-group mt-2">
     <label for="email">E-mail</label>
     <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
     value="{{ $user->email ?? old('email')}}">
@@ -40,7 +40,7 @@
         </div>
     @enderror
 </div>
-<div class="form-group">
+<div class="form-group mt-2">
     <label for="password">Пароль</label>
     <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
     @error('password')
@@ -50,7 +50,7 @@
     @enderror
 </div>
 @if($canEditRole)
-<div>
+<div class="mt-2">
     <label for="role">Роль</label>
     <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
         <option value="student" {{ (($user->role ?? old('role')) == "student") ? "selected" : "" }}>

@@ -29,6 +29,7 @@ class MarkRequest extends FormRequest
             'mark2' => ['nullable', 'string', 'size:1', new MarkValidity(true)],
         ];
     }
+    
     /**
     * Get the error messages for the defined validation rules.
     *
