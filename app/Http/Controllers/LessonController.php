@@ -138,7 +138,8 @@ class LessonController extends Controller
                     }
                 }
             }
-            return redirect()->route('teacher.lessons.show', [$discipline, $lesson]);
+            return redirect()->route('teacher.lessons.show', [$discipline, $lesson])
+                    ->with('status', 'Урок успешно изменен');
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')

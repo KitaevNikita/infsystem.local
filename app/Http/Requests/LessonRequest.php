@@ -41,7 +41,7 @@ class LessonRequest extends FormRequest
             "type.required" => "Выберите тип урока",
             "number_of_hours.required" => "Введите количество часов",
             "number_of_hours.integer" => "Должно быть челое число",
-            "number_of_hours.between" => "Введите значеие один или два",
+            "number_of_hours.between" => "Введите значение один или два",
         ];
     }
 }
