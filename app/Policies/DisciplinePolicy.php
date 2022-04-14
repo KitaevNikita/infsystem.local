@@ -53,10 +53,9 @@ class DisciplinePolicy
     {
         // проверяем является ли пользователь учебной частью или преподавателем
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
-        return $isTraining || $isTeacher;
+        return $isTraining;
     }
 
     /**
@@ -87,9 +86,8 @@ class DisciplinePolicy
     {
         // проверяем является ли пользователь учебной частью или преподавателем
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
 
-        return $isTraining || $isTeacher;
+        return $isTraining;
     }
 
     /**
