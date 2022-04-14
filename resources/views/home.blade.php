@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container py-4">
     @if ($errors->any())
             @foreach ($errors->all() as $error)
                 @component('components.error', [
@@ -12,9 +12,7 @@
             @endcomponent
         @endforeach
     @endif
-</div>
 
-<div class="container py-4">
     <div class="p-5 mb-4 bg-light rounded-3 border border-secondary">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Электронный журнал</h1>
