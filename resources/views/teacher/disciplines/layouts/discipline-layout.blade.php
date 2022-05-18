@@ -21,14 +21,14 @@
         <div class="card-body">
             @can('training')
             <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('teacher.disciplines.edit', $discipline) }}">
-                <i class="bi bi-pencil"> Редактировать</i>
+                <i class="bi bi-pencil"></i> Редактировать
             </a>
             @endcan
             <a class="btn btn-success d-inline-block me-1 text-light" href="{{ route('teacher.disciplines.getReport', $discipline) }}">
-                <i class="bi bi-file-earmark-bar-graph"> Отчет</i>
+                <i class="bi bi-file-earmark-bar-graph"></i> Отчет
             </a>
             <a class="btn btn-danger" href="{{ route('teacher.disciplines.index') }}">
-                <i class="bi bi-house"> На главную</i>
+                <i class="bi bi-house"></i>  На главную
             </a>
         </div>
     </div>
@@ -37,7 +37,7 @@
         <h3 class="card-header">
         Занятия
             <a class="btn btn-sm btn btn-success float-end" 
-                href="{{ route('teacher.lessons.create', $discipline) }}"><i class="bi bi-plus-square"> Добавить</i></a>
+                href="{{ route('teacher.lessons.create', $discipline) }}"><i class="bi bi-plus-square"></i> Добавить</a>
         </h3>
         <div class="card-body">
             @yield('discipline-content')

@@ -13,7 +13,7 @@
         <h3 class="card-header">
             Список учебных дисциплин
             @can('training')
-                <a class="btn btn-sm btn btn-success float-end" href="{{ route('teacher.disciplines.create') }}"><i class="bi bi-plus-square"> Добавить</i></a>
+                <a class="btn btn-sm btn btn-success float-end" href="{{ route('teacher.disciplines.create') }}"><i class="bi bi-plus-square"></i> Добавить</a>
             @endcan
             </h3>
         <div class="card-body">
@@ -40,7 +40,7 @@
                                 @if(Auth::user()->hasRole(Auth::user()::TRAINING))
                                     <i class="bi bi-eye"></i>
                                 @elseif(Auth::user()->hasRole(Auth::user()::TEACHER))
-                                    <i class="bi bi-journal-plus">Провести</i>
+                                    <i class="bi bi-journal-plus"></i> Провести
                                 @endif
                             </a>
                             @can('training')

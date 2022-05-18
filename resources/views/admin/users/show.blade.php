@@ -21,10 +21,10 @@
             </ul>
             <hr>
             <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('admin.users.edit', $user) }}">
-                <i class="bi bi-pencil"> Редактировать</i>
+                <i class="bi bi-pencil"></i> Редактировать
             </a>
             <a class="btn btn-danger" href="{{ route('admin.users.index') }}">
-            <i class="bi bi-house"> На главную</i>
+            <i class="bi bi-house"></i> На главную
             </a>
         </div>
     </div>

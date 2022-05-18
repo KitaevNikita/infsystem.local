@@ -10,10 +10,10 @@
     <li class="list-group-item"><strong>Дата:</strong> {{ $lesson->display_date }}</li>
 </ul>
 <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('teacher.lessons.edit', [$discipline, $lesson]) }}">
-    <i class="bi bi-pencil"> Редактировать</i>
+    <i class="bi bi-pencil"></i> Редактировать
 </a>
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">
-<i class="bi bi-house"> На главную</i>
+<i class="bi bi-house"></i> На главную
 </a>
 
 <lesson :discipline_id="{{$discipline->id}}" :lesson_id="{{$lesson->id}}"></lesson>

@@ -2,7 +2,7 @@
         <h3 class="card-header">
             Список групп
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.groups.create') }}">
-                <i class="bi bi-plus-square"> Добавить</i>
+                <i class="bi bi-plus-square"></i> Добавить
             </a>
         </h3>
         <div class="card-body">

@@ -13,8 +13,8 @@
                 <li class="list-group-item"><strong>Промежуточная аттестация:</strong> {{ $discipline->certification }}</li>
             </ul>
             <div class="card-body">
-                <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">
-                    <i class="bi bi-house"> На главную</i>
+                <a class="btn btn-danger d-inline-block me-1" href="{{ route('teacher.disciplines.show', $discipline) }}">
+                    <i class="bi bi-house"></i>  На главную
                 </a>
             </div>
         </div>
@@ -23,9 +23,9 @@
             Отчет
         </h3>
         <div class="card-body">
-                <summary-list :discipline_id="{{ $discipline->id }}"></summary-list>
+            <summary-list :discipline_id="{{ $discipline->id }}"></summary-list>
         </div>
-    </div> 
+    </div>
 </div>
 
 @endsection

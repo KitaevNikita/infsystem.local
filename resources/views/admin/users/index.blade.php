@@ -14,7 +14,7 @@
                 <h3 class="card-header">
                     Список пользователей
                     <a class="btn btn-sm btn-success float-end" id="new" href="{{ route('admin.users.create') }}">
-                        <i class="bi bi-person-plus"> Добавить</i>
+                        <i class="bi bi-person-plus"></i> Добавить
                     </a>
                 </h3>
                 <div class="card-body">

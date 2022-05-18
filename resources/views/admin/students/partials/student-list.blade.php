@@ -2,7 +2,7 @@
         <h3 class="card-header">
             Список студентов
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.students.create') }}">
-                <i class="bi bi-person-plus"> Добавить</i>
+                <i class="bi bi-person-plus"></i> Добавить
             </a>
         </h3>
         <div class="card-body">
