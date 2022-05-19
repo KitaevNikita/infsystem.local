@@ -12,6 +12,7 @@
         </SummaryListForm>
     </div>
 </template>
+
 <script>
 
 import SummaryListForm from './partials/SummaryListForm.vue';
