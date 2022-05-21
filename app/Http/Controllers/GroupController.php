@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
-use App\Models\User;
 use App\Models\Student;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GroupRequest;
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Specialization;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpecializationRequest;
 

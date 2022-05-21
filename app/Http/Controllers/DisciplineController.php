@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discipline;
-use App\Models\User;
 use App\Models\Group;
 use App\Models\Summarylist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DisciplineRequest;
 
 class DisciplineController extends Controller

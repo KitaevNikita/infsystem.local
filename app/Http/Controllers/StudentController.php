@@ -6,9 +6,7 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Group;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentRequest;
 use App\Http\Requests\Student\StudentStoreRequest;
 use App\Http\Requests\Student\StudentUpdateRequest;
 
@@ -121,7 +119,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
         // проверка прав пользователя
