@@ -19,7 +19,7 @@ class SpecializationTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/specializations')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Список специальностей')
+                    ->assertSee('Каталог специальностей')
                     ->assertSee('Добавить');
         });
     }
@@ -54,10 +54,12 @@ class SpecializationTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/specializations/1')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Детали специальности')
-                    ->assertSee('Название специальности')
+                    ->assertSee('Информационные системы и технологии')
+                    ->assertSee('Дата создания')
                     ->assertSee('Редактировать')
-                    ->assertSee('На главную');
+                    ->assertSee('На главную')
+                    ->assertSee('Список групп')
+                    ->assertSee('Добавить');
         });
     }
 
@@ -91,7 +93,7 @@ class SpecializationTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/specializations')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Список специальностей')
+                    ->assertSee('Каталог специальностей')
                     ->assertSee('Добавить')
                     ->assertDontSee('Прикладная информатика');
         });

@@ -56,11 +56,12 @@ class GroupTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/groups/1')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Детали группы')
-                    ->assertSee('Название группы')
+                    ->assertSee('1 ИС')
                     ->assertSee('Дата создания')
                     ->assertSee('Редактировать')
-                    ->assertSee('На главную');
+                    ->assertSee('На главную')
+                    ->assertSee('Список студентов')
+                    ->assertSee('Добавить');
         });
     }
 

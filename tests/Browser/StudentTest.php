@@ -41,7 +41,6 @@ class StudentTest extends DuskTestCase
                     ->assertSee('Отчество')
                     ->assertSee('E-mail')
                     ->assertSee('Пароль')
-                    ->assertSee('Роль')
                     ->assertSee('Номер студенческого')
                     ->assertSee('Группа')
                     ->assertSee('Сохранить')
@@ -51,7 +50,6 @@ class StudentTest extends DuskTestCase
                     ->assertEnabled('patronymic')
                     ->assertEnabled('email')
                     ->assertEnabled('password')
-                    ->assertEnabled('role')
                     ->assertEnabled('number')
                     ->assertEnabled('group_id');
         });
@@ -68,14 +66,10 @@ class StudentTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/students/1')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Детали студента')
-                    ->assertSee('Фамилия')
-                    ->assertSee('Имя')
-                    ->assertSee('Отчество')
+                    ->assertSee('Волков Милан Алексеевич')
                     ->assertSee('Номер студенческого')
                     ->assertSee('Группа')
-                    ->assertSee('Дата создания')
-                    ->assertSee('Дата редактирования')
+                    ->assertSee('Дата создания и редактирования')
                     ->assertSee('Редактировать')
                     ->assertSee('На главную');
         });
@@ -98,7 +92,6 @@ class StudentTest extends DuskTestCase
                     ->assertSee('Отчество')
                     ->assertSee('E-mail')
                     ->assertSee('Пароль')
-                    ->assertSee('Роль')
                     ->assertSee('Номер студенческого')
                     ->assertSee('Группа')
                     ->assertEnabled('name')
@@ -106,7 +99,6 @@ class StudentTest extends DuskTestCase
                     ->assertEnabled('patronymic')
                     ->assertEnabled('email')
                     ->assertEnabled('password')
-                    ->assertEnabled('role')
                     ->assertEnabled('number')
                     ->assertEnabled('group_id')
                     ->assertSee('Сохранить')

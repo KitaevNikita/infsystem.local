@@ -2,10 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Discipline;
-use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class DisciplineFactory extends Factory
 {
@@ -23,7 +20,7 @@ class DisciplineFactory extends Factory
         ];
         return [
             'teacher' => $this->faker->name(),
-            'number_hours' => mt_rand(30, 275),
+            'number_hours' => mt_rand(30, 300),
             'certification' => $certifications[rand(0, count($certifications)-1)],
         ];
     }

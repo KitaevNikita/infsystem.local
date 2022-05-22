@@ -2,10 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Student;
-use App\Models\Discipline;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class SummarylistFactory extends Factory
 {

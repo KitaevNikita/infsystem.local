@@ -60,11 +60,12 @@ class DisciplineTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/disciplines/1')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Проектирование и разработка интерфейсов пользователя')
-                    ->assertSee('Ф.И.О. преподавателя')
+                    ->assertSee('Проектирование и разработка интерфейсов пользователя (Никифороваа Олеся Борисовна)')
+                    ->assertSee('Группа')
                     ->assertSee('Количество часов')
                     ->assertSee('Промежуточная аттестация')
                     ->assertSee('Редактировать')
+                    ->assertSee('Отчет')
                     ->assertSee('На главную');
         });
     }

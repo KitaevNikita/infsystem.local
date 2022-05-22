@@ -2,11 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Group;
-use App\Models\Specialization;
-use App\Models\Discipline;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class GroupFactory extends Factory
 {

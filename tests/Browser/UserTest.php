@@ -64,11 +64,10 @@ class UserTest extends DuskTestCase
             $browser->loginAs(AuthHelper::getUserWithRole('training'))
                     ->visit('/users/1')
                     ->assertTitle('Электронный журнал')
-                    ->assertSee('Хохлов Антонин Алексеевич')
+                    ->assertSee('Лихачёва Эмилия Алексеевна')
                     ->assertSee('E-mail')
                     ->assertSee('Роль')
-                    ->assertSee('Дата добавления')
-                    ->assertSee('Дата последнего обновления')
+                    ->assertSee('Дата создания и последнего обновления')
                     ->assertSee('Редактировать')
                     ->assertSee('На главную');
         });
@@ -91,15 +90,13 @@ class UserTest extends DuskTestCase
                     ->assertSee('Отчество')
                     ->assertSee('E-mail')
                     ->assertSee('Пароль')
-                    ->assertSee('Роль')
                     ->assertSee('Сохранить')
                     ->assertSee('На главную')
                     ->assertEnabled('surname')
                     ->assertEnabled('name')
                     ->assertEnabled('patronymic')
                     ->assertEnabled('email')
-                    ->assertEnabled('password')
-                    ->assertEnabled('role');
+                    ->assertEnabled('password');
         });
     }
 

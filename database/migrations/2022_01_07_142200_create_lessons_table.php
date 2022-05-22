@@ -18,8 +18,8 @@ class CreateLessonsTable extends Migration
             $table->unsignedBigInteger('discipline_id')->index()->nullable()->comment('Идентификатор дисциплины');
             $table->foreign('discipline_id')->references('id')->on('disciplines')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date')->comment('дата');
-            $table->string('topic', 255)->comment('тема');
-            $table->string('type', 255)->comment('тип');
+            $table->string('topic', 155)->comment('тема');
+            $table->string('type', 25)->comment('тип');
             $table->integer('number_of_hours')->nullable()->comment('количество часов');
             $table->timestamps();
         });

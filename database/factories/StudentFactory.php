@@ -2,11 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Student;
 use App\Models\User;
-use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class StudentFactory extends Factory
 {
