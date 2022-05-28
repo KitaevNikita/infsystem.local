@@ -51,7 +51,7 @@ class SpecializationPolicy
     public function create(User $user)
     {
         // проверяем является ли пользователь учебной частью
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
 
         // возвращаем результат проверки
         return $isTraining;

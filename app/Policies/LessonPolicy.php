@@ -20,7 +20,7 @@ class LessonPolicy
     public function viewAny(User $user)
     {
         // проверяем является ли пользователь преподавателем
-         $isTeacher = $user->role == 'teacher';
+        $isTeacher = $user->role == 'teacher';
 
         // возвращаем результат проверки
         return $isTeacher;
@@ -51,7 +51,7 @@ class LessonPolicy
     public function create(User $user)
     {
         // проверяем является ли пользователь преподавателем
-         $isTeacher = $user->role == 'teacher';
+        $isTeacher = $user->role == 'teacher';
         // возвращаем результат проверки
         return $isTeacher;
     }
@@ -67,7 +67,7 @@ class LessonPolicy
     public function update(User $user, Lesson $model)
     {
         // проверяем является ли пользователь преподавателем
-         $isTeacher = $user->role == 'teacher';
+        $isTeacher = $user->role == 'teacher';
         // возвращаем результат проверки
         return $isTeacher;
     }
@@ -83,7 +83,7 @@ class LessonPolicy
     public function delete(User $user, Lesson $model)
     {
         // проверяем является ли пользователь преподавателем
-         $isTeacher = $user->role == 'teacher';
+        $isTeacher = $user->role == 'teacher';
         // возвращаем результат проверки
         return $isTeacher;
     }

@@ -20,7 +20,7 @@ class LessonRequest extends FormRequest
     {
         return [
             'date' => 'required',
-            'topic' => 'required|string|between:0,255',
+            'topic' => 'required|string|between:0,155',
             'type' => 'required',
             'number_of_hours' => 'required|integer|between:1,2',
         ];

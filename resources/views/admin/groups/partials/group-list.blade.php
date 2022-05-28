@@ -1,6 +1,6 @@
 <div class="card">
         <h3 class="card-header">
-            Список групп
+            Группы
             <a class="btn btn-sm btn btn-success float-end" href="{{ route('admin.groups.create') }}">
                 <i class="bi bi-plus-square"></i> Добавить
             </a>

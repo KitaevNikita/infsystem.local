@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DisciplineRequest extends FormRequest
 {
-     /**
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -16,7 +16,7 @@ class DisciplineRequest extends FormRequest
         return true;
     }
     
-     /**
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -24,10 +24,10 @@ class DisciplineRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_of_the_discipline' => 'required|string|between:0,255',
-            'teacher' => 'required|string|between:0,255',
+            'name_of_the_discipline' => 'required|string|between:0,100',
+            'teacher' => 'required|string|between:0,155',
             'number_hours' => 'required|integer',
-            'certification' => 'required|string|between:0,255',
+            'certification' => 'required|string|between:0,25',
         ];
     }
     

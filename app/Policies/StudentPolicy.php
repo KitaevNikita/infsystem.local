@@ -20,7 +20,7 @@ class StudentPolicy
     public function viewAny(User $user)
     {
         // проверяем является ли пользователь учебной частью
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
 
         // возвращаем результат проверки
         return $isTraining;
@@ -51,7 +51,7 @@ class StudentPolicy
     public function create(User $user)
     {
         // проверяем является ли пользователь учебной частью
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
         // возвращаем результат проверки
         return $isTraining;
     }
@@ -67,7 +67,7 @@ class StudentPolicy
     public function update(User $user, Student $model)
     {
         // проверяем является ли пользователь учебной частью
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
         // возвращаем результат проверки
         return $isTraining;
     }
@@ -83,7 +83,7 @@ class StudentPolicy
     public function delete(User $user, Student $model)
     {
         // проверяем является ли пользователь учебной частью
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
         // возвращаем результат проверки
         return $isTraining;
     }

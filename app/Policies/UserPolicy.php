@@ -50,7 +50,7 @@ class UserPolicy
     public function create(User $user)
     {
         // проверяем является ли пользователь администратором
-         $isTraining = $user->role == 'training';
+        $isTraining = $user->role == 'training';
 
         // возвращаем результат проверки
         return $isTraining;

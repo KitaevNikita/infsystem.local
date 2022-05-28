@@ -41,14 +41,14 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
                                 @can('teacher')
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                                 @endcan
                                 @can('training')
-                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Список обучающихся студентов</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Список групп</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Список пользователей</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Студенты</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Группы</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Пользователи</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Список учебных дисциплин</a></li>
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                                 @endcan
                             </ul>
                         </li>
@@ -78,8 +78,8 @@
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         <i class="bi bi-box-arrow-right"> Выйти</i>
                                     </a>
 

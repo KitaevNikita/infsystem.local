@@ -19,7 +19,7 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'namegroup' => 'required|string|between:2,10',
+            'namegroup' => 'required|string|between:2,5',
             'specialization_id' => 'required',
         ];
     }

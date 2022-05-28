@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card">
                 <h3 class="card-header">
-                    Список пользователей
+                    Пользователи
                     <a class="btn btn-sm btn-success float-end" id="new" href="{{ route('admin.users.create') }}">
                         <i class="bi bi-person-plus"></i> Добавить
                     </a>
@@ -35,15 +35,15 @@
                                 <td>{{ $user->role_name }}</td>
                                 <td class="text-end">
                                     <a class="btn btn-sm btn-primary d-inline-block me-1 text-light" id="show"
-                                       href="{{ route('admin.users.show', $user->id) }}">
-                                       <i class="bi bi-eye"></i>
+                                    href="{{ route('admin.users.show', $user->id) }}">
+                                    <i class="bi bi-eye"></i>
                                     </a>
                                     <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light" id="edit"
-                                       href="{{ route('admin.users.edit', $user->id) }}">
-                                       <i class="bi bi-pencil"></i>
+                                    href="{{ route('admin.users.edit', $user->id) }}">
+                                    <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.users.destroy', $user->id) }}"
-                                     method="post" class="float-end">
+                                    method="post" class="float-end">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger" id="delete" type="submit"><i class="bi bi-trash"></i></button>

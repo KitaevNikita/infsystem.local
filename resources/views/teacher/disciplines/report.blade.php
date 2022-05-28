@@ -20,7 +20,7 @@
         </div>
     <div class="card mt-3">
         <h3 class="card-header">
-            Отчет
+            Отчет по дисциплине: "{{ $discipline->name_of_the_discipline }}"
         </h3>
         <div class="card-body">
             <summary-list :discipline_id="{{ $discipline->id }}"></summary-list>

@@ -24,7 +24,7 @@ class SpecializationRequest extends FormRequest
     public function rules()
     {
         return [
-            'namespec' => 'required|string|between:0,255',
+            'namespec' => 'required|string|between:0,100',
         ];
     }
     
@@ -38,7 +38,7 @@ class SpecializationRequest extends FormRequest
         return [
             "namespec.required" => "Введите название специальности",
             "namespec.string" => "Поле специальность должно иметь строковое значение",
-            "namespec.between" => "Название специальности должно быть не более 255 символов",
+            "namespec.between" => "Название специальности должно быть не более 100 символов",
         ];
     }
 }

@@ -11,7 +11,7 @@
     @endif
     <div class="card">
         <h3 class="card-header">
-            Список учебных дисциплин
+            Учебные дисциплины
             @can('training')
                 <a class="btn btn-sm btn btn-success float-end" href="{{ route('teacher.disciplines.create') }}"><i class="bi bi-plus-square"></i> Добавить</a>
             @endcan
