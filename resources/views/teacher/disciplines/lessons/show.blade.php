@@ -13,7 +13,7 @@
     <i class="bi bi-pencil"></i> Редактировать
 </a>
 <a class="btn btn-danger" href="{{ route('teacher.disciplines.show', $discipline) }}">
-<i class="bi bi-house"></i> На главную
+<i class="bi bi-house"></i> Назад
 </a>
 
 <lesson :discipline_id="{{$discipline->id}}" :lesson_id="{{$lesson->id}}"></lesson>
