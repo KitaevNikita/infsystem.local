@@ -22,9 +22,10 @@ class DisciplinePolicy
         // проверяем является ли пользователь владельцем
         $isTraining = $user->role == 'training';
         $isTeacher = $user->role == 'teacher';
+        $isClassTeacher = $user->role == 'classteacher';
 
         // возвращаем результат проверки
-        return $isTraining || $isTeacher;
+        return $isTraining || $isTeacher || $isClassTeacher;
     }
 
     /**
@@ -111,8 +112,8 @@ class DisciplinePolicy
     public function getReport(User $user, Discipline $model)
     {
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
-        $result = $isTeacher || $isTraining;
+        $isClassTeacher = $user->role == 'classteacher';
+        $result = $isTraining || $isClassTeacher;
         return $result;
     }
 }

@@ -50,6 +50,7 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                                 @endcan
+                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                             </ul>
                         </li>
                         @endauth

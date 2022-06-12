@@ -47,8 +47,9 @@ class User extends Authenticatable
     public const TRAINING = 'training';
     public const TEACHER = 'teacher';
     public const STUDENT = 'student';
+    public const CLASSTEACHER = 'classteacher';
 
-     /**
+    /**
      * Get the user's full name.
      *
      * @return string
@@ -66,6 +67,8 @@ class User extends Authenticatable
             return 'Студент';
         }elseif ($this->role == 'training') {
             return 'Учебная часть';
+        }elseif ($this->role == 'classteacher') {
+            return 'Классный руководитель';
         }
     }
 

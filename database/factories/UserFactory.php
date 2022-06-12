@@ -23,7 +23,7 @@ class UserFactory extends Factory
     public function definition()
     {
         $gender = $this->faker->randomElement(['male','female']);
-        $roles = ['teacher', 'student'];
+        $roles = ['teacher', 'student', 'classteacher'];
         $role = $roles[rand(0, count($roles)-1)];
         return [
             'surname' => $this->faker->lastName($gender),
@@ -43,9 +43,9 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                  'email' => 'training@test.ru',
-                  'password' => bcrypt('12'),
-                  'role' => 'training'
+                'email' => 'training@test.ru',
+                'password' => bcrypt('12'),
+                'role' => 'training'
             ];
         });
     }
@@ -57,9 +57,23 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                  'email' => 'teacher@test.ru',
-                  'password' => bcrypt('13'),
-                  'role' => 'teacher'
+                'email' => 'teacher@test.ru',
+                'password' => bcrypt('13'),
+                'role' => 'teacher'
+            ];
+        });
+    }
+
+    /**
+    * Состояние для учетной записи классного руководителя
+    */
+    public function classteacher()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'email' => 'classteacher@test.ru',
+                'password' => bcrypt('13'),
+                'role' => 'classteacher'
             ];
         });
     }
@@ -71,8 +85,8 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                  'password' => bcrypt('13'),
-                  'role' => 'student'
+                'password' => bcrypt('13'),
+                'role' => 'student'
             ];
         });
     }

@@ -62,6 +62,9 @@
         <option value="training" {{ (($user->role ?? old('role')) == "training") ? "selected" : "" }}>
             Учебная часть
         </option>
+        <option value="classteacher" {{ (($user->role ?? old('role')) == "classteacher") ? "selected" : "" }}>
+            Классный руководитель
+        </option>
     </select>
     @error('role')
         <div class="invalid-feedback">

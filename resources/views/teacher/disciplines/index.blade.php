@@ -39,6 +39,8 @@
                             href="{{ route('teacher.disciplines.show', $discipline) }}">
                                 @if(Auth::user()->hasRole(Auth::user()::TRAINING))
                                     <i class="bi bi-eye"></i>
+                                @elseif(Auth::user()->hasRole(Auth::user()::CLASSTEACHER))
+                                    <i class="bi bi-eye"></i>
                                 @elseif(Auth::user()->hasRole(Auth::user()::TEACHER))
                                     <i class="bi bi-journal-plus"></i> Провести
                                 @endif
