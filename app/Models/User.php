@@ -101,4 +101,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Group::class);
     }
+
+    public function disciplines()
+    {
+        return $this->belongsToMany(Discipline::class, 'disciplines_teachers', 'teacher_id', 'discipline_id');
+    }
+
+    public function isDisciplineConnected($discipline_id)
+    {
+        for ($i=0; $i < count($this->disciplines); $i++) { 
+            if ($this->disciplines[$i]->id == $discipline_id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

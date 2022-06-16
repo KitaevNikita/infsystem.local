@@ -13,3 +13,4 @@ app.component('lesson', Lesson);
 app.component('summary-list', SummaryList);
 
 app.mount('#app');
+

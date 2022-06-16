@@ -27,6 +27,7 @@
             {{$message}}
         </div>
     @enderror
+</div>
 <div class="mb-3 mt-3">
     <label for="group_id">Группа</label>
     <select class="form-select @error('group_id') is-invalid @enderror" id="group_id" name="group_id">
@@ -42,6 +43,20 @@
         </div>
     @enderror
 </div>
+<div class="mb-3 mt-3">
+    <label for="teachers">Преподаватели</label>
+    <select class="form-select @error('teachers') is-invalid @enderror" id="teachers" name="teachers[]" multiple>
+        @foreach($teachers as $teacher)
+            <option @if(isset($discipline) &&  $discipline->isTeacherConnected($teacher->id)) selected @endif value='{{$teacher->id}}'>
+                {{$teacher->full_name}}
+            </option>
+        @endforeach
+    </select>
+    @error('group_id')
+        <div class="invalid-feedback">
+            {{$message}}
+        </div>
+    @enderror
 </div>
 <div class="mb-3">
     <label for="certification">Промежуточная аттестация<sup style="color: red">*</sup></label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discipline;
 use App\Models\Group;
+use App\Models\User;
 use App\Models\Summarylist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,7 +48,8 @@ class DisciplineController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('create', Discipline::class)) {
             $groups = Group::all();
-            return view('teacher.disciplines.create', compact('groups'));
+            $teachers = User::where('role', 'teacher')->get();
+            return view('teacher.disciplines.create', compact('groups', 'teachers'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -64,7 +66,10 @@ class DisciplineController extends Controller
     public function store(DisciplineRequest $request)
     {
         if ($request->user()->can('create', Discipline::class)) {
-            $discipline = Discipline::create($request->all());
+            $discipline = Discipline::create($request->except('teachers'));
+            $teachers = $request->teachers;
+            $teachers = User::find($teachers);
+            $discipline->teachers()->attach($teachers);
             $students = $discipline->group->students;
             for ($i=0; $i < count($students); $i++) { 
                 Summarylist::create([
@@ -111,7 +116,8 @@ class DisciplineController extends Controller
         $discipline = Discipline::findOrFail($id);
         if ($request->user()->can('update', $discipline)) {
             $groups = Group::all();
-            return view('teacher.disciplines.edit', compact('discipline', 'groups'));
+            $teachers = User::where('role', 'teacher')->get();
+            return view('teacher.disciplines.edit', compact('discipline', 'groups', 'teachers'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -132,6 +138,10 @@ class DisciplineController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('update', $discipline)) {
             $discipline->update($request->except('user_id'));
+            $teachers = $request->teachers;
+            $teachers = User::find($teachers);
+            $discipline->teachers()->detach($discipline->teachers);
+            $discipline->teachers()->attach($teachers);
             return redirect()->route('teacher.disciplines.index')
                 ->with('status', 'Дисциплина успешно изменена');
         } else {

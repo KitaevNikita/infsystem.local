@@ -15,7 +15,7 @@
         </h3>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="statement-table">
                 <thead>
                     <tr>
                         <th scope="col" rowspan="2" class="text-center align-middle">№ п/п</th>

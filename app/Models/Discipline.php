@@ -40,4 +40,19 @@ class Discipline extends Model
     {
         return $this->hasMany(Student::class, 'summarylists', 'discipline_id', 'student_id');
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(User::class, 'disciplines_teachers', 'discipline_id', 'teacher_id');
+    }
+
+    public function isTeacherConnected($teacher_id)
+    {
+        for ($i=0; $i < count($this->teachers); $i++) { 
+            if ($this->teachers[$i]->id == $teacher_id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
