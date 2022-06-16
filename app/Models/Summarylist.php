@@ -33,4 +33,24 @@ class Summarylist extends Model
     {
         return $this->belongsTo(Discipline::class);
     }
+
+    public function getEstimation($discipline_id, $student_id)
+    {
+        $summarylists = Summarylist::where('discipline_id', $discipline_id)
+            ->where('student_id', $student_id)->get();
+        if (count($summarylists) > 0) {
+            return $summarylists[0]->estimation;
+        }
+        return '';
+    }
+
+    public function getInterim($discipline_id, $student_id)
+    {
+        $summarylists = Summarylist::where('discipline_id', $discipline_id)
+            ->where('student_id', $student_id)->get();
+        if (count($summarylists) > 0) {
+            return $summarylists[0]->interim;
+        }
+        return '';
+    }
 }

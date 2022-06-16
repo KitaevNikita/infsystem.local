@@ -6,6 +6,12 @@
     <div class="card">
         <h3 class="card-header">
         Сводная ведомость
+        <a class="btn btn-sm btn btn-primary float-end d-inline-block ms-1" href="javascript:(print());" onclick="window.print();return false;">
+            <i class="bi bi-printer"></i> Печать
+        </a>
+        <a class="btn btn-sm btn btn-danger float-end" href="{{ route('admin.groups.index') }}">
+            <i class="bi bi-house"></i> Вернуться
+        </a>
         </h3>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,29 +24,24 @@
                         <th scope="col" colspan="2" class="text-center">Промежуточная аттестия</th>
                     </tr>
                     <tr>
-                        <th scope="col" class="text-center">Литература</th>
-                        <th scope="col" class="text-center">Физика</th>
-                        <th scope="col" class="text-center">Литература</th>
-                        <th scope="col" class="text-center">Физика</th>
+                        @for($i = 0; $i < 2; $i++)
+                            @foreach($group->disciplines as $discipline)
+                                <th scope="col" class="text-center align-middle">{{ $discipline->name_of_the_discipline }}</th>
+                            @endforeach
+                        @endfor
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($group->students as $student)
                     <tr>
-                        <td scope="row" class="text-center">1</td>
-                        <td>Токарев Егор Владимирович</td>
-                        <td class="text-center"></td>
-                        <td class="text-center">5</td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
+                        <td scope="row" class="text-center align-middle">{{ $loop->iteration }}</td>
+                        <td>{{ $student->user->full_name }}</td>
+                        @foreach($group->disciplines as $discipline)
+                            <td class="text-center align-middle">{{ \App\Models\Summarylist::getEstimation($discipline->id, $student->id) }}</td>
+                            <td class="text-center align-middle">{{ \App\Models\Summarylist::getInterim($discipline->id, $student->id) }}</td>
+                        @endforeach
                     </tr>
-                    <tr>
-                        <td scope="row" class="text-center">2</td>
-                        <td>Ортюков Дмитрий Александрович</td>
-                        <td class="text-center"></td>
-                        <td class="text-center">2</td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 </table>
             </div>
