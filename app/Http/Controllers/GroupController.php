@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\User;
 use App\Models\Student;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
@@ -20,7 +21,12 @@ class GroupController extends Controller
     {
         // проверка прав пользователя
         if ($request->user()->can('viewAny', Group::class)) {
-            $groups = Group::all();
+            $groups;
+            if ($request->user()->role == 'classteacher') {
+                $groups = Group::where('classteacher_id', $request->user()->id)->get();
+            } else {
+                $groups = Group::all();
+            }
             return view('admin.groups.index', compact('groups'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -40,7 +46,8 @@ class GroupController extends Controller
         // проверка прав пользователя
         if ($request->user()->can('create', Group::class)) {
             $specializations = Specialization::all();
-            return view('admin.groups.create', compact('specializations'));
+            $classTeachers = User::where('role', 'classteacher')->get();
+            return view('admin.groups.create', compact('specializations', 'classTeachers'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
             return redirect()->route('home')
@@ -77,7 +84,7 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $group)) {
+        if ($request->user()->can('view', $group)) {
             $students = Student::where('group_id', $group->id)->paginate(StudentController::paginate);
             return view('admin.groups.show', compact('group', 'students'));
         } else {

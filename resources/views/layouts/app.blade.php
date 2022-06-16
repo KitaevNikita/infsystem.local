@@ -40,15 +40,11 @@
                                 Меню
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="moduleDropdown">
-                                @can('teacher')
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
-                                @endcan
                                 @can('training')
                                 <li><a class="dropdown-item" href="{{ route('admin.students.index') }}">Студенты</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.groups.index') }}">Группы</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.users.index') }}">Пользователи</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.specializations.index') }}">Каталог специальностей</a></li>
-                                <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                                 @endcan
                                 <li><a class="dropdown-item" href="{{ route('teacher.disciplines.index') }}">Учебные дисциплины</a></li>
                             </ul>

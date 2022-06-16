@@ -19,11 +19,11 @@ class UsersTableSeeder extends Seeder
             ->training()
             ->create();
         User::factory()
-            ->count(1)
+            ->count(10)
             ->teacher()
             ->create();
         User::factory()
-            ->count(1)
+            ->count(10)
             ->classteacher()
             ->create();
     }

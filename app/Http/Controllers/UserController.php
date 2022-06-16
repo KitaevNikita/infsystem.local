@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $user)) {
+        if ($request->user()->can('view', $user)) {
             // вывод данных
             $user = User::findOrFail($id);
             return view('admin.users.show', compact('user'));

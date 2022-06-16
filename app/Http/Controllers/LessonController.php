@@ -74,7 +74,7 @@ class LessonController extends Controller
     {
         $lesson = Lesson::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $lesson)) {
+        if ($request->user()->can('view', $lesson)) {
             $discipline = Discipline::findOrFail($discipline_id);
             return view('teacher.disciplines.lessons.show', compact('discipline', 'lesson'));
         } else {

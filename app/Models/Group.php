@@ -52,4 +52,9 @@ class Group extends Model
     {
         return Carbon::parse($value)->isoFormat('D MMMM YYYY');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'classteacher_id');
+    }
 }

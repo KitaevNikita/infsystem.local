@@ -37,10 +37,15 @@ class DisciplinePolicy
      */
     public function view(User $user, Discipline $model)
     {
-        if ($model->role == 'training') {
-            return true;
+        $isTraining = $user->role == 'training';
+        $isTeacher = $user->role == 'teacher';
+        $isGroupForClassTeacher = false;
+        if ($user->role == 'classteacher') {
+            if ($model->group->classteacher_id == $user->id) {
+                $isGroupForClassTeacher = true;
+            }
         }
-        return null;
+        return $isTraining || $isTeacher || $isGroupForClassTeacher;
     }
 
     /**

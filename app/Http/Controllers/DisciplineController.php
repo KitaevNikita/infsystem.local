@@ -8,6 +8,7 @@ use App\Models\Summarylist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DisciplineRequest;
+use Illuminate\Database\Eloquent\Builder;
 
 class DisciplineController extends Controller
 {
@@ -20,7 +21,14 @@ class DisciplineController extends Controller
     {
         // проверка прав пользователя
         if ($request->user()->can('viewAny', Discipline::class)) {
-            $disciplines = Discipline::paginate(5);
+            $disciplines;
+            if ($request->user()->role == 'classteacher') {
+                $disciplines = Discipline::whereHas('group', function (Builder $query) use($request) {
+                    $query->where('classteacher_id', 'like', $request->user()->id);
+                })->paginate(10);   
+            } else {
+                $disciplines = Discipline::paginate(10);
+            }
             return view('teacher.disciplines.index', compact('disciplines'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа
@@ -83,7 +91,7 @@ class DisciplineController extends Controller
     {
         $discipline = Discipline::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $discipline)) {
+        if ($request->user()->can('view', $discipline)) {
             return view('teacher.disciplines.show', compact('discipline'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа

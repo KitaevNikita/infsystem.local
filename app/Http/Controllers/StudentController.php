@@ -83,7 +83,7 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $student)) {
+        if ($request->user()->can('view', $student)) {
             return view('admin.students.show', compact('student'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа

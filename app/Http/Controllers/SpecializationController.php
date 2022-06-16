@@ -73,7 +73,7 @@ class SpecializationController extends Controller
     {
         $specialization = Specialization::findOrFail($id);
         // проверка прав пользователя
-        if ($request->user()->can('viewAny', $specialization)) {
+        if ($request->user()->can('view', $specialization)) {
             return view('admin.specializations.show', compact('specialization'));
         } else {
             // запрет действия с выводом сообщения об ошибке доступа

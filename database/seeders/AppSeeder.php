@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use App\Models\Specialization;
 use App\Models\Group;
+use App\Models\User;
 use App\Models\Discipline;
 use App\Models\Student;
 use App\Models\Summarylist;
@@ -243,10 +244,12 @@ class AppSeeder extends Seeder
      */
     private function createGroup(string $groupName, Specialization $specialization) : Group
     {
+        $classTeachers = User::where('role', 'classteacher')->get();
         return Group::factory()
             ->count(1)
             ->createGroupByName($groupName)
             ->for($specialization)
+            ->for($classTeachers[rand(0, count($classTeachers)-1)])
             ->create()[0];
     }
 

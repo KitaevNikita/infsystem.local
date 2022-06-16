@@ -96,4 +96,9 @@ class User extends Authenticatable
     {
         return Carbon::parse($value)->isoFormat('D MMMM YYYY');
     }
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
 }
