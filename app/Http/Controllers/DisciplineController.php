@@ -26,7 +26,11 @@ class DisciplineController extends Controller
             if ($request->user()->role == 'classteacher') {
                 $disciplines = Discipline::whereHas('group', function (Builder $query) use($request) {
                     $query->where('classteacher_id', 'like', $request->user()->id);
-                })->paginate(10);   
+                })->paginate(10);  
+            } elseif ($request->user()->role == 'teacher') {
+                $disciplines = Discipline::whereHas('teachers', function (Builder $query) use($request) {
+                    $query->where('teacher_id', 'like', $request->user()->id);
+                })->paginate(10);
             } else {
                 $disciplines = Discipline::paginate(10);
             }

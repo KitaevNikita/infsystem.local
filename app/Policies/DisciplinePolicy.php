@@ -38,14 +38,17 @@ class DisciplinePolicy
     public function view(User $user, Discipline $model)
     {
         $isTraining = $user->role == 'training';
-        $isTeacher = $user->role == 'teacher';
         $isGroupForClassTeacher = false;
         if ($user->role == 'classteacher') {
             if ($model->group->classteacher_id == $user->id) {
                 $isGroupForClassTeacher = true;
             }
         }
-        return $isTraining || $isTeacher || $isGroupForClassTeacher;
+        $isDisciplineForTeacher = false;
+        if ($user->role == 'teacher' && $user->isDisciplineConnected($model->id)) {
+            $isDisciplineForTeacher = true;
+        }
+        return $isTraining || $isGroupForClassTeacher || $isDisciplineForTeacher;
     }
 
     /**
