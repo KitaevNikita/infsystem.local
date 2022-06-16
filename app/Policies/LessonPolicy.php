@@ -35,7 +35,7 @@ class LessonPolicy
      */
     public function view(User $user, Lesson $model)
     {
-        if ($model->role == 'teacher') {
+        if ($user->role == 'teacher') {
             return true;
         }
         return null;

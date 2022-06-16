@@ -112,7 +112,7 @@ class AppSeeder extends Seeder
      * Массив связей групп и дисциплин
      */
     private const DISCIPLINES_FOR_GROUPS = [
-        self::IS_1 => [self::DISCIPLINE_PiRIP, self::DISCIPLINE_OPP],
+        self::IS_1 => [self::DISCIPLINE_PiRIP, self::DISCIPLINE_OPP, self::DISCIPLINE_RKIS, self::DISCIPLINE_IT, self::DISCIPLINE_EHM],
         self::IS_2 => [self::DISCIPLINE_OPD, self::DISCIPLINE_OAiP],
         self::IS_3 => [self::DISCIPLINE_FLS, self::DISCIPLINE_IT],
         self::IS_4 => [self::DISCIPLINE_RKIS, self::DISCIPLINE_EHM],

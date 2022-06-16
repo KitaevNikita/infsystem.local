@@ -34,7 +34,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if ($model->role == 'training') {
+        if ($user->role == 'training') {
             return true;
         }
         return null;

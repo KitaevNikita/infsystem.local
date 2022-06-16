@@ -35,7 +35,7 @@ class SpecializationPolicy
      */
     public function view(User $user, Specialization $model)
     {
-        if ($model->role == 'training') {
+        if ($user->role == 'training') {
             return true;
         }
         return null;
