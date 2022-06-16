@@ -28,12 +28,14 @@
                         <td class="text-end">
                             <a class="btn btn-sm btn-secondary d-inline-block me-1 text-light"
                             href="{{ route('admin.students.show', $student->id) }}"><i class="bi bi-eye"></i></a>
+                            @can('training')
                             <a class="btn btn-sm btn-primary d-inline-block me-1 text-light"
                             href="{{ route('admin.students.edit', $student->id) }}"><i class="bi bi-pencil"></i></a>
                             <form action="{{ route('admin.students.destroy', $student->id) }}" method="post" class="float-end">
                             @csrf
                             @method('delete')
                             <button class="btn btn-sm btn-danger" type="submit"><i class="bi bi-trash"></i></a>
+                            @endcan
                             </form>
                         </td>
                         @csrf

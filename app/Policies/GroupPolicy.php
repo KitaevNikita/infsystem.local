@@ -21,9 +21,10 @@ class GroupPolicy
     {
         // проверяем является ли пользователь владельцем
         $isTraining = $user->role == 'training';
+        $isClassTeacher = $user->role == 'classteacher';
 
         // возвращаем результат проверки
-        return $isTraining;
+        return $isTraining || $isClassTeacher;
     }
 
     /**
@@ -38,7 +39,7 @@ class GroupPolicy
         $isTraining = $user->role == 'training';
         $isGroupForClassTeacher = false;
         if ($user->role == 'classteacher') {
-            if ($model->group->classteacher_id == $user->id) {
+            if ($model->classteacher_id == $user->id) {
                 $isGroupForClassTeacher = true;
             }
         }
@@ -107,5 +108,11 @@ class GroupPolicy
         $result = $isTraining && ($author || $role);
 
         return $result;
+    }
+
+    public function getStatement(User $user, Group $model)
+    {
+        $isClassTeacher = $user->role == 'classteacher';
+        return $isClassTeacher;
     }
 }

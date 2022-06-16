@@ -13,9 +13,11 @@
             <li class="list-group-item"><strong>Дата создания и редактирования:</strong> {{ $student->created_at }} / {{ $student->updated_at }}</li>
         </ul>
         <div class="card-body">
+            @can('training')
             <a class="btn btn-secondary d-inline-block me-1 text-light" href="{{ route('admin.students.edit', $student->id) }}">
                 <i class="bi bi-pencil"></i> Редактировать
             </a>
+            @endcan
             <a class="btn btn-danger" href="{{ route('admin.students.index') }}">
                 <i class="bi bi-house"></i> На главную
             </a>

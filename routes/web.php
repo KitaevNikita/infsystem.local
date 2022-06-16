@@ -69,6 +69,10 @@ Route::group($adminGroupData, function ()
     Route::resource(
         'groups', GroupController::class
     );
+    Route::get(
+        'groups/{group}/statement',
+        [GroupController::class, 'getStatement'] 
+    )->name('groups.statement');
     Route::resource(
         'specializations', 
         SpecializationController::class

@@ -155,4 +155,23 @@ class GroupController extends Controller
                 ->withErrors(['msg' => 'Ошибка доступа']);
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getStatement(Request $request, $id)
+    {
+        $group = Group::findOrFail($id);
+
+        if ($request->user()->can('getStatement', $group)) {
+            return view('admin.groups.statement', compact('group'));
+        } else {
+            // запрет действия с выводом сообщения об ошибке доступа
+            return redirect()->route('home')
+                ->withErrors(['msg' => 'Ошибка доступа']);
+        }
+    }
 }
